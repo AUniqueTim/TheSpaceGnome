@@ -19419,6 +19419,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1254179175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3920422065142956503, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
+  m_PrefabInstance: {fileID: 3920422065705083084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257457632
 GameObject:
   m_ObjectHideFlags: 0
@@ -34336,15 +34341,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459606341492483194, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
       propertyPath: m_Constraints
-      value: 72
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8459606341492483198, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1254179175}
+    - target: {fileID: 8459606341492483198, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8459606341492483199, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8703232011248264868, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703232011248264869, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
+      propertyPath: gravity
+      value: -9.87
       objectReference: {fileID: 0}
     - target: {fileID: 8703232011248264870, guid: 9f223bbbced98ca419ec4c40a82fc838, type: 3}
       propertyPath: MouseX
