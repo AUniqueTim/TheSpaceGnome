@@ -103,20 +103,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
         if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y >= 120) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y <= -120) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y >= 60) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y <= -60) { transform.SetPositionAndRotation(transform.position, originalRot); }
         if (transform.rotation.z >= 180) { transform.SetPositionAndRotation(transform.position, originalRot); }
         if (transform.rotation.z <= -180) { transform.SetPositionAndRotation(transform.position, originalRot); }
 
         if (isFallingIdle) { FallingIdle(); jumpingAllowed = false; }
 
         if (isStanding) { StandIdle(); jumpingAllowed = true; transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self);
-            if (!controls.Player.Move.triggered && !controls.Player.MoveX.triggered &&
-                !controls.Player.MoveNegativeX.triggered && !controls.Player.MoveY.triggered &&
-                !controls.Player.MoveNegativeY.triggered && !controls.Player.Jump.triggered && !controls.Camera.Rotate.triggered)
-                {camRotation.transform.RotateAround(transform.position, camRotation.transform.rotation.z);}
+            //if (!controls.Player.Move.triggered && !controls.Player.MoveX.triggered &&
+            //    !controls.Player.MoveNegativeX.triggered && !controls.Player.MoveY.triggered &&
+            //    !controls.Player.MoveNegativeY.triggered && !controls.Player.Jump.triggered && !controls.Camera.Rotate.triggered)
+            //    {camRotation.transform.RotateAround(transform.position, camRotation.transform.rotation.z);}
         }
-        else if (!isStanding) { transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self); }
+        //else if (!isStanding) { transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self); }
 
         //if(transform.rotation.y != originalRot.y) { transform.SetPositionAndRotation(transform.position, originalRot); }
 
