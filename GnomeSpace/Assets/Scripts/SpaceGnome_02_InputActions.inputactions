@@ -186,8 +186,8 @@
                     "name": "Rotate",
                     "type": "Value",
                     "id": "fc148e40-54d1-4ca7-842d-2d7db259e6a6",
-                    "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone,Clamp(min=-0.5,max=0.5)",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
                     "interactions": ""
                 }
             ],
@@ -218,6 +218,28 @@
                     "name": "right",
                     "id": "f5dc4f11-2cab-43d9-81b0-1ece453824f2",
                     "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "up",
+                    "id": "f48f4301-7112-464d-8b5a-a41bf185475f",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "dbb1f442-6b87-40bd-b4ef-318b69cb0df0",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

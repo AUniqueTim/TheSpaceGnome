@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class CameraRotation : MonoBehaviour
 {
     public CameraControls camControls;
+
     public Vector3 camRot;
     [SerializeField] private float camSpeed;
     [SerializeField] private float maxXRot;
@@ -23,7 +24,7 @@ public class CameraRotation : MonoBehaviour
     private void Update()
     {
         Vector3 camRotation = new Vector3(camRot.y, camRot.x, camRot.z);
-        transform.Rotate(camRotation.normalized * camSpeed * Time.deltaTime, Space.World);
+        transform.RotateAround(camRotation.normalized * camSpeed * Time.deltaTime, player.transform.rotation.y);
         player.transform.Rotate(camRotation.normalized * camSpeed * Time.deltaTime, Space.World);
         //player.transform.rotation = transform.rotation;
         if (camRotation.x >= maxXRot)

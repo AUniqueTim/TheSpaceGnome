@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public CameraRotation camRotation;
+    [SerializeField] private GameObject camera;
     [SerializeField] private GameObject playerGO;
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private Animator playerAnimator;
@@ -101,17 +103,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
         if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.z >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.z <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y >= 120) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y <= -120) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.z >= 180) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.z <= -180) { transform.SetPositionAndRotation(transform.position, originalRot); }
 
         if (isFallingIdle) { FallingIdle(); jumpingAllowed = false; }
 
-        if (isStanding) { StandIdle(); jumpingAllowed = true; transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z, Space.World); }
-        //else if (!isStanding) { transform.SetPositionAndRotation(originalPos, originalRot); }
-       
-        
+        if (isStanding) { StandIdle(); jumpingAllowed = true; transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self);
+            if (!controls.Player.Move.triggered && !controls.Player.MoveX.triggered &&
+                !controls.Player.MoveNegativeX.triggered && !controls.Player.MoveY.triggered &&
+                !controls.Player.MoveNegativeY.triggered && !controls.Player.Jump.triggered && !controls.Camera.Rotate.triggered)
+                {camRotation.transform.RotateAround(transform.position, camRotation.transform.rotation.z);}
+        }
+        else if (!isStanding) { transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self); }
+
+        //if(transform.rotation.y != originalRot.y) { transform.SetPositionAndRotation(transform.position, originalRot); }
+
+
     }
     //private void LateUpdate()
     //{
