@@ -38,8 +38,8 @@ ModelImporter:
       name: Falling From Losing Balance
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 90
-      lastFrame: 230
+      firstFrame: 0
+      lastFrame: 250
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

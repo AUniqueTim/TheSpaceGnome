@@ -11,17 +11,20 @@ public class PlayerMovement : MonoBehaviour
     public float playerSpeed;
     [SerializeField] private MouseLook m_mouseLook;
     public SpaceGnome_02_InputActions controls;
-    //[SerializeField] private float jumpSpeed;
-    //[SerializeField] private float jumpHeight;
+    [SerializeField] private float jumpSpeed;
+    [SerializeField] private Vector3 jumpHeight;
     public bool isFallingIdle;
     public bool isStanding;
     public float gravity;
-
+    public bool jumpingAllowed;
+    public bool isJumping;
     Vector3 move;
     Vector3 moveX;
     Vector3 negMoveX;
     Vector3 moveY;
     Vector3 negMoveY;
+    Vector3 originalPos;
+    Quaternion originalRot;
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -44,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Awake()
     {
+        originalPos = transform.position;
+        originalRot = transform.rotation;
         instance = this;
         gravity = -9.87f;
         playerSpeed = 2f;
@@ -59,14 +64,17 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveY.canceled += context => moveY = Vector3.zero;
         controls.Player.MoveNegativeY.performed += context => negMoveY = Vector3.left;
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
-        //controls.Player.Jump.performed += context => jumpSpeed =Vector2.up
+        controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
+       // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
+
+        
     }
 
     private void Update()
     {
         Vector3 m = new Vector3(move.x, move.y, move.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(m, Space.Self);
-       
+
         Vector3 mX = new Vector3(moveX.x, moveX.y, moveX.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(mX, Space.Self);
 
@@ -79,11 +87,36 @@ public class PlayerMovement : MonoBehaviour
         Vector3 negMY = new Vector3(negMoveY.x, negMoveY.y, negMoveY.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(negMY, Space.Self);
 
+        Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed * -gravity * Time.deltaTime;
 
+        if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
+        {
+          
+            transform.Translate(jump, Space.Self);
+            isJumping = true;
+        }
+        else { isJumping = false; }
 
-        if (isStanding) { StandIdle(); }
-       if (isFallingIdle) { FallingIdle(); }
+        /* */
+
+        if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.y <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.z >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (transform.rotation.z <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+
+        if (isFallingIdle) { FallingIdle(); jumpingAllowed = false; }
+
+        if (isStanding) { StandIdle(); jumpingAllowed = true; transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z, Space.World); }
+        //else if (!isStanding) { transform.SetPositionAndRotation(originalPos, originalRot); }
+       
+        
     }
+    //private void LateUpdate()
+    //{
+    //    transform.Rotate(0, jumpHeight.y, 0, Space.Self);
+    //}
     public void StandtoFall()
     {
         ResetStates();

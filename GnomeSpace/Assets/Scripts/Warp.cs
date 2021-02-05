@@ -8,7 +8,7 @@ public class Warp : MonoBehaviour
     [SerializeField] GameObject player;
     private void Awake()
     {
-        originalPos = player.transform.position;
+        
     }
     private void OnCollisionEnter(Collision collision)
     {

@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 public class CameraRotation : MonoBehaviour
 {
     public CameraControls camControls;
-    public Vector2 camRot;
+    public Vector3 camRot;
     [SerializeField] private float camSpeed;
     [SerializeField] private float maxXRot;
     [SerializeField] private float maxYRot;
     public GameObject player;
+
 
     public void Awake()
     {
@@ -21,9 +22,10 @@ public class CameraRotation : MonoBehaviour
 
     private void Update()
     {
-        Vector2 camRotation = new Vector2(camRot.y, camRot.x/*, camRot.z*/);
-        transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.World);
-        //player.transform.rotation = (camRotation.x, camRotation.y);
+        Vector3 camRotation = new Vector3(camRot.y, camRot.x, camRot.z);
+        transform.Rotate(camRotation.normalized * camSpeed * Time.deltaTime, Space.World);
+        player.transform.Rotate(camRotation.normalized * camSpeed * Time.deltaTime, Space.World);
+        //player.transform.rotation = transform.rotation;
         if (camRotation.x >= maxXRot)
         {
             camRotation.x = maxXRot;

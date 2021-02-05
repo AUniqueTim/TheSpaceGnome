@@ -47,11 +47,11 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "33305ec5-62ad-4d32-8a95-3170a14f24c4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -180,28 +180,50 @@
         },
         {
             "name": "Camera",
-            "id": "11e17433-65fc-414c-81c9-cd852b86f801",
+            "id": "0816fec7-7378-4904-bd0a-15afef84f681",
             "actions": [
                 {
                     "name": "Rotate",
                     "type": "Value",
-                    "id": "39510853-4198-4ced-aa06-12f151f2cf30",
+                    "id": "fc148e40-54d1-4ca7-842d-2d7db259e6a6",
                     "expectedControlType": "Axis",
-                    "processors": "Clamp(min=-0.05,max=0.05)",
+                    "processors": "AxisDeadzone,Clamp(min=-0.5,max=0.5)",
                     "interactions": ""
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "e9bf45a8-e07e-4e7a-b4bf-4fd9a9d82fd7",
-                    "path": "<Gamepad>/rightStick",
+                    "name": "2D Vector",
+                    "id": "cc7ec067-797f-4a3a-998c-6ef7632a3936",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "dd3df7b5-5c12-472a-8e29-593efc190009",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Rotate",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "f5dc4f11-2cab-43d9-81b0-1ece453824f2",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
