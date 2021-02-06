@@ -202,6 +202,22 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""5f030ab2-c485-4b1c-b6b2-b2e424fd918c"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateCameraOnXAxis"",
+                    ""type"": ""Value"",
+                    ""id"": ""e6de4256-47f8-4eb6-a27c-13ecd5a946be"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -217,46 +233,90 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""dd3df7b5-5c12-472a-8e29-593efc190009"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""right"",
-                    ""id"": ""f5dc4f11-2cab-43d9-81b0-1ece453824f2"",
+                    ""id"": ""006e6b78-563c-42df-bee3-e5bf141a5045"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""f48f4301-7112-464d-8b5a-a41bf185475f"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""name"": ""left"",
+                    ""id"": ""a30938f4-9cd8-4ee9-bda8-8864eb900400"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""aef1b627-8706-4c7c-865a-3a1729799ff4"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bb3d2366-b6a4-4a6d-a8ec-8a2b1c271fd9"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""dbb1f442-6b87-40bd-b4ef-318b69cb0df0"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""id"": ""8d496590-a5f4-4fbb-a45d-00e484c29004"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""02393ec3-0ec1-4f62-a47b-7ce0d29377a1"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""RotateCameraOnXAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6e3ff6fd-fea5-423b-8715-3ffaf479b71e"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateCameraOnXAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""713f74c1-72c3-476f-9fbc-e2098c64f9da"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateCameraOnXAxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -337,6 +397,8 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Rotate = m_Camera.FindAction("Rotate", throwIfNotFound: true);
+        m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
+        m_Camera_RotateCameraOnXAxis = m_Camera.FindAction("RotateCameraOnXAxis", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -460,11 +522,15 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Camera;
     private ICameraActions m_CameraActionsCallbackInterface;
     private readonly InputAction m_Camera_Rotate;
+    private readonly InputAction m_Camera_RotateCamera;
+    private readonly InputAction m_Camera_RotateCameraOnXAxis;
     public struct CameraActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
         public CameraActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotate => m_Wrapper.m_Camera_Rotate;
+        public InputAction @RotateCamera => m_Wrapper.m_Camera_RotateCamera;
+        public InputAction @RotateCameraOnXAxis => m_Wrapper.m_Camera_RotateCameraOnXAxis;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -477,6 +543,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
+                @RotateCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCameraOnXAxis.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnXAxis;
+                @RotateCameraOnXAxis.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnXAxis;
+                @RotateCameraOnXAxis.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCameraOnXAxis;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -484,6 +556,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @RotateCamera.started += instance.OnRotateCamera;
+                @RotateCamera.performed += instance.OnRotateCamera;
+                @RotateCamera.canceled += instance.OnRotateCamera;
+                @RotateCameraOnXAxis.started += instance.OnRotateCameraOnXAxis;
+                @RotateCameraOnXAxis.performed += instance.OnRotateCameraOnXAxis;
+                @RotateCameraOnXAxis.canceled += instance.OnRotateCameraOnXAxis;
             }
         }
     }
@@ -545,5 +623,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     public interface ICameraActions
     {
         void OnRotate(InputAction.CallbackContext context);
+        void OnRotateCamera(InputAction.CallbackContext context);
+        void OnRotateCameraOnXAxis(InputAction.CallbackContext context);
     }
 }

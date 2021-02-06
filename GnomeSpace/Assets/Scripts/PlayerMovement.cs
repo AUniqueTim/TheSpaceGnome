@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 negMoveX;
     Vector3 moveY;
     Vector3 negMoveY;
+    Vector3 camY;
     Vector3 originalPos;
     Quaternion originalRot;
     //START SINGLETON
@@ -67,9 +68,10 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.performed += context => negMoveY = Vector3.left;
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
-       // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
+        // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
+        controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector3>();
+        controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
 
-        
     }
 
     private void Update()
@@ -90,6 +92,9 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(negMY, Space.Self);
 
         Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed * -gravity * Time.deltaTime;
+
+        Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
+        camRotation.transform.Rotate(cameraY * camRotation.camRot.y, Space.World);
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
@@ -118,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //else if (!isStanding) { transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self); }
 
-        //if(transform.rotation.y != originalRot.y) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.y >= 120 || transform.rotation.y <= -120) { transform.SetPositionAndRotation(transform.position, originalRot); }
 
 
     }

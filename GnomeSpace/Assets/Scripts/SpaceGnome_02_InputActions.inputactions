@@ -189,6 +189,22 @@
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RotateCamera",
+                    "type": "Value",
+                    "id": "5f030ab2-c485-4b1c-b6b2-b2e424fd918c",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateCameraOnXAxis",
+                    "type": "Value",
+                    "id": "e6de4256-47f8-4eb6-a27c-13ecd5a946be",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -204,46 +220,90 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
-                    "id": "dd3df7b5-5c12-472a-8e29-593efc190009",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "right",
-                    "id": "f5dc4f11-2cab-43d9-81b0-1ece453824f2",
+                    "id": "006e6b78-563c-42df-bee3-e5bf141a5045",
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "up",
-                    "id": "f48f4301-7112-464d-8b5a-a41bf185475f",
-                    "path": "<Gamepad>/leftStick/up",
+                    "name": "left",
+                    "id": "a30938f4-9cd8-4ee9-bda8-8864eb900400",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "aef1b627-8706-4c7c-865a-3a1729799ff4",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "RotateCamera",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "bb3d2366-b6a4-4a6d-a8ec-8a2b1c271fd9",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCamera",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "dbb1f442-6b87-40bd-b4ef-318b69cb0df0",
-                    "path": "<Gamepad>/leftStick/down",
+                    "id": "8d496590-a5f4-4fbb-a45d-00e484c29004",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "02393ec3-0ec1-4f62-a47b-7ce0d29377a1",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "RotateCameraOnXAxis",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "6e3ff6fd-fea5-423b-8715-3ffaf479b71e",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCameraOnXAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "713f74c1-72c3-476f-9fbc-e2098c64f9da",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCameraOnXAxis",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
