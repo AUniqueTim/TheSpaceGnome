@@ -14,6 +14,7 @@ public class CameraRotation : MonoBehaviour
 
     [SerializeField] private float maxXRot;
     [SerializeField] private float maxYRot;
+    [SerializeField] private float playerRotationSpeed;
 
     public float camSpeed;
     
@@ -29,33 +30,37 @@ public class CameraRotation : MonoBehaviour
         camControls.Camera.RotateCamera.canceled += ctx => camRot = Vector2.zero;
         camControls.Camera.Rotate.performed += ctx => playerRot = ctx.ReadValue<Vector2>();
         camControls.Camera.Rotate.canceled += ctx => playerRot = Vector2.zero;
-        camControls.Camera.RotateCameraOnXAxis.performed += ctx => camXRot = Vector3.right;
+        camControls.Camera.RotateCameraOnXAxis.performed += ctx => camXRot = ctx.ReadValue<Vector2>();
         camControls.Camera.RotateCameraOnXAxis.canceled += ctx => camXRot = Vector2.zero;
     }
 
     private void Update()
     {
         Vector3 camRotation = new Vector3(camRot.x, camRot.y, camRot.z);
+        //transform.Rotate(camRotation * camSpeed * Time.deltaTime);
+        transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.Self);
+        //player.transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.Self);
         Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
+        player.transform.Rotate(playerRotation * camSpeed * Time.deltaTime, Space.Self);
+        //transform.Rotate(playerRotation * camSpeed * Time.deltaTime, Space.Self);
         Vector3 cameraXRotation = new Vector3(camXRot.x, camXRot.y, camXRot.z);
-        //transform.RotateAround(camRotation * camSpeed * Time.deltaTime, player.transform.position.x);
-        player.transform.Rotate(playerRotation * camSpeed * Time.deltaTime, Space.World);
-        transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.World);
-        transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.World);
-        //player.transform.rotation = transform.rotation;
+        //transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime);
+        transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
+        transform.RotateAround(player.transform.position, player.transform.position.x);
+       // player.transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
 
-        if (camRotation.x >= maxXRot)
-        {
-            camRotation.x = maxXRot;
-        }
-        if (camRotation.y >= maxYRot)
-        {
-            camRotation.y = maxYRot;
-        }
+        //if (camRotation.x >= maxXRot)
+        //{
+        //    camRotation.x = maxXRot;
+        //}
+        //if (camRotation.y >= maxYRot)
+        //{
+        //    camRotation.y = maxYRot;
+        //}
 
     }
 
-   public  void OnEnable()
+    public  void OnEnable()
     {
         camControls.Camera.Enable();
     }

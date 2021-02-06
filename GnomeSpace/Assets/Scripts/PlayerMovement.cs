@@ -69,8 +69,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
         // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
-        controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector3>();
-        controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
+      //  controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector3>();
+        //controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
 
     }
 
@@ -93,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed * -gravity * Time.deltaTime;
 
-        Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
-        camRotation.transform.Rotate(cameraY * camRotation.camRot.y, Space.World);
+        //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
+        //camRotation.transform.Rotate(cameraY * camRotation.camRot.y, Space.World);
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
@@ -106,16 +106,16 @@ public class PlayerMovement : MonoBehaviour
 
         /* */
 
-        if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y >= 60) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.y <= -60) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.z >= 180) { transform.SetPositionAndRotation(transform.position, originalRot); }
-        if (transform.rotation.z <= -180) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.y >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.y <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.z >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        //if (transform.rotation.z <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
 
         if (isFallingIdle) { FallingIdle(); jumpingAllowed = false; }
 
-        if (isStanding) { StandIdle(); jumpingAllowed = true; transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self);
+        if (isStanding) { StandIdle(); jumpingAllowed = true; /*transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self);*/
             //if (!controls.Player.Move.triggered && !controls.Player.MoveX.triggered &&
             //    !controls.Player.MoveNegativeX.triggered && !controls.Player.MoveY.triggered &&
             //    !controls.Player.MoveNegativeY.triggered && !controls.Player.Jump.triggered && !controls.Camera.Rotate.triggered)

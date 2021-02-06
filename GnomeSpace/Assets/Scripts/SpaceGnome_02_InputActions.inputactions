@@ -205,6 +205,14 @@
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeCamera",
+                    "type": "Button",
+                    "id": "26170f85-aee5-4ca6-990f-625337c9f85b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -255,7 +263,7 @@
                 {
                     "name": "up",
                     "id": "bb3d2366-b6a4-4a6d-a8ec-8a2b1c271fd9",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -266,7 +274,7 @@
                 {
                     "name": "down",
                     "id": "8d496590-a5f4-4fbb-a45d-00e484c29004",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -277,7 +285,7 @@
                 {
                     "name": "2D Vector",
                     "id": "02393ec3-0ec1-4f62-a47b-7ce0d29377a1",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector(normalize=false,mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -306,6 +314,17 @@
                     "action": "RotateCameraOnXAxis",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "94d8ab26-1c2f-4d62-8046-d7c4b62a21bd",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
