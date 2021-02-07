@@ -38,6 +38,9 @@ public class ObjectInstanstiator : MonoBehaviour
     private void Awake()
     {
         instantiatedObject = null;
+        objects[0].tag = "Asteroid";
+        objects[1].tag = "Asteroid";
+        objects[2].tag = "Asteroid";
     }
     void Start()
     {
@@ -67,6 +70,7 @@ public class ObjectInstanstiator : MonoBehaviour
         else { objectInstantiated = false; }
         objectCount += 1;
         instantiatedObject.SetActive(true);
+
         instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed);
         
         
