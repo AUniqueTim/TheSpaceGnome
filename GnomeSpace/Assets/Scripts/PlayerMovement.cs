@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private Animator playerAnimator;
     public float playerSpeed;
-    [SerializeField] private MouseLook m_mouseLook;
+    //[SerializeField] private MouseLook m_mouseLook;
     public SpaceGnome_02_InputActions controls;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector3 jumpHeight;
@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Awake()
     {
+
+        //camera = CameraController.mainCamera;
         originalPos = transform.position;
         originalRot = transform.rotation;
         instance = this;
@@ -57,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         playerSpeed = 2f;
         controls = new SpaceGnome_02_InputActions();
 
-        controls.Player.Move.performed += context => move = context.ReadValue<Vector3>();
-        controls.Player.Move.canceled += context => move = Vector3.zero;
+       //controls.Player.Move.performed += context => move = context.ReadValue<Vector3>();
+       // controls.Player.Move.canceled += context => move = Vector3.zero;
         controls.Player.MoveX.performed += context => moveX = Vector3.forward; 
         controls.Player.MoveX.canceled += context => moveX = Vector3.zero;
         controls.Player.MoveNegativeX.performed += context => negMoveX = Vector3.back;
@@ -69,11 +71,12 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
         // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
-      //  controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector3>();
+        //controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector2>();
         //controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
 
+        //controls.Player.RotatePlayerOnX.performed += context => camY = context.ReadValue<Vector2>();
     }
-
+    
     private void Update()
     {
         Vector3 m = new Vector3(move.x, move.y, move.z) * playerSpeed * -gravity * Time.deltaTime;
@@ -91,10 +94,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 negMY = new Vector3(negMoveY.x, negMoveY.y, negMoveY.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(negMY, Space.Self);
 
-        Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed * -gravity * Time.deltaTime;
+        Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed *  playerSpeed * -gravity * Time.deltaTime;
 
         //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
-        //camRotation.transform.Rotate(cameraY * camRotation.camRot.y, Space.World);
+        //if (controls.Player.RotatePlayerOnX.triggered) { camera.transform.Rotate(0, cameraY.x, 0, Space.Self); }
+        
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {

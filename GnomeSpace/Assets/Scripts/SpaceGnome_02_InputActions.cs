@@ -19,14 +19,6 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
             ""id"": ""5be4d330-d648-41de-885a-bbf52c507c05"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""01c31e7c-0679-41b2-8c19-9a37a97ec7cd"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""MoveX"",
                     ""type"": ""Value"",
                     ""id"": ""0e4e6c02-0a72-4cb3-a40d-c07bc3d023be"",
@@ -65,6 +57,14 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""RotatePlayerOnX"",
+                    ""type"": ""Value"",
+                    ""id"": ""3ca395b7-bc31-4521-923d-74c6ce29c3ce"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -188,6 +188,39 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""71265e22-e2f2-47b6-8706-7e66b1522654"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePlayerOnX"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6296a3ed-7999-4339-aaf8-fd9684561ff9"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePlayerOnX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5cd58b8a-c5a6-4bdd-9935-fc65a1ddc75e"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePlayerOnX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -407,12 +440,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_MoveX = m_Player.FindAction("MoveX", throwIfNotFound: true);
         m_Player_MoveNegativeX = m_Player.FindAction("MoveNegativeX", throwIfNotFound: true);
         m_Player_MoveY = m_Player.FindAction("MoveY", throwIfNotFound: true);
         m_Player_MoveNegativeY = m_Player.FindAction("MoveNegativeY", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_RotatePlayerOnX = m_Player.FindAction("RotatePlayerOnX", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Rotate = m_Camera.FindAction("Rotate", throwIfNotFound: true);
@@ -468,22 +501,22 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_MoveX;
     private readonly InputAction m_Player_MoveNegativeX;
     private readonly InputAction m_Player_MoveY;
     private readonly InputAction m_Player_MoveNegativeY;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_RotatePlayerOnX;
     public struct PlayerActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
         public PlayerActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @MoveX => m_Wrapper.m_Player_MoveX;
         public InputAction @MoveNegativeX => m_Wrapper.m_Player_MoveNegativeX;
         public InputAction @MoveY => m_Wrapper.m_Player_MoveY;
         public InputAction @MoveNegativeY => m_Wrapper.m_Player_MoveNegativeY;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @RotatePlayerOnX => m_Wrapper.m_Player_RotatePlayerOnX;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -493,9 +526,6 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @MoveX.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
                 @MoveX.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
                 @MoveX.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
@@ -511,13 +541,13 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @RotatePlayerOnX.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotatePlayerOnX;
+                @RotatePlayerOnX.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotatePlayerOnX;
+                @RotatePlayerOnX.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotatePlayerOnX;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
                 @MoveX.started += instance.OnMoveX;
                 @MoveX.performed += instance.OnMoveX;
                 @MoveX.canceled += instance.OnMoveX;
@@ -533,6 +563,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @RotatePlayerOnX.started += instance.OnRotatePlayerOnX;
+                @RotatePlayerOnX.performed += instance.OnRotatePlayerOnX;
+                @RotatePlayerOnX.canceled += instance.OnRotatePlayerOnX;
             }
         }
     }
@@ -641,12 +674,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
         void OnMoveX(InputAction.CallbackContext context);
         void OnMoveNegativeX(InputAction.CallbackContext context);
         void OnMoveY(InputAction.CallbackContext context);
         void OnMoveNegativeY(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnRotatePlayerOnX(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
