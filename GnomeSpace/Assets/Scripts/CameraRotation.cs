@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CameraRotation : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class CameraRotation : MonoBehaviour
     
     public GameObject player;
     public GameObject cam;
-    float camYRot;
+    Vector2 camYRot;
 
     public void Awake()
     {
@@ -30,30 +31,30 @@ public class CameraRotation : MonoBehaviour
      //   camControls.Camera.RotateCamera.canceled += ctx => camRot = Vector2.zero;
         camControls.Camera.Rotate.performed += ctx => playerRot = ctx.ReadValue<Vector2>();
         camControls.Camera.Rotate.canceled += ctx => playerRot = Vector2.zero;
-        //camControls.Camera.RotateCameraOnXAxis.performed += ctx => RotateOnX();
-        //camControls.Camera.RotateCameraOnXAxis.canceled += ctx => camXRot = Vector2.zero;
+        camControls.Camera.RotateCameraOnXAxis.performed += ctx => camYRot = ctx.ReadValue<Vector2>();
+        camControls.Camera.RotateCameraOnXAxis.canceled += ctx => camYRot = Vector2.zero;
     }
-    public void RotateOnX()
-    {
-        transform.Rotate(0, 1, 0);
-    }
+    //public void RotateOnX()
+    //{
+    //    transform.Rotate(0, 25, 0);
+    //}
     private void Update()
     {
-        Vector3 camRotation = new Vector3(camRot.y, camRot.x, camRot.z);
+        //Vector3 camRotation = new Vector3(camRot.y, camRot.x, camRot.z);
         //transform.Rotate(camRotation * camSpeed * Time.deltaTime);
        // transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.Self);
-       transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.Self);
+       //transform.Rotate(camRotation * camSpeed * Time.deltaTime, Space.Self);
         Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
         //if (camControls.Camera.Rotate.triggered) { player.transform.Rotate(playerRotation * playerRotationSpeed * camSpeed * Time.deltaTime, Space.Self); }
        player.transform.Rotate(playerRotation * playerRotationSpeed * camSpeed * Time.deltaTime, Space.Self);
         //transform.Rotate(playerRotation * camSpeed * Time.deltaTime, Space.Self);
-       // Vector3 cameraXRotation = new Vector3(camXRot.x, camXRot.y, camXRot.z);
+       Vector3 cameraYRotation = new Vector3(camYRot.x, camYRot.y);
         //transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime);
-       // transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
-        //if (camControls.Camera.RotateCameraOnXAxis.triggered) { transform.RotateAround(transform.position, player.transform.position, 1f); }
-
+        //        transform.Rotate(cameraXRotation + transform.position * camSpeed * Time.deltaTime, Space.Self);
+        //      if (camControls.Camera.RotateCameraOnXAxis.triggered) {  }
+        transform.RotateAround(player.transform.position, cameraYRotation, cameraYRotation.y);
         
-       // player.transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
+        // player.transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
 
         //if (camRotation.x >= maxXRot)
         //{
