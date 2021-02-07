@@ -191,7 +191,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
                     ""id"": ""fc148e40-54d1-4ca7-842d-2d7db259e6a6"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
