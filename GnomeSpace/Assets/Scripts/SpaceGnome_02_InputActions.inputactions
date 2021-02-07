@@ -44,14 +44,6 @@
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "Press"
-                },
-                {
-                    "name": "RotatePlayerOnX",
-                    "type": "Value",
-                    "id": "3ca395b7-bc31-4521-923d-74c6ce29c3ce",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -175,39 +167,6 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "71265e22-e2f2-47b6-8706-7e66b1522654",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotatePlayerOnX",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "down",
-                    "id": "6296a3ed-7999-4339-aaf8-fd9684561ff9",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotatePlayerOnX",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "up",
-                    "id": "5cd58b8a-c5a6-4bdd-9935-fc65a1ddc75e",
-                    "path": "<Gamepad>/rightStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotatePlayerOnX",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },
@@ -224,14 +183,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RotateCameraOnXAxis",
-                    "type": "Button",
-                    "id": "e6de4256-47f8-4eb6-a27c-13ecd5a946be",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "ChangeCamera",
                     "type": "Button",
                     "id": "26170f85-aee5-4ca6-990f-625337c9f85b",
@@ -243,91 +194,36 @@
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "cc7ec067-797f-4a3a-998c-6ef7632a3936",
-                    "path": "2DVector(mode=1)",
+                    "id": "70fd22fb-9037-4ceb-b9fa-2b8d2b9f40f4",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "right",
-                    "id": "006e6b78-563c-42df-bee3-e5bf141a5045",
-                    "path": "<Gamepad>/rightStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "a30938f4-9cd8-4ee9-bda8-8864eb900400",
+                    "id": "4c402f4b-3d44-4dc1-b342-3f6da303caa7",
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "02393ec3-0ec1-4f62-a47b-7ce0d29377a1",
-                    "path": "2DVector(normalize=false,mode=1)",
+                    "name": "right",
+                    "id": "8ad72f50-0c81-43fb-8e89-e95fff4ec170",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotateCameraOnXAxis",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "6e3ff6fd-fea5-423b-8715-3ffaf479b71e",
-                    "path": "<Gamepad>/rightStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "RotateCameraOnXAxis",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "713f74c1-72c3-476f-9fbc-e2098c64f9da",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "RotateCameraOnXAxis",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "7a9b4610-e55c-48fa-a688-c0b8c10eb141",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateCameraOnXAxis",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cf67be89-2a4d-47d3-b028-8984326ac882",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateCameraOnXAxis",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

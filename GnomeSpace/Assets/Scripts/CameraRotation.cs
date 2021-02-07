@@ -31,8 +31,8 @@ public class CameraRotation : MonoBehaviour
      //   camControls.Camera.RotateCamera.canceled += ctx => camRot = Vector2.zero;
         camControls.Camera.Rotate.performed += ctx => playerRot = ctx.ReadValue<Vector2>();
         camControls.Camera.Rotate.canceled += ctx => playerRot = Vector2.zero;
-        camControls.Camera.RotateCameraOnXAxis.performed += ctx => camYRot = ctx.ReadValue<Vector2>();
-        camControls.Camera.RotateCameraOnXAxis.canceled += ctx => camYRot = Vector2.zero;
+        //camControls.Camera.RotateCameraOnXAxis.performed += ctx => camXRot = Vector2.up;
+      //  camControls.Camera.RotateCameraOnXAxis.canceled += ctx => camXRot = Vector2.zero;
     }
     //public void RotateOnX()
     //{
@@ -48,11 +48,11 @@ public class CameraRotation : MonoBehaviour
         //if (camControls.Camera.Rotate.triggered) { player.transform.Rotate(playerRotation * playerRotationSpeed * camSpeed * Time.deltaTime, Space.Self); }
        player.transform.Rotate(playerRotation * playerRotationSpeed * camSpeed * Time.deltaTime, Space.Self);
         //transform.Rotate(playerRotation * camSpeed * Time.deltaTime, Space.Self);
-       Vector3 cameraYRotation = new Vector3(camYRot.x, camYRot.y);
+     //  Vector3 cameraXRotation = new Vector3(camYRot.x, camYRot.y);
         //transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime);
         //        transform.Rotate(cameraXRotation + transform.position * camSpeed * Time.deltaTime, Space.Self);
         //      if (camControls.Camera.RotateCameraOnXAxis.triggered) {  }
-        transform.RotateAround(player.transform.position, cameraYRotation, cameraYRotation.y);
+      //  transform.RotateAround(player.transform.position, player.transform.position, cameraXRotation.x);
         
         // player.transform.Rotate(cameraXRotation * camSpeed * Time.deltaTime, Space.Self);
 
