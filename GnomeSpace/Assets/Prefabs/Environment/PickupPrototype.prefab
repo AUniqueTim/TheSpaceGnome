@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3500116761130907569}
   m_Layer: 0
   m_Name: PickupPrototype
-  m_TagString: Untagged
+  m_TagString: HP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758636801823469258}
   m_LocalRotation: {x: 0.00000006657903, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.022705078, y: 0.9150368, z: 174005.98}
+  m_LocalPosition: {x: 0.022705078, y: 0.9126669, z: 191755.98}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
