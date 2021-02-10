@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CameraRotation camRotation;
-    [SerializeField] private GameObject camera;
-    [SerializeField] private GameObject playerGO;
+    public CameraController camController;
+    //[SerializeField] private GameObject camera;
+    //[SerializeField] private GameObject playerGO;
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private Animator playerAnimator;
     public float playerSpeed;
@@ -25,9 +25,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 negMoveX;
     Vector3 moveY;
     Vector3 negMoveY;
-    Vector3 camY;
-    Vector3 originalPos;
-    Quaternion originalRot;
+    public Quaternion playerRot;
+
+    //Vector3 originalPos;
+    //Quaternion originalRot;
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -52,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //camera = CameraController.mainCamera;
-        originalPos = transform.position;
-        originalRot = transform.rotation;
+        //originalPos = transform.position;
+        //originalRot = transform.rotation;
         instance = this;
         gravity = -9.87f;
         playerSpeed = 2f;
@@ -98,6 +99,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
         //if (controls.Player.RotatePlayerOnX.triggered) { camera.transform.Rotate(0, cameraY.x, 0, Space.Self); }
+        //if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
+        //        || controls.Player.MoveX.triggered || controls.Player.MoveY.triggered)
+        //{
+        //    Quaternion playerRotation = new Quaternion(playerRot.y, playerRot.x, playerRot.z, playerRot.w);
+        //    playerRB.transform.rotation = (playerRotation);
+        //}
         
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
