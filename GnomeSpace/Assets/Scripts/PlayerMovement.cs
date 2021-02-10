@@ -71,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.performed += context => negMoveY = Vector3.left;
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
-        //controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
+        controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
+        controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
         // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
         //controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector2>();
         //controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
@@ -85,11 +86,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void RotateLeft()
     {
-        transform.Rotate(transform.position, transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.Self);
+        transform.Rotate(transform.position, transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.World);
     }
     public void RotateRight()
     {
-        transform.Rotate(transform.position, -transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.Self);
+        transform.Rotate(transform.position, -transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.World);
     }
     
     private void Update()
@@ -113,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
         transform.Rotate(playerRotation, Space.Self);
+        //transform.Rotate(transform.position, playerRotation.x, Space.Self);
         //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
         //if (controls.Player.RotatePlayerOnX.triggered) { camera.transform.Rotate(0, cameraY.x, 0, Space.Self); }
         //if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
@@ -121,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         //    Quaternion playerRotation = new Quaternion(playerRot.y, playerRot.x, playerRot.z, playerRot.w);
         //    playerRB.transform.rotation = (playerRotation);
         //}
-        
+
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
