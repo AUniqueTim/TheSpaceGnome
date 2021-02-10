@@ -56,13 +56,13 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""33305ec5-62ad-4d32-8a95-3170a14f24c4"",
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Tap""
                 },
                 {
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
                     ""id"": ""17bfaee9-f283-4c0f-b176-a2f823e535bc"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -254,7 +254,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""name"": ""RotateCamera"",
                     ""type"": ""Value"",
                     ""id"": ""ae4a9b33-cb48-4eb3-9a0e-433eac188de8"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -270,7 +270,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
                     ""id"": ""26a6427d-4c5e-405f-97e6-6ccdd987f3f7"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -303,7 +303,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""dda0d384-ba5d-4e57-ad85-1f76f3cf0dff"",
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2,Clamp(min=-360,max=360)"",
                     ""groups"": """",
                     ""action"": ""RotateCamera"",
                     ""isComposite"": false,
@@ -314,7 +314,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""9cfa683c-d281-4e38-8371-9d49a07e63cb"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2,Clamp(min=-360,max=360)"",
                     ""groups"": """",
                     ""action"": ""RotateCamera"",
                     ""isComposite"": false,
@@ -325,7 +325,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""1151ab0b-17ae-4926-b35a-86270922e25f"",
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2,Clamp(min=-90,max=90)"",
                     ""groups"": """",
                     ""action"": ""RotateCamera"",
                     ""isComposite"": false,
@@ -336,7 +336,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""ea02827c-bff2-4230-8de2-ce0fa234bcf3"",
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2,Clamp(min=-90,max=90)"",
                     ""groups"": """",
                     ""action"": ""RotateCamera"",
                     ""isComposite"": false,
@@ -359,7 +359,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -370,7 +370,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -381,7 +381,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -392,7 +392,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true

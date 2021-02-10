@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 negMoveX;
     Vector3 moveY;
     Vector3 negMoveY;
-    public Quaternion playerRot;
+    public Vector3 playerRot;
 
     //Vector3 originalPos;
     //Quaternion originalRot;
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.performed += context => negMoveY = Vector3.left;
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
+        controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
         // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
         //controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector2>();
         //controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
@@ -97,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed *  playerSpeed * -gravity * Time.deltaTime;
 
+        Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
+        transform.Rotate(transform.position, playerRotation.y, Space.Self);
         //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
         //if (controls.Player.RotatePlayerOnX.triggered) { camera.transform.Rotate(0, cameraY.x, 0, Space.Self); }
         //if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
