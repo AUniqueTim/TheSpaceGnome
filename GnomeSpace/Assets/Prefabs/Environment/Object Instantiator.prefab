@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1888544449911204073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32666, y: -7.92, z: -5.6002}
-  m_LocalScale: {x: 2.4713, y: 2.4713, z: 2.4713}
+  m_LocalScale: {x: 8.6490555, y: 0.49377453, z: 8.6490555}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -333,16 +333,17 @@ MonoBehaviour:
   - {fileID: 4758636801823469258, guid: d20ef08b5cfb8fb4883922dcad28d5a9, type: 3}
   - {fileID: 3577463499186565521, guid: 8e5c3a41df9e91d4f9b312b18416759b, type: 3}
   - {fileID: 4043026003892295258, guid: f0b528d586ce74a4286ceba282cc882b, type: 3}
+  - {fileID: 0}
   player: {fileID: 0}
   firePoint: {fileID: 0}
   instantiatingAllowed: 0
   playerCollision: 0
   objectCount: 0
   maxObjectCount: 25
-  fireSpeed: 21
-  xDistanceFromPlayerMin: -10
-  xDistanceFromPlayerMax: 10
-  yDistanceFromPlayerMin: -10
-  yDistanceFromPlayerMax: 10
-  zDistanceFromPlayerMin: -10
-  zDistanceFromPlayerMax: 10
+  fireSpeed: 50
+  xDistanceFromPlayerMin: 0
+  xDistanceFromPlayerMax: 0
+  yDistanceFromPlayerMin: 0
+  yDistanceFromPlayerMax: 0
+  zDistanceFromPlayerMin: 0
+  zDistanceFromPlayerMax: 0

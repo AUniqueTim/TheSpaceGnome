@@ -41,6 +41,9 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[0].tag = "Asteroid";
         objects[1].tag = "Asteroid";
         objects[2].tag = "Asteroid";
+        objects[3].tag = "Time";
+        objects[4].tag = "Points";
+        objects[5].tag = "HP";
     }
     void Start()
     {
@@ -64,7 +67,7 @@ public class ObjectInstanstiator : MonoBehaviour
     void InstantiateObject()
     {
         //gameObject.SetActive(true);
-        Instantiate(instantiatedObject = objects[Random.Range(0, 5)], firePoint.position, firePoint.rotation);
+        Instantiate(instantiatedObject = objects[Random.Range(0, 6)], firePoint.position, firePoint.rotation);
         instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object"); } }
         else { objectInstantiated = false; }
