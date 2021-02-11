@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
     //Vector3 originalPos;
     //Quaternion originalRot;
+
+   
+
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -52,16 +55,12 @@ public class PlayerMovement : MonoBehaviour
     public void Awake()
     {
 
-        //camera = CameraController.mainCamera;
-        //originalPos = transform.position;
-        //originalRot = transform.rotation;
         instance = this;
         gravity = -9.87f;
         playerSpeed = 2f;
         controls = new SpaceGnome_02_InputActions();
 
-       //controls.Player.Move.performed += context => move = context.ReadValue<Vector3>();
-       // controls.Player.Move.canceled += context => move = Vector3.zero;
+
         controls.Player.MoveX.performed += context => moveX = Vector3.forward; 
         controls.Player.MoveX.canceled += context => moveX = Vector3.zero;
         controls.Player.MoveNegativeX.performed += context => negMoveX = Vector3.back;
@@ -73,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
         controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
         controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
-        // controls.Player.Jump.canceled += context => jumpHeight = Vector2.zero;
-        //controls.Camera.RotateCamera.performed += context => camY = context.ReadValue<Vector2>();
-        //controls.Camera.RotateCamera.canceled += context => camY = Vector3.zero;
-
-        //controls.Player.RotatePlayerOnX.performed += context => camY = context.ReadValue<Vector2>();
 
         //Rotate Left => Left Bumper
         //Rotate Right => Right Bumper
@@ -114,15 +108,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
         transform.Rotate(playerRotation, Space.Self);
-        //transform.Rotate(transform.position, playerRotation.x, Space.Self);
-        //Vector3 cameraY = new Vector3(camY.x, camY.y, camY.z) * camRotation.camSpeed * Time.deltaTime;
-        //if (controls.Player.RotatePlayerOnX.triggered) { camera.transform.Rotate(0, cameraY.x, 0, Space.Self); }
-        //if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
-        //        || controls.Player.MoveX.triggered || controls.Player.MoveY.triggered)
-        //{
-        //    Quaternion playerRotation = new Quaternion(playerRot.y, playerRot.x, playerRot.z, playerRot.w);
-        //    playerRB.transform.rotation = (playerRotation);
-        //}
 
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
@@ -156,10 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-    //private void LateUpdate()
-    //{
-    //    transform.Rotate(0, jumpHeight.y, 0, Space.Self);
-    //}
+
     public void StandtoFall()
     {
         ResetStates();
