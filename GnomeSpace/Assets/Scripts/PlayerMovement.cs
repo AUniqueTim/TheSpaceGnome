@@ -106,8 +106,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed *  playerSpeed * -gravity * Time.deltaTime;
 
+
+
         Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
         transform.Rotate(playerRotation, Space.Self);
+        //if (controls.Player.Rotate.triggered && camController.camControls.Camera.RotateCamera.triggered) { transform.Rotate(playerRotation, Space.Self); }
+        //else { return; }
+
 
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
