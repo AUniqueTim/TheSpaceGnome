@@ -383,7 +383,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""32d7a7b4-3b21-4ae8-9523-725d57de0125"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

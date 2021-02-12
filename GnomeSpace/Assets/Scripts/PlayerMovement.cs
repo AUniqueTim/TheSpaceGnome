@@ -121,8 +121,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
-          
-            transform.Translate(jump, Space.Self);
+
+            playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.time);
+            //transform.Translate(jump, Space.World);
             isJumping = true;
         }
         else { isJumping = false; }
@@ -156,8 +157,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Vector3 xAxisRot = Vector3.Lerp(xAxisRotMax, xAxisRotMin, transform.rotation.x);
-        Quaternion resetRot = new Quaternion(playerRotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-        playerRB.transform.SetPositionAndRotation(transform.position, resetRot);
+        Quaternion resetRot = new Quaternion(playerRotation.x * camController.camSpeed * Time.deltaTime, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        playerRB.transform.SetPositionAndRotation(transform.position, resetRot );
     }
     public void StandtoFall()
     {
