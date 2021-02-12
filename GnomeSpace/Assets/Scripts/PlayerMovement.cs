@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public SpaceGnome_02_InputActions controls;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector3 jumpHeight;
+    //[SerializeField] private Vector3 xAxisRotMax, xAxisRotMin;
     public bool isFallingIdle;
     public bool isStanding;
     public float gravity;
@@ -26,9 +27,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveY;
     Vector3 negMoveY;
     public Vector3 playerRot;
+    [SerializeField] Vector3 playerRotation;
 
     //Vector3 originalPos;
-    //Quaternion originalRot;
+    Quaternion originalRot;
 
    
 
@@ -77,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         //Rotate Right => Right Bumper
         controls.Player.RotateLeft.performed += context => RotateLeft();
         controls.Player.RotateRight.performed += context => RotateRight();
+
+        originalRot = transform.rotation;
     }
     public void RotateLeft()
     {
@@ -108,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
+        playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
         transform.Rotate(playerRotation, Space.Self);
         //if (controls.Player.Rotate.triggered && camController.camControls.Camera.RotateCamera.triggered) { transform.Rotate(playerRotation, Space.Self); }
         //else { return; }
@@ -125,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
         /* */
 
+       
         //if (transform.rotation.x >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
         //if (transform.rotation.x <= -360) { transform.SetPositionAndRotation(transform.position, originalRot); }
         //if (transform.rotation.y >= 360) { transform.SetPositionAndRotation(transform.position, originalRot); }
@@ -146,7 +151,14 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    private void FixedUpdate()
+    {
 
+
+        //Vector3 xAxisRot = Vector3.Lerp(xAxisRotMax, xAxisRotMin, transform.rotation.x);
+        Quaternion resetRot = new Quaternion(playerRotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        playerRB.transform.SetPositionAndRotation(transform.position, resetRot);
+    }
     public void StandtoFall()
     {
         ResetStates();
