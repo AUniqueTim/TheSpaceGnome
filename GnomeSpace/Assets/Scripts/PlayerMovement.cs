@@ -149,8 +149,18 @@ public class PlayerMovement : MonoBehaviour
         //else if (!isStanding) { transform.Rotate(originalRot.x, originalRot.y, originalRot.z, Space.Self); }
 
         //if (transform.rotation.y >= 120 || transform.rotation.y <= -120) { transform.SetPositionAndRotation(transform.position, originalRot); }
+        if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
+                  || controls.Player.MoveX.triggered || controls.Player.MoveY.triggered)
+        {
+            transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+            camController.transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
 
-
+        }
+        else if (!controls.Player.MoveNegativeX.triggered && !controls.Player.MoveNegativeY.triggered
+                  && !controls.Player.MoveX.triggered && !controls.Player.MoveY.triggered)
+        {
+            transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w); }
+            camController.transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
     private void FixedUpdate()
     {
