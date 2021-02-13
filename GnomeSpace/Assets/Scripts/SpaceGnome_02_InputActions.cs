@@ -198,7 +198,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""4d4d2f93-d0ec-4583-be7d-0b0b29b66d8f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Hold,Press,SlowTap,Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",

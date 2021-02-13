@@ -122,8 +122,8 @@ public class PlayerMovement : MonoBehaviour
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
 
-           playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.time);
-           transform.Translate(jump, Space.Self);
+            playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.time);
+            //transform.Translate(jump, Space.World);
             isJumping = true;
         }
         else { isJumping = false; }
