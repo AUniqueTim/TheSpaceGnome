@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public CameraController camController;
-    //[SerializeField] private GameObject camera;
+   // [SerializeField] private GameObject camera;
     //[SerializeField] private GameObject playerGO;
     [SerializeField] private Rigidbody playerRB;
     [SerializeField] private Animator playerAnimator;
@@ -27,13 +27,23 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveY;
     Vector3 negMoveY;
     public Vector3 playerRot;
-    [SerializeField] Vector3 playerRotation;
-
-    //Vector3 originalPos;
-    Quaternion originalRot;
+    public Vector3 playerRotation;
 
    
+    //_______________________________
+    //CAMERA ROTATION AROUND PLAYER WITH CINEMACHINE 3RD PERSON TRANSPOSER START
 
+    public GameObject followTarget;
+
+    public Quaternion nextRotation;
+    public Vector3 nextPosition;
+    public float rotationPower = 3f;
+    public float rotationLerp = 0.5f;
+    public float aimValue;
+    //public Vector2 _look;
+    //public Vector2 _move;
+    //CAMERA ROTATION AROUND PLAYER WITH CINEMACHINE 3RD PERSON TRANSPOSER END
+    //_______________________________
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -72,27 +82,83 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.MoveNegativeY.performed += context => negMoveY = Vector3.left;
         controls.Player.MoveNegativeY.canceled += context => negMoveY = Vector3.zero;
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
-        controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
-        controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
+      controls.Player.Rotate.performed += context => playerRotation = context.ReadValue<Vector2>();
+       controls.Player.Rotate.canceled += context => playerRotation = Vector2.zero;
 
         //Rotate Left => Left Bumper
         //Rotate Right => Right Bumper
         controls.Player.RotateLeft.performed += context => RotateLeft();
         controls.Player.RotateRight.performed += context => RotateRight();
 
-        originalRot = transform.rotation;
+      
     }
     public void RotateLeft()
     {
-        transform.Rotate(transform.position, transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.World);
+        transform.Rotate(new Vector3(transform.position.x, transform.position.y), Space.World);
     }
     public void RotateRight()
     {
-        transform.Rotate(transform.position, -transform.position.y * camController.camSpeed * camController.camRotationSpeed * camController.playerRotationSpeed, Space.World);
+        transform.Rotate(new Vector3(transform.position.x, -transform.position.y), Space.World);
     }
-    
+    public void OnMove(InputValue value)
+    {
+        playerRotation = value.Get<Vector2>();
+    }
+    //public void OnLook(InputValue value)
+    //{
+    //    playerRotation = value.Get<Vector2>();
+    //}
+    //public void OnAim(InputValue value)
+    //{
+    //    aimValue = value.Get<float>();
+    //}
     private void Update()
     {
+        followTarget.transform.rotation *= Quaternion.AngleAxis(playerRotation.y * rotationPower, Vector3.right);
+
+        var angles = followTarget.transform.localEulerAngles;
+        angles.z = 0;
+
+        var angle = followTarget.transform.localEulerAngles.x;
+
+        //Clamp the Up/Down rotation
+        if (angle > 180 && angle < 340)
+        {
+            angles.x = 340;
+        }
+        else if (angle < 180 && angle > 90)
+        {
+            angles.x = 90;
+        }
+
+
+        followTarget.transform.localEulerAngles = angles;
+
+        nextRotation = Quaternion.Lerp(followTarget.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
+
+        if (playerRotation.x == 0 && playerRotation.y == 0)
+        {
+            nextPosition = transform.position;
+
+
+            //Set the player rotation based on the look transform
+            transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
+            //reset the y rotation of the look transform
+            followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+
+
+            return;
+        }
+        float moveSpeed = playerSpeed /*/ 100f*/;
+        Vector3 position = (transform.forward * playerRotation.x * moveSpeed) + (transform.right * playerRotation.y * moveSpeed);
+        nextPosition = transform.position + position;
+
+        //Set the player rotation based on the look transform
+        transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
+        //reset the y rotation of the look transform
+        followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
+
+        //_______________
         Vector3 m = new Vector3(move.x, move.y, move.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(m, Space.Self);
 
@@ -112,8 +178,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
-        transform.Rotate(playerRotation, Space.Self);
+        playerRotation = new Vector3(playerRotation.y, playerRotation.x, playerRotation.z);
+        transform.Rotate(playerRotation, Space.World);
         //if (controls.Player.Rotate.triggered && camController.camControls.Camera.RotateCamera.triggered) { transform.Rotate(playerRotation, Space.Self); }
         //else { return; }
 
@@ -122,8 +188,8 @@ public class PlayerMovement : MonoBehaviour
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
 
-            playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.time);
-            //transform.Translate(jump, Space.World);
+            //playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.deltaTime);
+            transform.Translate(jump * -gravity * Time.deltaTime, Space.World);
             isJumping = true;
         }
         else { isJumping = false; }
@@ -153,22 +219,22 @@ public class PlayerMovement : MonoBehaviour
                   || controls.Player.MoveX.triggered || controls.Player.MoveY.triggered)
         {
             transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
-            camController.transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+            //transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
 
         }
         else if (!controls.Player.MoveNegativeX.triggered && !controls.Player.MoveNegativeY.triggered
                   && !controls.Player.MoveX.triggered && !controls.Player.MoveY.triggered)
         {
             transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w); }
-            camController.transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+           // transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
     private void FixedUpdate()
     {
 
 
         //Vector3 xAxisRot = Vector3.Lerp(xAxisRotMax, xAxisRotMin, transform.rotation.x);
-        Quaternion resetRot = new Quaternion(playerRotation.x * camController.camSpeed * Time.deltaTime, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-        playerRB.transform.SetPositionAndRotation(transform.position, resetRot );
+       // Quaternion resetRot = new Quaternion(playerRotation.x * Time.deltaTime, transform.rotation.y * Time.deltaTime, transform.rotation.z * Time.deltaTime, transform.rotation.w * Time.deltaTime);
+      //  playerRB.transform.SetPositionAndRotation(transform.position, resetRot * camController.transform.rotation );
     }
     public void StandtoFall()
     {

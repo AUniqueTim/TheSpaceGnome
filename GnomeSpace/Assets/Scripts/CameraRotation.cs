@@ -29,8 +29,8 @@ public SpaceGnome_02_InputActions playerControls;
         camControls = new SpaceGnome_02_InputActions();
         playerControls = new SpaceGnome_02_InputActions();
 
-        camControls.Camera.RotateCamera.performed += ctx => camRot = ctx.ReadValue<Vector2>();
-        camControls.Camera.RotateCamera.canceled += ctx => camRot = Vector2.zero;
+     //   camControls.Camera.RotateCamera.performed += ctx => camRot = ctx.ReadValue<Vector2>();
+     //   camControls.Camera.RotateCamera.canceled += ctx => camRot = Vector2.zero;
        playerControls.Player.Rotate.performed += ctx => playerRot = ctx.ReadValue<Vector2>();
         playerControls.Player.Rotate.canceled += ctx => playerRot = Vector2.zero;
      
@@ -48,7 +48,7 @@ public SpaceGnome_02_InputActions playerControls;
         }
 
        else if (!playerControls.Player.MoveNegativeX.triggered && !playerControls.Player.MoveNegativeY.triggered
-                 && !playerControls.Player.MoveX.triggered && !playerControls.Player.MoveY.triggered && camControls.Camera.Rotate.triggered)
+                 && !playerControls.Player.MoveX.triggered && !playerControls.Player.MoveY.triggered /*&& camControls.Camera.Rotate.triggered*/)
         {
             Vector3 cameraRotation = new Vector3(camRot.y, camRot.x, camRot.z);
             transform.Rotate(cameraRotation, Space.World);
@@ -58,7 +58,7 @@ public SpaceGnome_02_InputActions playerControls;
            // transform.Rotate(player.transform.position, cameraRotation.x * camSpeed * camRotationSpeed * Time.deltaTime, Space.World);
         }
         else if (playerControls.Player.MoveNegativeX.triggered || playerControls.Player.MoveNegativeY.triggered
-                 || playerControls.Player.MoveX.triggered || playerControls.Player.MoveY.triggered && camControls.Camera.Rotate.triggered)
+                 || playerControls.Player.MoveX.triggered || playerControls.Player.MoveY.triggered /*&& camControls.Camera.Rotate.triggered*/)
         {
             Vector3 playerRotation = new Vector3(playerRot.y, playerRot.x, playerRot.z);
             //transform.Rotate(playerRotation  * camSpeed * Time.deltaTime, Space.Self);
