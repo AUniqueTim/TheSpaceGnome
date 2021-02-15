@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         instance = this;
         gravity = -9.87f;
-        playerSpeed = 2f;
+        //playerSpeed = 2f;
         controls = new SpaceGnome_02_InputActions();
 
 
@@ -317,9 +317,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        isStanding = true;
-        isFallingIdle = false;
-        Debug.Log("Started Standing.");
+        if (collision.gameObject.tag == "Platform")
+        {
+            isStanding = true;
+            isFallingIdle = false;
+            Debug.Log("Started Standing.");
+        }
+        
     }
     public void OnCollisionExit(Collision collision)
     {

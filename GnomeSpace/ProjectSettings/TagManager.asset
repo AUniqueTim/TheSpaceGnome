@@ -8,6 +8,7 @@ TagManager:
   - Points
   - HP
   - Time
+  - Platform
   layers:
   - Default
   - TransparentFX
