@@ -20,36 +20,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector3 jumpHeight;
     
-    public bool isFallingIdle;
-    public bool isStanding;
+    [SerializeField] bool isFallingIdle;
+    [SerializeField] public bool isStanding;
+    [SerializeField] public bool isSwimming;
+    [SerializeField] public bool isWalking;
 
     public float gravity;
 
     public bool jumpingAllowed;
     public bool isJumping;
 
-   public Vector3 moveX;
-   public Vector3 negMoveX;
+    public Vector3 moveX;
+    public Vector3 negMoveX;
     public Vector3 moveY;
     public Vector3 negMoveY;
     
     public Vector3 playerRotation;
-    //Vector3 playerRot;
    
-    //_______________________________
-    //CAMERA ROTATION AROUND PLAYER WITH CINEMACHINE 3RD PERSON TRANSPOSER START
-
-    public GameObject followTarget;
-
-    public Quaternion nextRotation;
-    public Vector3 nextPosition;
-    public float rotationPower = 3f;
-    public float rotationLerp = 0.5f;
-    public float aimValue;
-    //public Vector2 _look;
-    //public Vector2 _move;
-    //CAMERA ROTATION AROUND PLAYER WITH CINEMACHINE 3RD PERSON TRANSPOSER END
-    //_______________________________
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -91,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Rotate.performed += context => playerRotation = context.ReadValue<Vector2>();
         controls.Player.Rotate.canceled += context => playerRotation = Vector2.zero;
         //controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
-     //   controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
+        //controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
         //Rotate Left => Left Bumper
         //Rotate Right => Right Bumper
         controls.Player.RotateLeft.performed += context => RotateLeft();
@@ -101,71 +88,16 @@ public class PlayerMovement : MonoBehaviour
     }
     public void RotateLeft()
     {
-        transform.Rotate(new Vector3(transform.position.x, transform.position.y), Space.World);
+        transform.Rotate(new Vector3(transform.position.x, transform.position.y), Space.Self);
     }
     public void RotateRight()
     {
-        transform.Rotate(new Vector3(transform.position.x, -transform.position.y), Space.World);
+        transform.Rotate(new Vector3(transform.position.x, -transform.position.y), Space.Self);
     }
-    //public void OnMove(InputValue value)
-    //{
-    //    playerRotation = value.Get<Vector2>();
-    //}
-    //public void OnLook(InputValue value)
-    //{
-    //    playerRotation = value.Get<Vector2>();
-    //}
-    //public void OnAim(InputValue value)
-    //{
-    //    aimValue = value.Get<float>();
-    //}
+    
     private void Update()
     {
-        //followTarget.transform.rotation *= Quaternion.AngleAxis(playerRotation.y * rotationPower, Vector3.right);
-
-        //var angles = followTarget.transform.localEulerAngles;
-        //angles.z = 0;
-
-        //var angle = followTarget.transform.localEulerAngles.x;
-
-        ////Clamp the Up/Down rotation
-        //if (angle > 180 && angle < 340)
-        //{
-        //    angles.x = 340;
-        //}
-        //else if (angle < 180 && angle > 90)
-        //{
-        //    angles.x = 90;
-        //}
-
-
-        //followTarget.transform.localEulerAngles = angles;
-
-        //nextRotation = Quaternion.Lerp(followTarget.transform.rotation, nextRotation, Time.deltaTime * rotationLerp);
-
-        //if (playerRotation.x == 0 && playerRotation.y == 0)
-        //{
-        //    nextPosition = transform.position;
-
-
-        //    //Set the player rotation based on the look transform
-        //    transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
-        //    //reset the y rotation of the look transform
-        //    followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-
-
-        //    return;
-        //}
-        //float moveSpeed = playerSpeed /*/ 100f*/;
-        //Vector3 position = (transform.forward * playerRotation.x * moveSpeed) + (transform.right * playerRotation.y * moveSpeed);
-        //nextPosition = transform.position + position;
-
-        ////Set the player rotation based on the look transform
-        //transform.rotation = Quaternion.Euler(0, followTarget.transform.rotation.eulerAngles.y, 0);
-        ////reset the y rotation of the look transform
-        //followTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-
-        //_______________
+        
        
 
         Vector3 mX = new Vector3(moveX.x, moveX.y, moveX.z) * playerSpeed * -gravity * Time.deltaTime;
@@ -184,53 +116,97 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        //playerRotation = new Vector3(playerRotation.x, playerRotation.y, playerRotation.z);
-       //transform.Rotate(playerRotation * camController.playerRotationSpeed * camController.camSpeed, Space.Self);
-        //if (controls.Player.Rotate.triggered && camController.camControls.Camera.RotateCamera.triggered) { transform.Rotate(playerRotation, Space.Self); }
-        //else { return; }
-
-
-
         if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
         {
 
             //playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.deltaTime);
             transform.Translate(jump * -gravity * Time.deltaTime, Space.World);
             isJumping = true;
+            
         }
         else { isJumping = false; }
 
-      
+       // if (controls.Player.Jump.triggered) { Jump(); }
 
-        if (isFallingIdle) { FallingIdle(); jumpingAllowed = false; }
+         //if (isStanding) { StandIdle(); }
+         //else if (isFallingIdle) { FallingIdle(); }
 
-        if (isStanding) { StandIdle(); jumpingAllowed = true;  }
+        if (isFallingIdle) { FallingIdle(); if (controls.Player.MoveX.triggered ||
+                                                controls.Player.MoveY.triggered ||
+                                                controls.Player.MoveNegativeX.triggered ||
+                                                controls.Player.MoveNegativeY.triggered)
+                                                {
+                                                    isSwimming = true;
+                                                    isWalking = false;
+                                                    Swim();
+                                                }
+                                            //else { isSwimming = false; StopSwimming(); }
+        jumpingAllowed = false;
+            //if (isStanding) { /*StandIdle();*/ } 
+        }
 
-        //if (controls.Player.MoveNegativeX.triggered || controls.Player.MoveNegativeY.triggered
-        //          || controls.Player.MoveX.triggered || controls.Player.MoveY.triggered)
-        //{
-        //    transform.rotation.Set(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+        if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
+                                           controls.Player.MoveY.triggered ||
+                                           controls.Player.MoveNegativeX.triggered ||
+                                           controls.Player.MoveNegativeY.triggered)
+                                                {
+                                                    isWalking = true;
+                                                    isSwimming = false;
+                                                    Walk();
+                                                }
+                                       //else { isWalking = false; StopWalking(); }
+        jumpingAllowed = true;
+        //    if (isFallingIdle) { StandtoFall();/* FallingIdle();*/ }
+        }
 
-        //}
-        //else if (!controls.Player.MoveNegativeX.triggered && !controls.Player.MoveNegativeY.triggered
-        //          && !controls.Player.MoveX.triggered && !controls.Player.MoveY.triggered)
-        //{
-        //    transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-        //}
+       //if (isSwimming)
+       // {
+            
+       // }
+       //else if (isWalking)
+       // {
+           
+       // }
+       // else { return; }
+       if (isJumping)
+        {
+            Jump();
+        }
 
     }
-    private void FixedUpdate()
+    public void Walk()
     {
-
-
-        //Vector3 xAxisRot = Vector3.Lerp(xAxisRotMax, xAxisRotMin, transform.rotation.x);
-       // Quaternion resetRot = new Quaternion(playerRotation.x * Time.deltaTime, transform.rotation.y * Time.deltaTime, transform.rotation.z * Time.deltaTime, transform.rotation.w * Time.deltaTime);
-      //  playerRB.transform.SetPositionAndRotation(transform.position, resetRot * camController.transform.rotation );
+        ResetStates();
+        playerAnimator.SetBool("isWalking", true);
+        playerAnimator.SetBool("isSwimming", false);
+    }
+    public void StopWalking()
+    {
+        playerAnimator.SetBool("isWalking", false);
+        //playerAnimator.SetBool("isSwimming", true);
+    }
+    void Jump()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isJumping", true);
+    }
+    void StopJumping()
+    {
+        playerAnimator.SetBool("isJumping", false);
     }
     public void StandtoFall()
     {
         ResetStates();
         playerAnimator.SetBool("isStandtoFall", true);
+        playerAnimator.SetBool("isLanding", false);
+        FallingIdle();
+    }
+    public void Land()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isLanding", true);
+        playerAnimator.SetBool("isStandtoFall", false);
+        StandIdle();
     }
     public void FallingIdle()
     {
@@ -238,16 +214,23 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isStandingIdle", false);
         playerAnimator.SetBool("isFallingIdle", true);
     }
-    void Land()
-    {
-        ResetStates();
-        playerAnimator.SetBool("isLanding", true);
-    }
-    void StandIdle()
+   
+    public void StandIdle()
     {
         ResetStates();
         playerAnimator.SetBool("isFallingIdle", false);
         playerAnimator.SetBool("isStandingIdle", true);
+    }
+    public void Swim()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isSwimming", true);
+        playerAnimator.SetBool("isWalking", false);
+    }
+    void StopSwimming()
+    {
+        //playerAnimator.SetBool("isWalking", true);
+        playerAnimator.SetBool("isSwimming", false);
     }
     void StopFallingIdle()
     {
@@ -268,12 +251,16 @@ public class PlayerMovement : MonoBehaviour
       
         playerAnimator.SetBool("isStandtoFall", false);
     }
+    
     void ResetStates()
     {
         StopStandingIdle();
         StopFallingIdle();
         StopLanding();
         StopStandtoFall();
+        StopSwimming();
+        StopWalking();
+        StopJumping();
     }
 
     void OnEnable()
@@ -286,35 +273,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Disable();
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other)
-    //    {
-    //        isStanding = true;
-    //        isFallingIdle = false;
-    //    }
-    //    else if (!other)
-    //    {
-    //        isStanding = false;
-    //        isFallingIdle = true;
-    //    }
-
-    //}
-
-    //public void OnTriggerExit(Collider other)
-    //{
-    //    if (other)
-    //    {
-    //        isStanding = false;
-    //        isFallingIdle = true;
-    //    }
-    //    else if (!other)
-    //    {
-    //        isStanding = true;
-    //        isFallingIdle = false;
-    //    }
-    //}
-
+   
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Platform")
