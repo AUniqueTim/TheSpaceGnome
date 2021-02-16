@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Planet.cs" />
     <Compile Include="Assets\Scripts\RotationEngine.cs" />
+    <Compile Include="Assets\HUDManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
