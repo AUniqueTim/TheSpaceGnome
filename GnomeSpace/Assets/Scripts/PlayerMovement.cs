@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool isStanding;
     [SerializeField] public bool isSwimming;
     [SerializeField] public bool isWalking;
+    [SerializeField] public bool hardFall1;
+    [SerializeField] public bool hardFall2;
 
     public float gravity;
 
@@ -172,6 +174,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+       if (hardFall1)
+        {
+            HardFall1();
+            hardFall1 = false;
+        }
+
+       if (hardFall2)
+        {
+            HardFall2();
+            hardFall2 = false;
+        }
+
 
     }
     public void Walk()
@@ -232,6 +246,25 @@ public class PlayerMovement : MonoBehaviour
         //playerAnimator.SetBool("isWalking", true);
         playerAnimator.SetBool("isSwimming", false);
     }
+
+    public void HardFall1()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isLandingHard1", true);
+    }
+    void StopHardFall1()
+    {
+        playerAnimator.SetBool("isLandingHard1", false);
+    }
+    public void HardFall2()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isLandingHard2", true);
+    }
+    void StopHardFall2()
+    {
+        playerAnimator.SetBool("isLandingHard2", false);
+    }
     void StopFallingIdle()
     {
         playerAnimator.SetBool("isFallingIdle", false);
@@ -261,6 +294,8 @@ public class PlayerMovement : MonoBehaviour
         StopSwimming();
         StopWalking();
         StopJumping();
+        StopHardFall1();
+        StopHardFall2();
     }
 
     void OnEnable()
