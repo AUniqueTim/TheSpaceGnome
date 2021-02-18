@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Gyms/Rotation Gym.unity
-    guid: 2368122959e6c2c4f90a2ba430fb362f
+    path: Assets/Scenes/Gyms/Slow Fall Gym.unity
+    guid: 7181e4a6b887c514187cf5b4f2958552
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 543cae5169ba60e4daf574b9a67cd14c, type: 2}

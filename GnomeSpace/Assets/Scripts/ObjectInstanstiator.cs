@@ -48,6 +48,9 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[7].tag = "Platform";
         objects[8].tag = "Platform";
         objects[9].tag = "Platform";
+        objects[10].tag = "Platform";
+        objects[11].tag = "Platform";
+        objects[12].tag = "Platform";
 
     }
     void Start()
@@ -67,6 +70,8 @@ public class ObjectInstanstiator : MonoBehaviour
         randomPos.z = Random.Range(zDistanceFromPlayerMin, zDistanceFromPlayerMax);
 
         firePoint.position += randomPos;
+
+        objectInstantiator = gameObject;
     }
 
     void InstantiateObject()
