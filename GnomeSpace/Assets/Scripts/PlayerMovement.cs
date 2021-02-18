@@ -19,15 +19,19 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector3 jumpHeight;
-    
+    [SerializeField] float floatHeight;
+
     [SerializeField] bool isFallingIdle;
     [SerializeField] public bool isStanding;
     [SerializeField] public bool isSwimming;
     [SerializeField] public bool isWalking;
     [SerializeField] public bool hardFall1;
     [SerializeField] public bool hardFall2;
+    [SerializeField] public bool floatingUp;
+    [SerializeField] public bool noseDiving;
 
     public float gravity;
+    public float defaultGravity;
 
     public bool jumpingAllowed;
     public bool isJumping;
@@ -38,7 +42,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 negMoveY;
     
     public Vector3 playerRotation;
-   
+
+    public Vector3 fallSpeedReduction;
+
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -63,7 +69,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         instance = this;
-        gravity = -9.87f;
+        defaultGravity = -9.81f;
+        gravity = -9.81f;
         //playerSpeed = 2f;
         controls = new SpaceGnome_02_InputActions();
 
@@ -86,7 +93,25 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.RotateLeft.performed += context => RotateLeft();
         controls.Player.RotateRight.performed += context => RotateRight();
 
-      
+        controls.Player.Float.performed += context => FloatUp();
+        controls.Player.Float.canceled += context => fallSpeedReduction = Vector3.zero;
+
+        controls.Player.NoseDive.performed += context => NoseDive();
+        controls.Player.NoseDive.canceled += context => fallSpeedReduction = Vector3.zero;
+
+    }
+    public void FloatUp() { 
+    
+        transform.Translate(Vector3.up * floatHeight * (-gravity/1.5f) * playerSpeed *Time.deltaTime);
+        floatingUp = true;
+        FloatingUp();
+    }
+    public void NoseDive()
+    {
+        transform.Translate(Vector3.down * floatHeight * (-gravity * 1.5f) * playerSpeed * Time.deltaTime);
+        noseDiving = true;
+        NoseDiving();
+        
     }
     public void RotateLeft()
     {
@@ -99,9 +124,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        
-       
-
         Vector3 mX = new Vector3(moveX.x, moveX.y, moveX.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(mX, Space.Self);
 
@@ -118,36 +140,43 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (jumpingAllowed && controls.Player.Jump.triggered && isJumping == false)
+        if (jumpingAllowed && controls.Player.Jump.triggered/* && isJumping == false*/)
         {
-
-            //playerRB.MovePosition(jump * -gravity * jumpSpeed * Time.deltaTime);
             transform.Translate(jump * -gravity * Time.deltaTime, Space.World);
             isJumping = true;
+            floatingUp = false;
+            noseDiving = false;
+            Jump();
             
         }
         else { isJumping = false; }
 
-       // if (controls.Player.Jump.triggered) { Jump(); }
 
-         //if (isStanding) { StandIdle(); }
-         //else if (isFallingIdle) { FallingIdle(); }
-
-        if (isFallingIdle) { FallingIdle(); if (controls.Player.MoveX.triggered ||
-                                                controls.Player.MoveY.triggered ||
-                                                controls.Player.MoveNegativeX.triggered ||
-                                                controls.Player.MoveNegativeY.triggered)
-                                                {
-                                                    isSwimming = true;
-                                                    isWalking = false;
-                                                    Swim();
-                                                }
-                                            //else { isSwimming = false; StopSwimming(); }
+        if (isFallingIdle )
+        {
+            FallingIdle(); if (controls.Player.MoveX.triggered ||
+                                controls.Player.MoveY.triggered ||
+                                controls.Player.MoveNegativeX.triggered ||
+                                controls.Player.MoveNegativeY.triggered)
+            {
+                isSwimming = true;
+                isWalking = false;
+                Swim();
+            }
+                            if (controls.Player.Float.triggered)
+                                {
+                                  FloatingUp();
+                                }
         jumpingAllowed = false;
-            //if (isStanding) { /*StandIdle();*/ } 
-        }
 
-        if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
+            
+        }
+        else
+        {
+            isSwimming = false; StopSwimming();
+            //floatingUp = false; StopFloatingUp();
+        }
+            if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
                                            controls.Player.MoveY.triggered ||
                                            controls.Player.MoveNegativeX.triggered ||
                                            controls.Player.MoveNegativeY.triggered)
@@ -156,25 +185,24 @@ public class PlayerMovement : MonoBehaviour
                                                     isSwimming = false;
                                                     Walk();
                                                 }
-                                       //else { isWalking = false; StopWalking(); }
-        jumpingAllowed = true;
-        //    if (isFallingIdle) { StandtoFall();/* FallingIdle();*/ }
+                                            if (controls.Player.Float.triggered)
+                                            {
+                                                  FloatingUp();
+                                            }
+            jumpingAllowed = true;
+        
+        }
+        else
+        {
+            isWalking = false; StopWalking();
+           // floatingUp = false; StopFloatingUp();
         }
 
-       //if (isSwimming)
-       // {
-            
-       // }
-       //else if (isWalking)
-       // {
-           
-       // }
-       // else { return; }
-       if (isJumping)
+        if (isJumping)
         {
             Jump();
         }
-       if (hardFall1)
+        if (hardFall1)
         {
             HardFall1();
             hardFall1 = false;
@@ -185,8 +213,40 @@ public class PlayerMovement : MonoBehaviour
             HardFall2();
             hardFall2 = false;
         }
+        //if (floatingUp)
+        //{
+        //    FloatingUp();
+        //    //floatingUp = false;
+        //}
+        
+        //if (noseDiving)
+        //{
+        //    NoseDiving();
+        //    //noseDiving = false;
+        //}
 
 
+    }
+    public void FloatingUp()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isFloatingUp", true);
+        playerAnimator.SetBool("isNoseDiving", false);
+    }
+    void StopFloatingUp()
+    {
+        playerAnimator.SetBool("isFloatingUp", false);
+    }
+    public void NoseDiving()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isNoseDiving", true);
+        playerAnimator.SetBool("isFloatingUp", false);
+    }
+    void StopNoseDiving()
+    {
+        playerAnimator.SetBool("isNoseDiving", false);
+        //playerAnimator.SetBool("isFloatingUp", true);
     }
     public void Walk()
     {
@@ -296,6 +356,8 @@ public class PlayerMovement : MonoBehaviour
         StopJumping();
         StopHardFall1();
         StopHardFall2();
+        StopNoseDiving();
+        StopFloatingUp();
     }
 
     void OnEnable()

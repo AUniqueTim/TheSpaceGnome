@@ -6,9 +6,13 @@ public class Warp : MonoBehaviour
 {
     [SerializeField] Vector3 originalPos;
     [SerializeField] GameObject player;
-    private void Awake()
+    [SerializeField] float minX, maxX, minY, maxY, minZ, maxZ;
+   
+    private void Update()
     {
-        
+        originalPos.x = Random.Range(minX, maxX);
+        originalPos.y = Random.Range(minY, maxY);
+        originalPos.z = Random.Range(minZ, maxZ);
     }
     private void OnCollisionEnter(Collision collision)
     {

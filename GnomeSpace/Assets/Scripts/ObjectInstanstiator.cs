@@ -48,10 +48,15 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[7].tag = "Platform";
         objects[8].tag = "Platform";
         objects[9].tag = "Platform";
-        objects[10].tag = "Platform";
-        objects[11].tag = "Platform";
-        objects[12].tag = "Platform";
-
+        objects[10].tag = "Time";
+        objects[11].tag = "Points";
+        objects[12].tag = "HP";
+        objects[13].tag = "Platform";
+        objects[14].tag = "Platform";
+        objects[15].tag = "Platform";
+        objects[16].tag = "Platform";
+        objects[17].tag = "Platform";
+        //objects[18].tag = "Platform";
     }
     void Start()
     {

@@ -81,6 +81,30 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Float"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""c1ba6708-fdcc-480b-93df-43b70cf40098"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""NoseDive"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""96d2d732-7de3-41b9-9f7c-b3794c193c8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""PlatformGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""2928caca-344a-4d1c-af5a-e7138b2fda9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -413,6 +437,72 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""action"": ""MoveNegativeX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28f783b4-8af4-4c6d-aa64-e4a0b5598a64"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Float"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6236122b-5654-4eba-b795-4f254701a5df"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Float"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89d72770-6be3-448a-ad53-daffd389c3ad"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NoseDive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93445366-a9cd-47b3-b8f1-3be90121ede5"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NoseDive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b82b24c8-2b74-483a-931f-795af0d52db3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlatformGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6e278cf-9392-4dfd-a49b-e9db7523e1ec"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PlatformGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -643,6 +733,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_RotateLeft = m_Player.FindAction("RotateLeft", throwIfNotFound: true);
         m_Player_RotateRight = m_Player.FindAction("RotateRight", throwIfNotFound: true);
+        m_Player_Float = m_Player.FindAction("Float", throwIfNotFound: true);
+        m_Player_NoseDive = m_Player.FindAction("NoseDive", throwIfNotFound: true);
+        m_Player_PlatformGun = m_Player.FindAction("PlatformGun", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
@@ -705,6 +798,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_RotateLeft;
     private readonly InputAction m_Player_RotateRight;
+    private readonly InputAction m_Player_Float;
+    private readonly InputAction m_Player_NoseDive;
+    private readonly InputAction m_Player_PlatformGun;
     public struct PlayerActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
@@ -717,6 +813,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @RotateLeft => m_Wrapper.m_Player_RotateLeft;
         public InputAction @RotateRight => m_Wrapper.m_Player_RotateRight;
+        public InputAction @Float => m_Wrapper.m_Player_Float;
+        public InputAction @NoseDive => m_Wrapper.m_Player_NoseDive;
+        public InputAction @PlatformGun => m_Wrapper.m_Player_PlatformGun;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -750,6 +849,15 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @RotateRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
                 @RotateRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
                 @RotateRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
+                @Float.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @Float.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @Float.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @NoseDive.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @NoseDive.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @NoseDive.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @PlatformGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
+                @PlatformGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
+                @PlatformGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -778,6 +886,15 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @RotateRight.started += instance.OnRotateRight;
                 @RotateRight.performed += instance.OnRotateRight;
                 @RotateRight.canceled += instance.OnRotateRight;
+                @Float.started += instance.OnFloat;
+                @Float.performed += instance.OnFloat;
+                @Float.canceled += instance.OnFloat;
+                @NoseDive.started += instance.OnNoseDive;
+                @NoseDive.performed += instance.OnNoseDive;
+                @NoseDive.canceled += instance.OnNoseDive;
+                @PlatformGun.started += instance.OnPlatformGun;
+                @PlatformGun.performed += instance.OnPlatformGun;
+                @PlatformGun.canceled += instance.OnPlatformGun;
             }
         }
     }
@@ -886,6 +1003,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnRotateLeft(InputAction.CallbackContext context);
         void OnRotateRight(InputAction.CallbackContext context);
+        void OnFloat(InputAction.CallbackContext context);
+        void OnNoseDive(InputAction.CallbackContext context);
+        void OnPlatformGun(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
