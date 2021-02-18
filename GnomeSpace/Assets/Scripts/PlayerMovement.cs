@@ -161,11 +161,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 isSwimming = true;
                 isWalking = false;
+
                 Swim();
             }
                             if (controls.Player.Float.triggered)
                                 {
                                   FloatingUp();
+                                }
+                            else if (controls.Player.NoseDive.triggered)
+                                {
+                                    NoseDiving();
                                 }
         jumpingAllowed = false;
 
@@ -213,17 +218,10 @@ public class PlayerMovement : MonoBehaviour
             HardFall2();
             hardFall2 = false;
         }
-        //if (floatingUp)
-        //{
-        //    FloatingUp();
-        //    //floatingUp = false;
-        //}
-        
-        //if (noseDiving)
-        //{
-        //    NoseDiving();
-        //    //noseDiving = false;
-        //}
+        if (noseDiving)
+        {
+            NoseDiving();
+        }
 
 
     }
