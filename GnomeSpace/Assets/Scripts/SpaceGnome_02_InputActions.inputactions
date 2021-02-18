@@ -88,7 +88,7 @@
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "MoveNegativeX",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -110,7 +110,7 @@
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -143,7 +143,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "MoveY",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -165,7 +165,7 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "MoveNegativeY",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -176,7 +176,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "MoveNegativeY",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -188,6 +188,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92c70eed-22c0-4121-9190-22f21be77e83",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap",
+                    "processors": "Normalize(min=-1,max=1),Scale(factor=2)",
+                    "groups": "Keyboard&Mouse",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -209,7 +220,7 @@
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -220,7 +231,7 @@
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -231,7 +242,7 @@
                     "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -242,6 +253,61 @@
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "6542aa6c-48a0-4f5d-8690-9a4c1bde6231",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "25e15b06-11ba-4759-8b34-665445fe5b6c",
+                    "path": "<Mouse>/position/y",
+                    "interactions": "",
+                    "processors": "Scale(factor=5),Invert",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "27b6ec70-17da-4fde-a252-94c40063b874",
+                    "path": "<Mouse>/position/x",
+                    "interactions": "",
+                    "processors": "Scale(factor=5),Invert",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "up",
+                    "id": "583e5138-5571-4cfa-87b1-737ecd84fd38",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "Scale(factor=5)",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "2cca2dda-2b86-4950-be5b-c7f1468abfa4",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "Scale(factor=5)",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": false,
@@ -253,7 +319,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "RotateLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -264,7 +330,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "RotateRight",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -297,7 +363,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -330,7 +396,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "MoveNegativeX",
                     "isComposite": false,
                     "isPartOfComposite": true

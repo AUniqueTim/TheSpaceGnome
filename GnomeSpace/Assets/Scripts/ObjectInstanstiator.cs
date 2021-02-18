@@ -44,6 +44,11 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[3].tag = "Time";
         objects[4].tag = "Points";
         objects[5].tag = "HP";
+        objects[6].tag = "Platform";
+        objects[7].tag = "Platform";
+        objects[8].tag = "Platform";
+        objects[9].tag = "Platform";
+
     }
     void Start()
     {
@@ -55,7 +60,7 @@ public class ObjectInstanstiator : MonoBehaviour
     {
         if (instantiatingAllowed) { if (playerCollision == true) { InstantiateObject(); } }
         if (objectCount <= maxObjectCount) { instantiatingAllowed = true; }
-        else if (objectCount > maxObjectCount) { instantiatingAllowed = false; Destroy(instantiatedObject); }
+        else if (objectCount > maxObjectCount) { instantiatingAllowed = false; DestroyImmediate(instantiatedObject); }
 
         randomPos.x = Random.Range(xDistanceFromPlayerMin, xDistanceFromPlayerMax);
         randomPos.y = Random.Range(yDistanceFromPlayerMin, yDistanceFromPlayerMax);
@@ -67,14 +72,14 @@ public class ObjectInstanstiator : MonoBehaviour
     void InstantiateObject()
     {
         //gameObject.SetActive(true);
-        Instantiate(instantiatedObject = objects[Random.Range(0, 6)], firePoint.position, firePoint.rotation);
+        Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation);
         instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object"); } }
         else { objectInstantiated = false; }
         objectCount += 1;
         instantiatedObject.SetActive(true);
 
-        instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed);
+        if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
         
         
         playerCollision = false;
