@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Asteroid
+  - Points
+  - HP
+  - Time
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -14,9 +19,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - vCam2
+  - vCam3
+  - vCam1
   - 
   - 
   - 

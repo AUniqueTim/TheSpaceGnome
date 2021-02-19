@@ -6,9 +6,13 @@ public class Warp : MonoBehaviour
 {
     [SerializeField] Vector3 originalPos;
     [SerializeField] GameObject player;
-    private void Awake()
+    [SerializeField] float minX, maxX, minY, maxY, minZ, maxZ;
+   
+    private void Update()
     {
-        originalPos = player.transform.position;
+        originalPos.x = Random.Range(minX, maxX);
+        originalPos.y = Random.Range(minY, maxY);
+        originalPos.z = Random.Range(minZ, maxZ);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -17,6 +21,9 @@ public class Warp : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 player.transform.position = originalPos;
+               // player.transform.Translate(transform.positionoriginalPos);
+                
+                
             }
         }
         

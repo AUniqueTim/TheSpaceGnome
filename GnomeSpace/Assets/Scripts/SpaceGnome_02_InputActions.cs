@@ -19,14 +19,6 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
             ""id"": ""5be4d330-d648-41de-885a-bbf52c507c05"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""01c31e7c-0679-41b2-8c19-9a37a97ec7cd"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""MoveX"",
                     ""type"": ""Value"",
                     ""id"": ""0e4e6c02-0a72-4cb3-a40d-c07bc3d023be"",
@@ -64,7 +56,55 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""33305ec5-62ad-4d32-8a95-3170a14f24c4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
+                    ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""17bfaee9-f283-4c0f-b176-a2f823e535bc"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""0452615e-6a86-4c40-b81f-1e7e491fbfdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cf7d5a3-4a23-4cf3-8614-3d9285c173e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Float"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""c1ba6708-fdcc-480b-93df-43b70cf40098"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""NoseDive"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""96d2d732-7de3-41b9-9f7c-b3794c193c8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""PlatformGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""2928caca-344a-4d1c-af5a-e7138b2fda9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -85,7 +125,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""MoveNegativeX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -107,7 +147,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""MoveX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -140,7 +180,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""MoveY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -162,7 +202,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""MoveNegativeY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -173,7 +213,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""MoveNegativeY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -188,33 +228,434 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92c70eed-22c0-4121-9190-22f21be77e83"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": ""Normalize(min=-1,max=1),Scale(factor=2)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""3fe2d334-aa3e-469d-ac9d-4b23389690b8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6afbfc5c-3032-4802-9b61-ea9ebfab93fb"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6118350b-f470-452e-9728-f5081fddb075"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""37f1aaf4-f99b-4a9c-b4a0-04323d9a821d"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a913af61-ebea-4671-9423-1fbcda76438c"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""6542aa6c-48a0-4f5d-8690-9a4c1bde6231"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""25e15b06-11ba-4759-8b34-665445fe5b6c"",
+                    ""path"": ""<Mouse>/position/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5),Invert"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""27b6ec70-17da-4fde-a252-94c40063b874"",
+                    ""path"": ""<Mouse>/position/x"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5),Invert"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""583e5138-5571-4cfa-87b1-737ecd84fd38"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2cca2dda-2b86-4950-be5b-c7f1468abfa4"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""950ff0c9-b9cb-472b-8a6a-3641a3da3c5a"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19714c68-7b17-4664-8141-879e2e60705e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""11a20ef9-0ac2-4072-ae83-28586e037654"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveX"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d850bdb8-716b-4691-9c52-b9c1de434417"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a1a786f5-0f78-4418-9cbe-392c64a6aaaf"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""2423906d-29d0-4495-a8a0-2c49544e14c4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveNegativeX"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""00a1d514-d75c-4dd0-a6e8-ef8b3c3ee02e"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveNegativeX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cb92be54-3ca8-42a4-b0ed-74bd5ebe0cf6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveNegativeX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28f783b4-8af4-4c6d-aa64-e4a0b5598a64"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Float"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6236122b-5654-4eba-b795-4f254701a5df"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Float"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89d72770-6be3-448a-ad53-daffd389c3ad"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NoseDive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""93445366-a9cd-47b3-b8f1-3be90121ede5"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""NoseDive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b82b24c8-2b74-483a-931f-795af0d52db3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlatformGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6e278cf-9392-4dfd-a49b-e9db7523e1ec"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PlatformGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
         {
             ""name"": ""Camera"",
-            ""id"": ""11e17433-65fc-414c-81c9-cd852b86f801"",
+            ""id"": ""0816fec7-7378-4904-bd0a-15afef84f681"",
             ""actions"": [
+                {
+                    ""name"": ""RotateCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""ae4a9b33-cb48-4eb3-9a0e-433eac188de8"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ChangeCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""26170f85-aee5-4ca6-990f-625337c9f85b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
                 {
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
-                    ""id"": ""39510853-4198-4ced-aa06-12f151f2cf30"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": ""Clamp(min=-0.05,max=0.05)"",
+                    ""id"": ""26a6427d-4c5e-405f-97e6-6ccdd987f3f7"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
                     ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""e9bf45a8-e07e-4e7a-b4bf-4fd9a9d82fd7"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""94d8ab26-1c2f-4d62-8046-d7c4b62a21bd"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""76dced52-f80b-45c0-9abe-debf06623fc8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""dda0d384-ba5d-4e57-ad85-1f76f3cf0dff"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9cfa683c-d281-4e38-8371-9d49a07e63cb"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1151ab0b-17ae-4926-b35a-86270922e25f"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ea02827c-bff2-4230-8de2-ce0fa234bcf3"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""32d7a7b4-3b21-4ae8-9523-725d57de0125"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""78c03264-22fa-4e40-9568-ba06e3bf3a16"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""deda1628-2a55-49a5-a232-e7fc4cfa05e1"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cb051339-94ef-4e7d-8125-e9a30cc1cc24"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9ca7ca1b-4ec9-4367-a1b8-0bcc884e26c6"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -284,14 +725,21 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_MoveX = m_Player.FindAction("MoveX", throwIfNotFound: true);
         m_Player_MoveNegativeX = m_Player.FindAction("MoveNegativeX", throwIfNotFound: true);
         m_Player_MoveY = m_Player.FindAction("MoveY", throwIfNotFound: true);
         m_Player_MoveNegativeY = m_Player.FindAction("MoveNegativeY", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_RotateLeft = m_Player.FindAction("RotateLeft", throwIfNotFound: true);
+        m_Player_RotateRight = m_Player.FindAction("RotateRight", throwIfNotFound: true);
+        m_Player_Float = m_Player.FindAction("Float", throwIfNotFound: true);
+        m_Player_NoseDive = m_Player.FindAction("NoseDive", throwIfNotFound: true);
+        m_Player_PlatformGun = m_Player.FindAction("PlatformGun", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
+        m_Camera_ChangeCamera = m_Camera.FindAction("ChangeCamera", throwIfNotFound: true);
         m_Camera_Rotate = m_Camera.FindAction("Rotate", throwIfNotFound: true);
     }
 
@@ -342,22 +790,32 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_MoveX;
     private readonly InputAction m_Player_MoveNegativeX;
     private readonly InputAction m_Player_MoveY;
     private readonly InputAction m_Player_MoveNegativeY;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Rotate;
+    private readonly InputAction m_Player_RotateLeft;
+    private readonly InputAction m_Player_RotateRight;
+    private readonly InputAction m_Player_Float;
+    private readonly InputAction m_Player_NoseDive;
+    private readonly InputAction m_Player_PlatformGun;
     public struct PlayerActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
         public PlayerActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @MoveX => m_Wrapper.m_Player_MoveX;
         public InputAction @MoveNegativeX => m_Wrapper.m_Player_MoveNegativeX;
         public InputAction @MoveY => m_Wrapper.m_Player_MoveY;
         public InputAction @MoveNegativeY => m_Wrapper.m_Player_MoveNegativeY;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+        public InputAction @RotateLeft => m_Wrapper.m_Player_RotateLeft;
+        public InputAction @RotateRight => m_Wrapper.m_Player_RotateRight;
+        public InputAction @Float => m_Wrapper.m_Player_Float;
+        public InputAction @NoseDive => m_Wrapper.m_Player_NoseDive;
+        public InputAction @PlatformGun => m_Wrapper.m_Player_PlatformGun;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -367,9 +825,6 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @MoveX.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
                 @MoveX.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
                 @MoveX.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveX;
@@ -385,13 +840,28 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @RotateLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateLeft;
+                @RotateRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
+                @RotateRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
+                @RotateRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateRight;
+                @Float.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @Float.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @Float.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFloat;
+                @NoseDive.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @NoseDive.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @NoseDive.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoseDive;
+                @PlatformGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
+                @PlatformGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
+                @PlatformGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
                 @MoveX.started += instance.OnMoveX;
                 @MoveX.performed += instance.OnMoveX;
                 @MoveX.canceled += instance.OnMoveX;
@@ -407,6 +877,24 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
+                @RotateLeft.started += instance.OnRotateLeft;
+                @RotateLeft.performed += instance.OnRotateLeft;
+                @RotateLeft.canceled += instance.OnRotateLeft;
+                @RotateRight.started += instance.OnRotateRight;
+                @RotateRight.performed += instance.OnRotateRight;
+                @RotateRight.canceled += instance.OnRotateRight;
+                @Float.started += instance.OnFloat;
+                @Float.performed += instance.OnFloat;
+                @Float.canceled += instance.OnFloat;
+                @NoseDive.started += instance.OnNoseDive;
+                @NoseDive.performed += instance.OnNoseDive;
+                @NoseDive.canceled += instance.OnNoseDive;
+                @PlatformGun.started += instance.OnPlatformGun;
+                @PlatformGun.performed += instance.OnPlatformGun;
+                @PlatformGun.canceled += instance.OnPlatformGun;
             }
         }
     }
@@ -415,11 +903,15 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     // Camera
     private readonly InputActionMap m_Camera;
     private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_RotateCamera;
+    private readonly InputAction m_Camera_ChangeCamera;
     private readonly InputAction m_Camera_Rotate;
     public struct CameraActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
         public CameraActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RotateCamera => m_Wrapper.m_Camera_RotateCamera;
+        public InputAction @ChangeCamera => m_Wrapper.m_Camera_ChangeCamera;
         public InputAction @Rotate => m_Wrapper.m_Camera_Rotate;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
@@ -430,6 +922,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_CameraActionsCallbackInterface != null)
             {
+                @RotateCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateCamera;
+                @ChangeCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnChangeCamera;
                 @Rotate.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotate;
@@ -437,6 +935,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
             {
+                @RotateCamera.started += instance.OnRotateCamera;
+                @RotateCamera.performed += instance.OnRotateCamera;
+                @RotateCamera.canceled += instance.OnRotateCamera;
+                @ChangeCamera.started += instance.OnChangeCamera;
+                @ChangeCamera.performed += instance.OnChangeCamera;
+                @ChangeCamera.canceled += instance.OnChangeCamera;
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
@@ -491,15 +995,22 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
         void OnMoveX(InputAction.CallbackContext context);
         void OnMoveNegativeX(InputAction.CallbackContext context);
         void OnMoveY(InputAction.CallbackContext context);
         void OnMoveNegativeY(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnRotateLeft(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
+        void OnFloat(InputAction.CallbackContext context);
+        void OnNoseDive(InputAction.CallbackContext context);
+        void OnPlatformGun(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
+        void OnRotateCamera(InputAction.CallbackContext context);
+        void OnChangeCamera(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
     }
 }
