@@ -21,6 +21,9 @@ public class Warp : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 player.transform.position = originalPos;
+               // player.transform.Translate(transform.positionoriginalPos);
+                
+                
             }
         }
         

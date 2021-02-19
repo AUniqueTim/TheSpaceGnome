@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (jumpingAllowed && controls.Player.Jump.triggered/* && isJumping == false*/)
+        if (jumpingAllowed && controls.Player.Jump.triggered)
         {
             transform.Translate(jump * -gravity * Time.deltaTime, Space.World);
             isJumping = true;
@@ -179,7 +179,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isSwimming = false; StopSwimming();
-            //floatingUp = false; StopFloatingUp();
+            floatingUp = false; StopFloatingUp();
+            noseDiving = false; StopNoseDiving();
         }
             if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
                                            controls.Player.MoveY.triggered ||
@@ -200,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false; StopWalking();
-           // floatingUp = false; StopFloatingUp();
+            floatingUp = false; StopFloatingUp();
         }
 
         if (isJumping)
