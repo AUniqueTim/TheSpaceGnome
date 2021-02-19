@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private GameObject playerGO;
 
     [SerializeField] private Rigidbody playerRB;
-    [SerializeField] private Animator playerAnimator;
+    public Animator playerAnimator;
 
     public float playerSpeed;
    
@@ -344,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isStandtoFall", false);
     }
     
-    void ResetStates()
+    public void ResetStates()
     {
         StopStandingIdle();
         StopFallingIdle();
