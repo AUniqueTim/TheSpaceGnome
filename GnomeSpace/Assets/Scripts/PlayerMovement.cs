@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isSwimming = false; StopSwimming();
-            floatingUp = false; StopFloatingUp();
+            //floatingUp = false; StopFloatingUp();
             noseDiving = false; StopNoseDiving();
         }
             if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false; StopWalking();
-            floatingUp = false; StopFloatingUp();
+          //  floatingUp = false; StopFloatingUp();
         }
 
         if (isJumping)
@@ -222,6 +222,11 @@ public class PlayerMovement : MonoBehaviour
         if (noseDiving)
         {
             NoseDiving();
+        }
+        if (floatingUp)
+        {
+            FloatingUp();
+            floatingUp = false;
         }
 
 
