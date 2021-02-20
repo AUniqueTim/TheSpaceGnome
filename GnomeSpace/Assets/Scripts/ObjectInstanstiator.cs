@@ -53,10 +53,10 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[12].tag = "HP";
         objects[13].tag = "Platform";
         objects[14].tag = "Platform";
-        objects[15].tag = "Platform";
+        objects[15].tag = "Points";
         objects[16].tag = "Platform";
-        objects[17].tag = "Platform";
-        //objects[18].tag = "Platform";
+        objects[17].tag = "Time";
+        
     }
     void Start()
     {
@@ -84,7 +84,7 @@ public class ObjectInstanstiator : MonoBehaviour
         //gameObject.SetActive(true);
         Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation);
         instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
-        if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object"); } }
+        if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
         else { objectInstantiated = false; }
         objectCount += 1;
         instantiatedObject.SetActive(true);
