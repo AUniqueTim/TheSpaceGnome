@@ -129,23 +129,24 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Fire()
     {
-       
+        if (PlayerManager.boost >= 1000f)
+        {
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
             PlayerManager.boost -= 3000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             else { objectInstantiated = false; }
 
-            if(firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
+            if (firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
             {
-            Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
-            firedObjectParentTransform.gameObject.SetActive(false);
-            firedObjectParentTransform = newFiredObjectParentTransform;
-            DontDestroyOnLoad(firedObjectParentTransform);
+                Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
+                firedObjectParentTransform.gameObject.SetActive(false);
+                firedObjectParentTransform = newFiredObjectParentTransform;
+                DontDestroyOnLoad(firedObjectParentTransform);
             }
 
-        objectCount += 1;
+            objectCount += 1;
             instantiatedObject.SetActive(true);
-
+        }
        
 
         
