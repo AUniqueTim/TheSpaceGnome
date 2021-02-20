@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     {
        
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
-            
+            PlayerManager.boost -= 3000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             else { objectInstantiated = false; }
 

@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\PickUps.cs" />
     <Compile Include="Assets\Scripts\InputsManager.cs" />
     <Compile Include="Assets\Scripts\Warp.cs" />
+    <Compile Include="Assets\Scripts\StartCanvas.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Unused\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MusicRandomizer.cs" />
@@ -79,7 +80,8 @@
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\CameraFollowTarget.cs" />
     <Compile Include="Assets\Scripts\Unused\SimpleCameraController.cs" />
-    <Compile Include="Assets\Scripts\StartCanvas.cs" />
+    <Compile Include="Assets\Scripts\Boost Scripts\BoostBar.cs" />
+    <Compile Include="Assets\Scripts\Boost Scripts\Boost.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
