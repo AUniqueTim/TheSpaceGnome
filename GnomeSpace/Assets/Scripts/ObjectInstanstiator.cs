@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ObjectInstanstiator : MonoBehaviour
 {
+    
     [Header("Game Objects")]
     public GameObject objectInstantiator;   //This game object assigned in Inspector.
     public GameObject[] objects;            //Array of individual objects to be instantiated.
@@ -32,12 +34,14 @@ public class ObjectInstanstiator : MonoBehaviour
     public float zDistanceFromPlayerMin;
     public float zDistanceFromPlayerMax;
 
+    public Transform instantiatedObjectParentTransform;
+
    Vector3 randomPos;
 
 
     private void Awake()
     {
-        instantiatedObject = null;
+        //instantiatedObject = null;
         objects[0].tag = "Asteroid";
         objects[1].tag = "Asteroid";
         objects[2].tag = "Asteroid";
@@ -56,7 +60,9 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[15].tag = "Points";
         objects[16].tag = "Platform";
         objects[17].tag = "Time";
-        
+
+     //   StartCoroutine(Wait());
+
     }
     void Start()
     {
@@ -82,20 +88,42 @@ public class ObjectInstanstiator : MonoBehaviour
     void InstantiateObject()
     {
         //gameObject.SetActive(true);
-        Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation);
+        objectCount += 1;
+        Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation, instantiatedObjectParentTransform);
         instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
         else { objectInstantiated = false; }
-        objectCount += 1;
+       
         instantiatedObject.SetActive(true);
 
         if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
-        
-        
+
         playerCollision = false;
+
+        //instantiatedObject.SetActive(true);
+        if (instantiatedObjectParentTransform.childCount >= 30) { /*instantiatedObject.SetActive(false);*/ Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject);/* GameObject newObjectInstantiator = Instantiate(objectInstantiator); Instantiate(newObjectInstantiator);*/ /*Destroy(gameObject);*/ }
+        else { instantiatedObject.SetActive(true); /*Instantiate(objectInstantiator);*/ }
+        //    //Wait();
+        //    if (instantiatedObjectParentTransform.childCount >= 20) { Destroy(instantiatedObjectParentTransform.gameObject); }
+        //else {Instantiate(instantiatedObjectParentTransform); }
+
     }
     public void OnTriggerEnter(Collider collision) {if (collision.gameObject.tag == "Player")
         { playerCollision = true; }
     }
-        
+    //public IEnumerator Wait()
+    //{
+    //    yield return null/*new WaitForSeconds(1f)*/;
+
+    //    if (objects.Length > 20) { Destroy(instantiatedObject); }
+
+    //    //if (objects.Length > 20) { Destroy(instantiateObjectParentTransform); }
+
+    //    //yield return new WaitForSeconds(10f);
+
+    //    //if (objects.Length < 10 ){ Instantiate(gameObject); }
+    //    //gameObject.SetActive(true);
+
+
+    //}
 }

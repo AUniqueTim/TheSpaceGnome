@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
 public class PlayerMovement : MonoBehaviour
 {
     public CameraController camController;
+
+    public Timer playerMovemenTimer;
    
     [SerializeField] private GameObject cam;
     //[SerializeField] private GameObject playerGO;
@@ -60,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int maxObjectCount;
     [SerializeField] bool instantiatingAllowed;
     [SerializeField] bool objectInstantiated;
-    [SerializeField] Transform firedObjectParentTransform;
+    public Transform firedObjectParentTransform;
     //[SerializeField] Transform newFiredObjectParentTransform;
     //START SINGLETON
 
@@ -84,6 +87,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Awake()
     {
+        StartCoroutine(Wait());
+
+       
+
         //DontDestroyOnLoad(newFiredObjectParentTransform);
         if (firedObjectParentTransform = null) { firedObjectParentTransform.gameObject.SetActive(true); }
         //firedObjectParentTransform.gameObject.SetActive(true);
@@ -127,29 +134,52 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.PlatformGun.performed += context => Fire();
 
     }
+    public IEnumerator Wait()
+    {
+        yield return null/*new WaitForSeconds(1f)*/;
+
+        if (firedObjects.Length > 10) { Destroy(instantiatedObject); }
+        //Instantiate(new GameObject ("firedObjectParentTransform"));
+
+
+
+      
+    }
     public void Fire()
     {
         if (PlayerManager.boost >= 1000f)
         {
-            Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
-            PlayerManager.boost -= 3000f;
+            Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation);
+            PlayerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             else { objectInstantiated = false; }
 
-            if (firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
-            {
-                Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
-                firedObjectParentTransform.gameObject.SetActive(false);
-                firedObjectParentTransform = newFiredObjectParentTransform;
-                DontDestroyOnLoad(firedObjectParentTransform);
-            }
+            //if (firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
+            //{
+                
+            //    Destroy(firedObjectParentTransform);
+            //    Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
+            //    firedObjectParentTransform = newFiredObjectParentTransform;
+            //    DontDestroyOnLoad(firedObjectParentTransform);
+            //}
 
             objectCount += 1;
             instantiatedObject.SetActive(true);
+            Wait();
+            //if (firedObjects.Length >= 5)
+            //{
+            //    Transform newFiredObjectParentTransform = firedObjectParentTransform;
+            //    Destroy(firedObjectParentTransform);
+            //    firedObjectParentTransform = newFiredObjectParentTransform;
+            //    Instantiate(firedObjectParentTransform);
+            //}
+           
+            
+            
         }
-       
 
-        
+
+
     }
     public void FloatUp() { 
     
