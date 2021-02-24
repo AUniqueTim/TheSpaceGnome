@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
 public class PlayerMovement : MonoBehaviour
 {
     public CameraController camController;
+
+    public Timer playerMovemenTimer;
    
     [SerializeField] private GameObject cam;
     //[SerializeField] private GameObject playerGO;
@@ -20,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector3 jumpHeight;
     [SerializeField] float floatHeight;
+    [SerializeField] float diveHeight;
 
     [SerializeField] bool isFallingIdle;
     [SerializeField] public bool isStanding;
@@ -36,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
     public bool jumpingAllowed;
     public bool isJumping;
 
+    [SerializeField] Vector3 platformSpawnPos;
+    [SerializeField] float xDistanceFromPlayerMin, xDistanceFromPlayerMax;
+    [SerializeField] float yDistanceFromPlayerMin, yDistanceFromPlayerMax;
+    [SerializeField] float zDistanceFromPlayerMin, zDistanceFromPlayerMax;
+
     public Vector3 moveX;
     public Vector3 negMoveX;
     public Vector3 moveY;
@@ -45,6 +54,17 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 fallSpeedReduction;
 
+    //Platform Gun:
+
+    private GameObject instantiatedObject;
+    [SerializeField] GameObject[] firedObjects;
+    [SerializeField] Transform firePoint;
+    [SerializeField] int objectCount;
+    [SerializeField] int maxObjectCount;
+    [SerializeField] bool instantiatingAllowed;
+    [SerializeField] bool objectInstantiated;
+    public Transform firedObjectParentTransform;
+    //[SerializeField] Transform newFiredObjectParentTransform;
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -67,6 +87,18 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Awake()
     {
+        StartCoroutine(Wait());
+
+       
+
+        //DontDestroyOnLoad(newFiredObjectParentTransform);
+        if (firedObjectParentTransform = null) { firedObjectParentTransform.gameObject.SetActive(true); }
+        //firedObjectParentTransform.gameObject.SetActive(true);
+
+         instantiatedObject = null;
+        firedObjects[0].tag = "Platform";
+        firedObjects[1].tag = "Platform";
+
 
         instance = this;
         defaultGravity = -9.81f;
@@ -99,6 +131,55 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.NoseDive.performed += context => NoseDive();
         controls.Player.NoseDive.canceled += context => fallSpeedReduction = Vector3.zero;
 
+        controls.Player.PlatformGun.performed += context => Fire();
+
+    }
+    public IEnumerator Wait()
+    {
+        yield return null/*new WaitForSeconds(1f)*/;
+
+        if (firedObjects.Length > 10) { Destroy(instantiatedObject); }
+        //Instantiate(new GameObject ("firedObjectParentTransform"));
+
+
+
+      
+    }
+    public void Fire()
+    {
+        if (PlayerManager.boost >= 1000f)
+        {
+            Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation);
+            PlayerManager.boost -= 1000f;
+            if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
+            else { objectInstantiated = false; }
+
+            //if (firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
+            //{
+                
+            //    Destroy(firedObjectParentTransform);
+            //    Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
+            //    firedObjectParentTransform = newFiredObjectParentTransform;
+            //    DontDestroyOnLoad(firedObjectParentTransform);
+            //}
+
+            objectCount += 1;
+            instantiatedObject.SetActive(true);
+            Wait();
+            //if (firedObjects.Length >= 5)
+            //{
+            //    Transform newFiredObjectParentTransform = firedObjectParentTransform;
+            //    Destroy(firedObjectParentTransform);
+            //    firedObjectParentTransform = newFiredObjectParentTransform;
+            //    Instantiate(firedObjectParentTransform);
+            //}
+           
+            
+            
+        }
+
+
+
     }
     public void FloatUp() { 
     
@@ -108,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void NoseDive()
     {
-        transform.Translate(Vector3.down * floatHeight * (-gravity * 1.5f) * playerSpeed * Time.deltaTime);
+        transform.Translate(Vector3.down * diveHeight * (-gravity * 1.5f) * playerSpeed * Time.deltaTime);
         noseDiving = true;
         NoseDiving();
         
@@ -124,6 +205,26 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+        //if (firedObjectParentTransform = null) { firedObjectParentTransform = newFiredObjectParentTransform; }
+
+        //Platform Gun code start.
+
+        platformSpawnPos.x = Random.Range(xDistanceFromPlayerMin, xDistanceFromPlayerMax);
+        platformSpawnPos.y = Random.Range(yDistanceFromPlayerMin, yDistanceFromPlayerMax);
+        platformSpawnPos.z = Random.Range(zDistanceFromPlayerMin, zDistanceFromPlayerMax);
+
+        firePoint.position += platformSpawnPos;
+
+        if (instantiatingAllowed)
+        {
+            if (controls.Player.PlatformGun.triggered) { }
+
+            if (objectCount <= maxObjectCount) { instantiatingAllowed = true; }
+            else if (objectCount > maxObjectCount) { instantiatingAllowed = false; DestroyImmediate(instantiatedObject.gameObject); }
+        }
+        
+        //Platform Gun code end.
+
         Vector3 mX = new Vector3(moveX.x, moveX.y, moveX.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(mX, Space.Self);
 
