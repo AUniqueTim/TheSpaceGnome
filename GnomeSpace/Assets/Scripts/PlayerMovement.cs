@@ -443,7 +443,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void StopSwimming()
     {
-        //playerAnimator.SetBool("isWalking", true);
         playerAnimator.SetBool("isSwimming", false);
     }
 
@@ -465,6 +464,45 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetBool("isLandingHard2", false);
     }
+    //DANCE ANIMATIONS
+
+    public void PointsDance1()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isPointsDance1", true);
+    }
+    void StopPointsDance1()
+    {
+        playerAnimator.SetBool("isPointsDance1", false);
+    }
+    public void PointsDance2()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isPointsDance2", true);
+    }
+    void StopPointsDance2()
+    {
+        playerAnimator.SetBool("isPointsDance2", false);
+    }
+    public void PointsDance3()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isPointsDance3", true);
+    }
+    void StopPointsDance3()
+    {
+        playerAnimator.SetBool("isPointsDance3", false);
+    }
+    public void PointsDance4()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isPointsDance4", true);
+    }
+    void StopPointsDance4()
+    {
+        playerAnimator.SetBool("isPointsDance4", false);
+    }
+
     void StopFallingIdle()
     {
         playerAnimator.SetBool("isFallingIdle", false);
@@ -498,6 +536,10 @@ public class PlayerMovement : MonoBehaviour
         StopHardFall2();
         StopNoseDiving();
         StopFloatingUp();
+        StopPointsDance1();
+        StopPointsDance2();
+        StopPointsDance3();
+        StopPointsDance4();
     }
 
     void OnEnable()

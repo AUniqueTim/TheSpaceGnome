@@ -688,6 +688,178 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""DanceCombos"",
+            ""id"": ""7c394bd6-625b-401f-a482-94fa597f5814"",
+            ""actions"": [
+                {
+                    ""name"": ""PointsDance1"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d26150a-26eb-4fad-bb13-3f6e7fba262f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PointsDance2"",
+                    ""type"": ""Button"",
+                    ""id"": ""fad5ec72-9293-481f-8f35-9009fbc92d28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PointsDance3"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9da07b4-597d-495a-861b-10b7b011a423"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PointsDance4"",
+                    ""type"": ""Button"",
+                    ""id"": ""06a18067-329e-4d40-9e75-341aa539f220"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""d580a6e3-6276-4245-8bc2-f9890471344a"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""309ca85a-2e73-4b6e-b9af-551c5e942986"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""bec47489-da85-4d23-abb4-a005236f0ccb"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""2fecc91b-517a-4339-9399-7b8cc00ab2fe"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""8eba3a72-ac16-442b-9c99-3603f950c45b"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""c729f14f-454c-4d73-9e38-b3f2e300ab45"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""89f7298d-1fee-445d-8999-454a8bf7abb4"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance3"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""89a42c46-ab11-4d1e-bcf6-61766c2d93af"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""b63f5caa-80a2-4d2b-8237-a3845cffbb18"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""8321587a-04eb-456f-93b0-8577ba7b5013"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance4"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""dc6e183a-a669-45d1-8858-af04390fec64"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""button"",
+                    ""id"": ""302474db-7d6f-4943-913d-2a9b1bf3c29c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointsDance4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -772,6 +944,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
         m_Camera_ChangeCamera = m_Camera.FindAction("ChangeCamera", throwIfNotFound: true);
         m_Camera_Rotate = m_Camera.FindAction("Rotate", throwIfNotFound: true);
+        // DanceCombos
+        m_DanceCombos = asset.FindActionMap("DanceCombos", throwIfNotFound: true);
+        m_DanceCombos_PointsDance1 = m_DanceCombos.FindAction("PointsDance1", throwIfNotFound: true);
+        m_DanceCombos_PointsDance2 = m_DanceCombos.FindAction("PointsDance2", throwIfNotFound: true);
+        m_DanceCombos_PointsDance3 = m_DanceCombos.FindAction("PointsDance3", throwIfNotFound: true);
+        m_DanceCombos_PointsDance4 = m_DanceCombos.FindAction("PointsDance4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -987,6 +1165,63 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // DanceCombos
+    private readonly InputActionMap m_DanceCombos;
+    private IDanceCombosActions m_DanceCombosActionsCallbackInterface;
+    private readonly InputAction m_DanceCombos_PointsDance1;
+    private readonly InputAction m_DanceCombos_PointsDance2;
+    private readonly InputAction m_DanceCombos_PointsDance3;
+    private readonly InputAction m_DanceCombos_PointsDance4;
+    public struct DanceCombosActions
+    {
+        private @SpaceGnome_02_InputActions m_Wrapper;
+        public DanceCombosActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PointsDance1 => m_Wrapper.m_DanceCombos_PointsDance1;
+        public InputAction @PointsDance2 => m_Wrapper.m_DanceCombos_PointsDance2;
+        public InputAction @PointsDance3 => m_Wrapper.m_DanceCombos_PointsDance3;
+        public InputAction @PointsDance4 => m_Wrapper.m_DanceCombos_PointsDance4;
+        public InputActionMap Get() { return m_Wrapper.m_DanceCombos; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DanceCombosActions set) { return set.Get(); }
+        public void SetCallbacks(IDanceCombosActions instance)
+        {
+            if (m_Wrapper.m_DanceCombosActionsCallbackInterface != null)
+            {
+                @PointsDance1.started -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance1;
+                @PointsDance1.performed -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance1;
+                @PointsDance1.canceled -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance1;
+                @PointsDance2.started -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance2;
+                @PointsDance2.performed -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance2;
+                @PointsDance2.canceled -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance2;
+                @PointsDance3.started -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance3;
+                @PointsDance3.performed -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance3;
+                @PointsDance3.canceled -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance3;
+                @PointsDance4.started -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance4;
+                @PointsDance4.performed -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance4;
+                @PointsDance4.canceled -= m_Wrapper.m_DanceCombosActionsCallbackInterface.OnPointsDance4;
+            }
+            m_Wrapper.m_DanceCombosActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PointsDance1.started += instance.OnPointsDance1;
+                @PointsDance1.performed += instance.OnPointsDance1;
+                @PointsDance1.canceled += instance.OnPointsDance1;
+                @PointsDance2.started += instance.OnPointsDance2;
+                @PointsDance2.performed += instance.OnPointsDance2;
+                @PointsDance2.canceled += instance.OnPointsDance2;
+                @PointsDance3.started += instance.OnPointsDance3;
+                @PointsDance3.performed += instance.OnPointsDance3;
+                @PointsDance3.canceled += instance.OnPointsDance3;
+                @PointsDance4.started += instance.OnPointsDance4;
+                @PointsDance4.performed += instance.OnPointsDance4;
+                @PointsDance4.canceled += instance.OnPointsDance4;
+            }
+        }
+    }
+    public DanceCombosActions @DanceCombos => new DanceCombosActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1052,5 +1287,12 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         void OnRotateCamera(InputAction.CallbackContext context);
         void OnChangeCamera(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+    }
+    public interface IDanceCombosActions
+    {
+        void OnPointsDance1(InputAction.CallbackContext context);
+        void OnPointsDance2(InputAction.CallbackContext context);
+        void OnPointsDance3(InputAction.CallbackContext context);
+        void OnPointsDance4(InputAction.CallbackContext context);
     }
 }
