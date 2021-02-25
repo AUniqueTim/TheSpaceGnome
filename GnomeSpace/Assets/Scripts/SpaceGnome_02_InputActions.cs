@@ -569,7 +569,40 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""94d8ab26-1c2f-4d62-8046-d7c4b62a21bd"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f2d1b3d-e6ff-4904-be41-f51474e436f0"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72d93a5e-b66d-401b-8054-64112f68a383"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c836c618-faaf-4b74-8838-9cf8bb64c473"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -752,7 +785,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""bec47489-da85-4d23-abb4-a005236f0ccb"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -785,7 +818,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""c729f14f-454c-4d73-9e38-b3f2e300ab45"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -818,7 +851,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""b63f5caa-80a2-4d2b-8237-a3845cffbb18"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -851,7 +884,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""button"",
                     ""id"": ""302474db-7d6f-4943-913d-2a9b1bf3c29c"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

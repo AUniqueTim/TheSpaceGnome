@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public CameraController camController;
     public PlayerManager playerManager;
+    public DanceCombos danceCombos;
+    
 
     public Timer playerMovemenTimer;
    
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform firedObjectParentTransform;
     //[SerializeField] Transform newFiredObjectParentTransform;
 
-    [SerializeField] int randomNumber;
+   public int randomNumber;
 
     public bool isDancing;
 
@@ -154,28 +156,42 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dance()
     {
-        if (isStanding && isDancing == false)
-        {
-            playerManager.boost += 1000f;
-          
-            if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
-            else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
-            else if (randomNumber == 2) { playerAnimator.SetTrigger("Dance3"); }
-            else if (randomNumber == 3) { playerAnimator.SetTrigger("Dance4"); }
+        //if (isDancing == false)
+        //{
 
-            isDancing = true;
-        }
-        else if (isFallingIdle || isJumping || isSwimming || isWalking)
-        {
-            isDancing = false;
-        }
-        
+         /*   if ( danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || danceCombos.danceCombos.DanceCombos.PointsDanc2.triggered  *//*Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)*/
+        //if (isStanding || isWalking || isDancing)
+        //{   
+            playerManager.boost += 1000f;
+
+        //if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
+        //else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
+        //else if (randomNumber == 2) { playerAnimator.SetTrigger("Dance3"); }
+        //else if (randomNumber == 3) { playerAnimator.SetTrigger("Dance4"); }
+
+        isDancing = true;
+
+        //  Dance1();
+
+        //if (randomNumber == 0) { Dance1(); }
+        //else if (randomNumber == 1) { Dance2(); }
+        //else if (randomNumber == 2) { Dance3(); }
+        //else if (randomNumber == 3) { Dance4(); }
+        //}
+
+
+        //else if (isFallingIdle || isJumping || floatingUp || noseDiving)
+        //{
+        //    isDancing = false;
+        //}
+
     }
     public void Fire()
     {
         if (playerManager.boost >= 1000f)
         {
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation);
+            instantiatedObject.SetActive(true);
             playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             else { objectInstantiated = false; }
@@ -190,8 +206,8 @@ public class PlayerMovement : MonoBehaviour
             //}
 
             objectCount += 1;
-            instantiatedObject.SetActive(true);
-            Wait();
+            
+           // Wait();   ----------------------------------------------------------------POSSIBLE BREAKAGE POINT!
             //if (firedObjects.Length >= 5)
             //{
             //    Transform newFiredObjectParentTransform = firedObjectParentTransform;
@@ -230,14 +246,21 @@ public class PlayerMovement : MonoBehaviour
     }
     private void LateUpdate()
     {
-        playerAnimator.ResetTrigger("Dance1");
-        playerAnimator.ResetTrigger("Dance2");
-        playerAnimator.ResetTrigger("Dance3");
-        playerAnimator.ResetTrigger("Dance4");
-        
+        //playerAnimator.ResetTrigger("Dance1");
+        //playerAnimator.ResetTrigger("Dance2");
+        //playerAnimator.ResetTrigger("Dance3");
+        //playerAnimator.ResetTrigger("Dance4");
+
     }
     private void Update()
     {
+
+        //if ( controls.DanceCombos.PointsDance1.triggered) { PointsDance1(); }
+        //else if ( controls.DanceCombos.PointsDance2.triggered) { PointsDance2(); }
+        //else if ( controls.DanceCombos.PointsDance3.triggered) { PointsDance3(); }
+        //else if ( controls.DanceCombos.PointsDance4.triggered) { PointsDance4(); }
+        //else { isDancing = false; }
+
 
         randomNumber = Random.Range(0, 3);
         //if (firedObjectParentTransform = null) { firedObjectParentTransform = newFiredObjectParentTransform; }
@@ -364,9 +387,75 @@ public class PlayerMovement : MonoBehaviour
             FloatingUp();
             floatingUp = false;
         }
+        if (isDancing)
+        {
 
+            if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
+            {
+                PointsDance1();
+                isDancing = false;
+            }
+            if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+            {
+                PointsDance2();
+                isDancing = false;
+            }
+            if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+            {
+                PointsDance3();
+                isDancing = false;
+            }
+            if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+            {
+                PointsDance4();
+                isDancing = false;
+            }
+        }
+        if (controls.Player.Dance.triggered)
+            if (randomNumber == 0)
+            {
+                Dance1();
+                //if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
+                //{
+                //    PointsDance1();
+                //}
+
+                isDancing = true;
+            }
+            else if (randomNumber == 1)
+            {
+                Dance2();
+                //if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+                //{
+                //    PointsDance2();
+                //}
+                isDancing = true;
+            }
+            else if (randomNumber == 2)
+            {
+                Dance3();
+                //if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+                //{
+                //    PointsDance3();
+                //}
+                isDancing = true;
+            }
+            else if (randomNumber == 3)
+            {
+                Dance4();
+                //if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+                //{
+                //    PointsDance4();
+                //}
+                isDancing = true;
+            }
+
+           // if (isStanding || isFallingIdle || isWalking || isSwimming){ isDancing = false; }
+        //}
 
     }
+
+    //FLOAT UP
     public void FloatingUp()
     {
         ResetStates();
@@ -377,6 +466,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetBool("isFloatingUp", false);
     }
+
+    //NOSE DIVE
     public void NoseDiving()
     {
         ResetStates();
@@ -388,6 +479,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isNoseDiving", false);
         //playerAnimator.SetBool("isFloatingUp", true);
     }
+
+    //WALK
     public void Walk()
     {
         ResetStates();
@@ -399,6 +492,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isWalking", false);
         //playerAnimator.SetBool("isSwimming", true);
     }
+
+    //JUMP
     void Jump()
     {
         ResetStates();
@@ -408,6 +503,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetBool("isJumping", false);
     }
+    //STANDING TO FALLING
     public void StandtoFall()
     {
         ResetStates();
@@ -415,6 +511,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isLanding", false);
         FallingIdle();
     }
+
+    //FALLING TO STANDING
     public void Land()
     {
         ResetStates();
@@ -422,19 +520,22 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isStandtoFall", false);
         StandIdle();
     }
+
+   //FALL
     public void FallingIdle()
     {
         ResetStates();
         playerAnimator.SetBool("isStandingIdle", false);
         playerAnimator.SetBool("isFallingIdle", true);
     }
-   
+   //IDLE
     public void StandIdle()
     {
         ResetStates();
         playerAnimator.SetBool("isFallingIdle", false);
         playerAnimator.SetBool("isStandingIdle", true);
     }
+    //SWIM
     public void Swim()
     {
         ResetStates();
@@ -446,6 +547,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isSwimming", false);
     }
 
+    //HARD FALLS
     public void HardFall1()
     {
         ResetStates();
@@ -464,6 +566,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetBool("isLandingHard2", false);
     }
+
+
     //DANCE ANIMATIONS
 
     public void PointsDance1()
@@ -502,7 +606,63 @@ public class PlayerMovement : MonoBehaviour
     {
         playerAnimator.SetBool("isPointsDance4", false);
     }
+    public void Dance1()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isDance1", true);
+        if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
+        {
+            PointsDance1();
+        }
+    }
+    public void StopDance1()
+    {
+        
+        playerAnimator.SetBool("isDance1", false);
+    }
+    public void Dance2()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isDance2", true);
+        if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+        {
+            PointsDance2();
+        }
+    }
+    public void StopDance2()
+    {
 
+        playerAnimator.SetBool("isDance2", false);
+    }
+    public void Dance3()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isDance3", true);
+        if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+        {
+            PointsDance3();
+        }
+    }
+    public void StopDance3()
+    {
+
+        playerAnimator.SetBool("isDance3", false);
+    }
+    public void Dance4()
+    {
+        ResetStates();
+        playerAnimator.SetBool("isDance4", true);
+        if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+        {
+            PointsDance4();
+        }
+    }
+    public void StopDance4()
+    {
+
+        playerAnimator.SetBool("isDance4", false);
+    }
+    //STOP ANIMATIONS
     void StopFallingIdle()
     {
         playerAnimator.SetBool("isFallingIdle", false);
@@ -540,6 +700,10 @@ public class PlayerMovement : MonoBehaviour
         StopPointsDance2();
         StopPointsDance3();
         StopPointsDance4();
+        StopDance1();
+        StopDance2();
+        StopDance3();
+        StopDance4();
     }
 
     void OnEnable()
