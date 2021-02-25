@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public CameraController camController;
     public PlayerManager playerManager;
     public DanceCombos danceCombos;
+    public PickUps pickUpsscript;
     
 
     public Timer playerMovemenTimer;
@@ -162,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
          /*   if ( danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || danceCombos.danceCombos.DanceCombos.PointsDanc2.triggered  *//*Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)*/
         //if (isStanding || isWalking || isDancing)
         //{   
-            playerManager.boost += 1000f;
+            playerManager.boost += 500f;
 
         //if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
         //else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
@@ -387,72 +388,88 @@ public class PlayerMovement : MonoBehaviour
             FloatingUp();
             floatingUp = false;
         }
-        if (isDancing)
+        if (isStanding)
         {
+            if (isDancing)
+            {
 
-            if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
-            {
-                PointsDance1();
-                isDancing = false;
-            }
-            if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
-            {
-                PointsDance2();
-                isDancing = false;
-            }
-            if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
-            {
-                PointsDance3();
-                isDancing = false;
-            }
-            if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
-            {
-                PointsDance4();
-                isDancing = false;
+                if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
+                {
+                    PointsDance1();
+                   playerManager.hP += 1;
+                    playerManager.totalHealthGained += 1;
+                    isDancing = false;
+
+                }
+                if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+                {
+                    PointsDance2();
+                    playerManager.hP += 1;
+                    playerManager.totalHealthGained += 1;
+                    isDancing = false;
+                }
+                if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+                {
+                    PointsDance3();
+                    playerManager.hP += 1;
+                    playerManager.totalHealthGained += 1;
+                    isDancing = false;
+                }
+                if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+                {
+                    PointsDance4();
+                    playerManager.hP += 1;
+                    playerManager.totalHealthGained += 1;
+                    isDancing = false;
+                }
             }
         }
-        if (controls.Player.Dance.triggered)
-            if (randomNumber == 0)
-            {
-                Dance1();
-                //if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
-                //{
-                //    PointsDance1();
-                //}
+        if (isStanding)
+        {
 
-                isDancing = true;
-            }
-            else if (randomNumber == 1)
-            {
-                Dance2();
-                //if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
-                //{
-                //    PointsDance2();
-                //}
-                isDancing = true;
-            }
-            else if (randomNumber == 2)
-            {
-                Dance3();
-                //if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
-                //{
-                //    PointsDance3();
-                //}
-                isDancing = true;
-            }
-            else if (randomNumber == 3)
-            {
-                Dance4();
-                //if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
-                //{
-                //    PointsDance4();
-                //}
-                isDancing = true;
-            }
 
-           // if (isStanding || isFallingIdle || isWalking || isSwimming){ isDancing = false; }
-        //}
+            if (controls.Player.Dance.triggered)
+                if (randomNumber == 0)
+                {
+                    Dance1();
+                    //if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
+                    //{
+                    //    PointsDance1();
+                    //}
 
+                    isDancing = true;
+                }
+                else if (randomNumber == 1)
+                {
+                    Dance2();
+                    //if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+                    //{
+                    //    PointsDance2();
+                    //}
+                    isDancing = true;
+                }
+                else if (randomNumber == 2)
+                {
+                    Dance3();
+                    //if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+                    //{
+                    //    PointsDance3();
+                    //}
+                    isDancing = true;
+                }
+                else if (randomNumber == 3)
+                {
+                    Dance4();
+                    //if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+                    //{
+                    //    PointsDance4();
+                    //}
+                    isDancing = true;
+                }
+                else { isDancing = false; }
+            // if (isStanding || isFallingIdle || isWalking || isSwimming){ isDancing = false; }
+            //}
+        }
     }
 
     //FLOAT UP
