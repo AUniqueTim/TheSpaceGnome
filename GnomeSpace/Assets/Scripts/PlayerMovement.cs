@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public CameraController camController;
+    public PlayerManager playerManager;
 
     public Timer playerMovemenTimer;
    
@@ -65,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool objectInstantiated;
     public Transform firedObjectParentTransform;
     //[SerializeField] Transform newFiredObjectParentTransform;
+
+    [SerializeField] int randomNumber;
+
+    public bool isDancing;
+
     //START SINGLETON
 
     public static PlayerMovement instance;
@@ -133,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.PlatformGun.performed += context => Fire();
 
+        controls.Player.Dance.performed += context => Dance();
+
     }
     public IEnumerator Wait()
     {
@@ -141,16 +149,34 @@ public class PlayerMovement : MonoBehaviour
         if (firedObjects.Length > 10) { Destroy(instantiatedObject); }
         //Instantiate(new GameObject ("firedObjectParentTransform"));
 
-
-
       
+    }
+
+    public void Dance()
+    {
+        if (isStanding && isDancing == false)
+        {
+            playerManager.boost += 1000f;
+          
+            if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
+            else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
+            else if (randomNumber == 2) { playerAnimator.SetTrigger("Dance3"); }
+            else if (randomNumber == 3) { playerAnimator.SetTrigger("Dance4"); }
+
+            isDancing = true;
+        }
+        else if (isFallingIdle || isJumping || isSwimming || isWalking)
+        {
+            isDancing = false;
+        }
+        
     }
     public void Fire()
     {
-        if (PlayerManager.boost >= 1000f)
+        if (playerManager.boost >= 1000f)
         {
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation);
-            PlayerManager.boost -= 1000f;
+            playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             else { objectInstantiated = false; }
 
@@ -202,9 +228,18 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Rotate(new Vector3(transform.position.x, -transform.position.y), Space.Self);
     }
-    
+    private void LateUpdate()
+    {
+        playerAnimator.ResetTrigger("Dance1");
+        playerAnimator.ResetTrigger("Dance2");
+        playerAnimator.ResetTrigger("Dance3");
+        playerAnimator.ResetTrigger("Dance4");
+        
+    }
     private void Update()
     {
+
+        randomNumber = Random.Range(0, 3);
         //if (firedObjectParentTransform = null) { firedObjectParentTransform = newFiredObjectParentTransform; }
 
         //Platform Gun code start.

@@ -105,6 +105,14 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""Dance"",
+                    ""type"": ""Button"",
+                    ""id"": ""45d2c063-60a9-458f-ba9b-28039b315bfa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -503,6 +511,28 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""action"": ""PlatformGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""906d7dc4-7c89-4dcf-ba7e-8630e7dc01da"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8667575c-a632-4b2e-9a0e-e8ff0be32ded"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -736,6 +766,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         m_Player_Float = m_Player.FindAction("Float", throwIfNotFound: true);
         m_Player_NoseDive = m_Player.FindAction("NoseDive", throwIfNotFound: true);
         m_Player_PlatformGun = m_Player.FindAction("PlatformGun", throwIfNotFound: true);
+        m_Player_Dance = m_Player.FindAction("Dance", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_RotateCamera = m_Camera.FindAction("RotateCamera", throwIfNotFound: true);
@@ -801,6 +832,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Float;
     private readonly InputAction m_Player_NoseDive;
     private readonly InputAction m_Player_PlatformGun;
+    private readonly InputAction m_Player_Dance;
     public struct PlayerActions
     {
         private @SpaceGnome_02_InputActions m_Wrapper;
@@ -816,6 +848,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         public InputAction @Float => m_Wrapper.m_Player_Float;
         public InputAction @NoseDive => m_Wrapper.m_Player_NoseDive;
         public InputAction @PlatformGun => m_Wrapper.m_Player_PlatformGun;
+        public InputAction @Dance => m_Wrapper.m_Player_Dance;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -858,6 +891,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @PlatformGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
                 @PlatformGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
                 @PlatformGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlatformGun;
+                @Dance.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
+                @Dance.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
+                @Dance.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDance;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -895,6 +931,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 @PlatformGun.started += instance.OnPlatformGun;
                 @PlatformGun.performed += instance.OnPlatformGun;
                 @PlatformGun.canceled += instance.OnPlatformGun;
+                @Dance.started += instance.OnDance;
+                @Dance.performed += instance.OnDance;
+                @Dance.canceled += instance.OnDance;
             }
         }
     }
@@ -1006,6 +1045,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         void OnFloat(InputAction.CallbackContext context);
         void OnNoseDive(InputAction.CallbackContext context);
         void OnPlatformGun(InputAction.CallbackContext context);
+        void OnDance(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
