@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
             instantiatedObject.SetActive(true);
             playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
-            else if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
+            if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
             else { objectInstantiated = false; }
 
             objectCount += 1;
