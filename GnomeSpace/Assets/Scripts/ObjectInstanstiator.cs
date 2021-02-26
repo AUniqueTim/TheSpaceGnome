@@ -101,29 +101,13 @@ public class ObjectInstanstiator : MonoBehaviour
         playerCollision = false;
 
         //instantiatedObject.SetActive(true);
-        if (instantiatedObjectParentTransform.childCount >= 30) { /*instantiatedObject.SetActive(false);*/ Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject);/* GameObject newObjectInstantiator = Instantiate(objectInstantiator); Instantiate(newObjectInstantiator);*/ /*Destroy(gameObject);*/ }
-        else { instantiatedObject.SetActive(true); /*Instantiate(objectInstantiator);*/ }
-        //    //Wait();
-        //    if (instantiatedObjectParentTransform.childCount >= 20) { Destroy(instantiatedObjectParentTransform.gameObject); }
-        //else {Instantiate(instantiatedObjectParentTransform); }
+        if (instantiatedObjectParentTransform.childCount >= 30) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
+        else { instantiatedObject.SetActive(true);  }
+        
 
     }
     public void OnTriggerEnter(Collider collision) {if (collision.gameObject.tag == "Player")
         { playerCollision = true; }
     }
-    //public IEnumerator Wait()
-    //{
-    //    yield return null/*new WaitForSeconds(1f)*/;
-
-    //    if (objects.Length > 20) { Destroy(instantiatedObject); }
-
-    //    //if (objects.Length > 20) { Destroy(instantiateObjectParentTransform); }
-
-    //    //yield return new WaitForSeconds(10f);
-
-    //    //if (objects.Length < 10 ){ Instantiate(gameObject); }
-    //    //gameObject.SetActive(true);
-
-
-    //}
+   
 }

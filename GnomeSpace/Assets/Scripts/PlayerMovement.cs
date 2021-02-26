@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
        
 
         //DontDestroyOnLoad(newFiredObjectParentTransform);
-        if (firedObjectParentTransform = null) { firedObjectParentTransform.gameObject.SetActive(true); }
+        //if (firedObjectParentTransform = null) { firedObjectParentTransform.gameObject.SetActive(true); }  /// This line was causing firedObjectParentTransform to be null on Awake.
         //firedObjectParentTransform.gameObject.SetActive(true);
 
          instantiatedObject = null;
@@ -127,10 +127,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Jump.performed += context => jumpHeight = Vector2.up;
         controls.Player.Rotate.performed += context => playerRotation = context.ReadValue<Vector2>();
         controls.Player.Rotate.canceled += context => playerRotation = Vector2.zero;
-        //controls.Player.Rotate.performed += context => playerRot = context.ReadValue<Vector2>();
-        //controls.Player.Rotate.canceled += context => playerRot = Vector2.zero;
-        //Rotate Left => Left Bumper
-        //Rotate Right => Right Bumper
+
         controls.Player.RotateLeft.performed += context => RotateLeft();
         controls.Player.RotateRight.performed += context => RotateRight();
 
@@ -157,72 +154,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dance()
     {
-        //if (isDancing == false)
-        //{
-
-         /*   if ( danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || danceCombos.danceCombos.DanceCombos.PointsDanc2.triggered  *//*Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)*/
-        //if (isStanding || isWalking || isDancing)
-        //{   
+        if (isStanding)
+        {
             playerManager.boost += 500f;
 
-        //if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
-        //else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
-        //else if (randomNumber == 2) { playerAnimator.SetTrigger("Dance3"); }
-        //else if (randomNumber == 3) { playerAnimator.SetTrigger("Dance4"); }
+            //if (randomNumber == 0) { playerAnimator.SetTrigger("Dance1"); }
+            //else if (randomNumber == 1) { playerAnimator.SetTrigger("Dance2"); }
+            //else if (randomNumber == 2) { playerAnimator.SetTrigger("Dance3"); }
+            //else if (randomNumber == 3) { playerAnimator.SetTrigger("Dance4"); }
 
-        isDancing = true;
-
-        //  Dance1();
-
-        //if (randomNumber == 0) { Dance1(); }
-        //else if (randomNumber == 1) { Dance2(); }
-        //else if (randomNumber == 2) { Dance3(); }
-        //else if (randomNumber == 3) { Dance4(); }
-        //}
-
-
-        //else if (isFallingIdle || isJumping || floatingUp || noseDiving)
-        //{
-        //    isDancing = false;
-        //}
-
+            isDancing = true;
+        }
     }
     public void Fire()
     {
         if (playerManager.boost >= 1000f)
         {
-            Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation);
+            Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
             instantiatedObject.SetActive(true);
             playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
+            else if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
             else { objectInstantiated = false; }
-
-            //if (firedObjectParentTransform != null && firedObjectParentTransform.childCount >= 50)
-            //{
-                
-            //    Destroy(firedObjectParentTransform);
-            //    Transform newFiredObjectParentTransform = Instantiate(firedObjectParentTransform);
-            //    firedObjectParentTransform = newFiredObjectParentTransform;
-            //    DontDestroyOnLoad(firedObjectParentTransform);
-            //}
 
             objectCount += 1;
             
            // Wait();   ----------------------------------------------------------------POSSIBLE BREAKAGE POINT!
-            //if (firedObjects.Length >= 5)
-            //{
-            //    Transform newFiredObjectParentTransform = firedObjectParentTransform;
-            //    Destroy(firedObjectParentTransform);
-            //    firedObjectParentTransform = newFiredObjectParentTransform;
-            //    Instantiate(firedObjectParentTransform);
-            //}
-           
-            
-            
         }
-
-
-
     }
     public void FloatUp() { 
     
@@ -255,16 +213,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-
-        //if ( controls.DanceCombos.PointsDance1.triggered) { PointsDance1(); }
-        //else if ( controls.DanceCombos.PointsDance2.triggered) { PointsDance2(); }
-        //else if ( controls.DanceCombos.PointsDance3.triggered) { PointsDance3(); }
-        //else if ( controls.DanceCombos.PointsDance4.triggered) { PointsDance4(); }
-        //else { isDancing = false; }
-
-
         randomNumber = Random.Range(0, 3);
-        //if (firedObjectParentTransform = null) { firedObjectParentTransform = newFiredObjectParentTransform; }
 
         //Platform Gun code start.
 
@@ -284,6 +233,8 @@ public class PlayerMovement : MonoBehaviour
         
         //Platform Gun code end.
 
+
+        //Character Basic Movement
         Vector3 mX = new Vector3(moveX.x, moveX.y, moveX.z) * playerSpeed * -gravity * Time.deltaTime;
         transform.Translate(mX, Space.Self);
 
@@ -299,6 +250,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 jump = new Vector3(jumpHeight.x, jumpHeight.y, jumpHeight.z) * jumpSpeed *  playerSpeed * -gravity * Time.deltaTime;
 
 
+        //JUMP / SWIM / NOSEDIVE / FLOAT UP
 
         if (jumpingAllowed && controls.Player.Jump.triggered)
         {
@@ -333,13 +285,10 @@ public class PlayerMovement : MonoBehaviour
                                     NoseDiving();
                                 }
         jumpingAllowed = false;
-
-            
         }
         else
         {
             isSwimming = false; StopSwimming();
-            //floatingUp = false; StopFloatingUp();
             noseDiving = false; StopNoseDiving();
         }
             if (isStanding) { StandIdle(); if (controls.Player.MoveX.triggered ||
@@ -361,7 +310,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false; StopWalking();
-          //  floatingUp = false; StopFloatingUp();
         }
 
         if (isJumping)
@@ -382,12 +330,15 @@ public class PlayerMovement : MonoBehaviour
         if (noseDiving)
         {
             NoseDiving();
+            noseDiving = false;
         }
         if (floatingUp)
         {
             FloatingUp();
             floatingUp = false;
         }
+
+        //DANCE COMBOS #1 (Left Stick + Y)
         if (isStanding)
         {
             if (isDancing)
@@ -424,51 +375,32 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        //BASIC DANCE MOVES
         if (isStanding)
         {
-
-
             if (controls.Player.Dance.triggered)
                 if (randomNumber == 0)
                 {
                     Dance1();
-                    //if (danceCombos.danceCombos.DanceCombos.PointsDance1.triggered)
-                    //{
-                    //    PointsDance1();
-                    //}
-
                     isDancing = true;
                 }
                 else if (randomNumber == 1)
                 {
                     Dance2();
-                    //if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
-                    //{
-                    //    PointsDance2();
-                    //}
                     isDancing = true;
                 }
                 else if (randomNumber == 2)
                 {
                     Dance3();
-                    //if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
-                    //{
-                    //    PointsDance3();
-                    //}
                     isDancing = true;
                 }
                 else if (randomNumber == 3)
                 {
                     Dance4();
-                    //if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
-                    //{
-                    //    PointsDance4();
-                    //}
                     isDancing = true;
                 }
                 else { isDancing = false; }
-            // if (isStanding || isFallingIdle || isWalking || isSwimming){ isDancing = false; }
-            //}
         }
     }
 
@@ -494,7 +426,6 @@ public class PlayerMovement : MonoBehaviour
     void StopNoseDiving()
     {
         playerAnimator.SetBool("isNoseDiving", false);
-        //playerAnimator.SetBool("isFloatingUp", true);
     }
 
     //WALK
@@ -507,7 +438,6 @@ public class PlayerMovement : MonoBehaviour
     public void StopWalking()
     {
         playerAnimator.SetBool("isWalking", false);
-        //playerAnimator.SetBool("isSwimming", true);
     }
 
     //JUMP
