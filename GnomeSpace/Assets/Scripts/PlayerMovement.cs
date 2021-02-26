@@ -98,12 +98,6 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(Wait());
 
-       
-
-        //DontDestroyOnLoad(newFiredObjectParentTransform);
-        //if (firedObjectParentTransform = null) { firedObjectParentTransform.gameObject.SetActive(true); }  /// This line was causing firedObjectParentTransform to be null on Awake.
-        //firedObjectParentTransform.gameObject.SetActive(true);
-
          instantiatedObject = null;
         firedObjects[0].tag = "Platform";
         firedObjects[1].tag = "Platform";
@@ -112,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
         defaultGravity = -9.81f;
         gravity = -9.81f;
-        //playerSpeed = 2f;
         controls = new SpaceGnome_02_InputActions();
 
 
@@ -330,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
         if (noseDiving)
         {
             NoseDiving();
-            noseDiving = false;
+          //  noseDiving = false;
         }
         if (floatingUp)
         {
