@@ -45,21 +45,21 @@ public class ObjectInstanstiator : MonoBehaviour
         objects[0].tag = "Asteroid";
         objects[1].tag = "Asteroid";
         objects[2].tag = "Asteroid";
-        objects[3].tag = "Time";
-        objects[4].tag = "Points";
-        objects[5].tag = "HP";
+        objects[3].tag = "Asteroid";
+        objects[4].tag = "Asteroid";
+        objects[5].tag = "Asteroid";
         objects[6].tag = "Platform";
         objects[7].tag = "Platform";
         objects[8].tag = "Platform";
         objects[9].tag = "Platform";
-        objects[10].tag = "Time";
-        objects[11].tag = "Points";
-        objects[12].tag = "HP";
+        objects[10].tag = "Asteroid";
+        objects[11].tag = "Asteroid";
+        objects[12].tag = "Asteroid";
         objects[13].tag = "Platform";
         objects[14].tag = "Platform";
-        objects[15].tag = "Points";
+        objects[15].tag = "Asteroid";
         objects[16].tag = "Platform";
-        objects[17].tag = "Time";
+        objects[17].tag = "Asteroid";
 
      //   StartCoroutine(Wait());
 
