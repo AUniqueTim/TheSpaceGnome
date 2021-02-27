@@ -49,7 +49,7 @@ PlayerSettings:
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 1
   m_MTRendering: 1
-  mipStripping: 0
+  mipStripping: 1
   numberOfMipsStripped: 0
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
@@ -68,7 +68,7 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 0
   androidUseSwappy: 0
   androidBlitType: 0
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   macRetinaSupport: 1
   runInBackground: 1
   captureSingleScreen: 0
@@ -79,10 +79,10 @@ PlayerSettings:
   hideHomeButton: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
   gpuSkinning: 1
@@ -122,13 +122,53 @@ PlayerSettings:
   vulkanEnablePreTransform: 0
   vulkanEnableLateAcquireNextImage: 0
   m_SupportedAspectRatios:
-    4:3: 1
-    5:4: 1
-    16:10: 1
+    4:3: 0
+    5:4: 0
+    16:10: 0
     16:9: 1
-    Others: 1
+    Others: 0
   bundleVersion: 0.1
   preloadedAssets:
+  - {fileID: 2783846837072463428, guid: 87b01eb4b5b52614a99097730ed32cb4, type: 3}
+  - {fileID: 7072860509184264868, guid: 66d1b3964fb341944affc39259ada0f8, type: 3}
+  - {fileID: 919132149155446097, guid: e6f0b696d41491443afd6b09ce729b0b, type: 3}
+  - {fileID: 919132149155446097, guid: 4abd4ebd635707a4dbb0297dec2df05e, type: 3}
+  - {fileID: 919132149155446097, guid: b9e1d479cc153f64db9aaeca50166523, type: 3}
+  - {fileID: 919132149155446097, guid: 805a1d253da00f5468f0cbae7966a592, type: 3}
+  - {fileID: 919132149155446097, guid: 02c228b66695f2c429df1bfbe27cd19b, type: 3}
+  - {fileID: 8740904465435202500, guid: 88a53aacb29331942aa245e6a27f40fe, type: 3}
+  - {fileID: 919132149155446097, guid: ed3e1ead9ed35a147bd7147a9a3ef696, type: 3}
+  - {fileID: 919132149155446097, guid: b1f0353fffe131f49a2b84763b6ae538, type: 3}
+  - {fileID: 919132149155446097, guid: bcc38187af262da468c842ac0849ab1c, type: 3}
+  - {fileID: 919132149155446097, guid: 5a294465204343c48900bd3bc463e448, type: 3}
+  - {fileID: 2800000, guid: 1751f8ccd80664e498e3cc6564ef89c9, type: 3}
+  - {fileID: 2800000, guid: f10f4c095fb107b4c92963ad645d2768, type: 3}
+  - {fileID: 919132149155446097, guid: 1cd0da3cd0fb88f4994be4cbb99b0c09, type: 3}
+  - {fileID: 919132149155446097, guid: f2890b6d4b07a9046bcec0f565086075, type: 3}
+  - {fileID: 2800000, guid: 5c6fdfab075dee245bc870bc5606d9b1, type: 3}
+  - {fileID: 919132149155446097, guid: 57923e7735f3eed4b9c0be6951e691c1, type: 3}
+  - {fileID: 185788396124023195, guid: b7c0e74f1cec4aa4b9feec979f695d67, type: 3}
+  - {fileID: 2800000, guid: eaa8145740f7b0d45970090745d3cc8e, type: 3}
+  - {fileID: 2800000, guid: 60f4c82f0bce8a5428b230353a171dec, type: 3}
+  - {fileID: 919132149155446097, guid: cf030a7aa1df2a549be961b56726ef30, type: 3}
+  - {fileID: 919132149155446097, guid: 3aa6d8ff8b73597438a8b30ab2d72470, type: 3}
+  - {fileID: 919132149155446097, guid: 248e627cabfd56e4995a14c8cf603292, type: 3}
+  - {fileID: 919132149155446097, guid: 305c702f90a6ef14f88c339dc144cf54, type: 3}
+  - {fileID: 8300000, guid: a2f0131c242a67544b82b90983875b54, type: 3}
+  - {fileID: 8300000, guid: 2ad40974987e1f943959f907f18eb2f1, type: 3}
+  - {fileID: 8300000, guid: f156b40b8887f184bb8ff328b3e6fd58, type: 3}
+  - {fileID: 8300000, guid: 45281eb995a656545865c66494e56bdf, type: 3}
+  - {fileID: 919132149155446097, guid: bb5bcb8b29dfc254bb665db1b6960a3e, type: 3}
+  - {fileID: 919132149155446097, guid: 44eb2cec1cbacfa4a9fad00da7706fdd, type: 3}
+  - {fileID: 919132149155446097, guid: bb5bcb8b29dfc254bb665db1b6960a3e, type: 3}
+  - {fileID: 919132149155446097, guid: 8653c481db8858647b1a7ca4d2622094, type: 3}
+  - {fileID: 919132149155446097, guid: 8bae29b91489a2a48a2888421faa8ae7, type: 3}
+  - {fileID: 919132149155446097, guid: d93bc410953961d4080cfd8719473167, type: 3}
+  - {fileID: 919132149155446097, guid: 5c3f76e0b75171a4a881ff03fa385c9c, type: 3}
+  - {fileID: 919132149155446097, guid: 74477a0ea097dce40adf6165471bb854, type: 3}
+  - {fileID: 919132149155446097, guid: ba8acd5881ded47439f877b6e3765247, type: 3}
+  - {fileID: 919132149155446097, guid: f6a95e67907efd548a79970806a11795, type: 3}
+  - {fileID: 2800000, guid: f6ac31e83f1a0df49bd4482e8b3aecb7, type: 3}
   - {fileID: 11400000, guid: 543cae5169ba60e4daf574b9a67cd14c, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -139,7 +179,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
-  useHDRDisplay: 0
+  useHDRDisplay: 1
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
@@ -165,7 +205,7 @@ PlayerSettings:
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   APKExpansionFiles: 0
-  keepLoadedShadersAlive: 0
+  keepLoadedShadersAlive: 1
   StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
@@ -263,7 +303,7 @@ PlayerSettings:
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
-    m_DynamicBatching: 0
+    m_DynamicBatching: 1
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
     m_GraphicsJobs: 0
@@ -316,7 +356,7 @@ PlayerSettings:
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality:
   - m_BuildTarget: Standalone
-    m_EncodingQuality: 2
+    m_EncodingQuality: 1
   - m_BuildTarget: Android
     m_EncodingQuality: 2
   - m_BuildTarget: Lumin
@@ -599,7 +639,8 @@ PlayerSettings:
     Standalone: 0
   il2cppCompilerConfiguration:
     Standalone: 1
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    Standalone: 3
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0

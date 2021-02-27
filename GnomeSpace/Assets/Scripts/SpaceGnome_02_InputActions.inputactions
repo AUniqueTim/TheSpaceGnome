@@ -503,7 +503,7 @@
                     "name": "",
                     "id": "906d7dc4-7c89-4dcf-ba7e-8630e7dc01da",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
+                    "interactions": "Tap,Hold",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Dance",
@@ -719,7 +719,7 @@
                     "id": "2d26150a-26eb-4fad-bb13-3f6e7fba262f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "PointsDance2",
@@ -727,7 +727,7 @@
                     "id": "fad5ec72-9293-481f-8f35-9009fbc92d28",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "PointsDance3",
@@ -735,7 +735,7 @@
                     "id": "c9da07b4-597d-495a-861b-10b7b011a423",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "PointsDance4",
@@ -743,7 +743,7 @@
                     "id": "06a18067-329e-4d40-9e75-341aa539f220",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [

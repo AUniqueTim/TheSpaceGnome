@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 3158754259194614973}
   - component: {fileID: 3158754259194614975}
   - component: {fileID: 3158754259194614972}
+  - component: {fileID: 262520512}
+  - component: {fileID: 262520510}
+  - component: {fileID: 262520509}
+  - component: {fileID: 262520508}
   m_Layer: 0
   m_Name: Rotations
   m_TagString: Untagged
@@ -79,5 +83,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
   rotationAngle: 30
+  rotationPoint: {x: 0, y: 1, z: 0}
+  rotationAnchor: {fileID: 0}
+--- !u!114 &262520512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158754259194614970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717ef1c2ae23bf8448819f2c2ea85dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatedObject: {fileID: 0}
+  rotationAngle: 30
+  rotationPoint: {x: 0, y: 1, z: 0}
+  rotationAnchor: {fileID: 0}
+--- !u!114 &262520510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158754259194614970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717ef1c2ae23bf8448819f2c2ea85dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatedObject: {fileID: 0}
+  rotationAngle: 25
+  rotationPoint: {x: 0, y: 1, z: 0}
+  rotationAnchor: {fileID: 0}
+--- !u!114 &262520509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158754259194614970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717ef1c2ae23bf8448819f2c2ea85dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatedObject: {fileID: 0}
+  rotationAngle: 50
+  rotationPoint: {x: 0, y: 1, z: 0}
+  rotationAnchor: {fileID: 0}
+--- !u!114 &262520508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158754259194614970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717ef1c2ae23bf8448819f2c2ea85dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatedObject: {fileID: 0}
+  rotationAngle: 60
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}

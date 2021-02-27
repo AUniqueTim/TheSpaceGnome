@@ -4545,6 +4545,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2928caca-344a-4d1c-af5a-e7138b2fda9f
     m_ActionName: Player/PlatformGun[/Keyboard/e,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 45d2c063-60a9-458f-ba9b-28039b315bfa
+    m_ActionName: Player/Dance[/XInputControllerWindows/buttonEast,/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d26150a-26eb-4fad-bb13-3f6e7fba262f
+    m_ActionName: DanceCombos/PointsDance1[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fad5ec72-9293-481f-8f35-9009fbc92d28
+    m_ActionName: DanceCombos/PointsDance2[/XInputControllerWindows/leftStick/right,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c9da07b4-597d-495a-861b-10b7b011a423
+    m_ActionName: DanceCombos/PointsDance3[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 06a18067-329e-4d40-9e75-341aa539f220
+    m_ActionName: DanceCombos/PointsDance4[/XInputControllerWindows/leftStick/down,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -4646,7 +4666,7 @@ MonoBehaviour:
   timerScript: {fileID: 2776550114935772059}
   boostBar: {fileID: 0}
   boost: 0
-  hP: 10
+  hP: 30
   time: 0
   points: 0
   pointsLost: 0

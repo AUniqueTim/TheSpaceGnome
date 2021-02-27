@@ -3,7 +3,37 @@ guid: 27d0fd86b036a5b48b3fa4e75e3ba017
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flat Brass
+    second: {fileID: 2100000, guid: cffd783ef2713134ca56d7be457239fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #25
+    second: {fileID: 2100000, guid: c653a84051271594492e005b38ea836e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #26
+    second: {fileID: 2100000, guid: 8ded6ea5798c6f141984f6a1fd2882bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #27
+    second: {fileID: 2100000, guid: a6365e31b5c61fe458b1c2f4f49ba106, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #28
+    second: {fileID: 2100000, guid: 5a0192f9d632af943b044dd4ac2fa7ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Solder
+    second: {fileID: 2100000, guid: 89f6f4a752d68994a94892e5fd21c807, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public Image boostBar;
     public float boost;
     public int hP;
+    [SerializeField] int maxHP;
     public float time;
     public int points;
     public int pointsLost;
@@ -187,6 +188,6 @@ public class PlayerManager : MonoBehaviour
         if (boost <= 0) { boost = 0;
         if (boost >= 10000) { boost = 10000; }
         }
-        if (hP >= 10) { hP = 10; }
+        if (hP >= maxHP) { hP = maxHP; }
     }
 }
