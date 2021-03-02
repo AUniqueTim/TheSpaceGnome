@@ -118,3 +118,11 @@ GnomeSpace filter=lfs diff=lfs merge=lfs -text
 /GnomeSpace/Library/Artifacts/fd/fd90e14c6a6b8480b5e8b848f5df46ce filter=lfs diff=lfs merge=lfs -text
 /GnomeSpace/Library/Artifacts/fe/fe42c7c739f9cada430e8797c834abee filter=lfs diff=lfs merge=lfs -text
 *.pack filter=lfs diff=lfs merge=lfs -text
+*.pdb filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+/GnomeSpace/Assets/Cradle/Editor/ThirdParty/PhantomJS/bin/osx/phantomjs filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+*.cs filter=lfs diff=lfs merge=lfs -text
+*.html filter=lfs diff=lfs merge=lfs -text
+*.XML filter=lfs diff=lfs merge=lfs -text

@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fd872bc083650ad9b4b07aa9af9e8a3a963b109c8da127b1876c460581d23b14
-size 883
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PickUps : MonoBehaviour
+{
+    public DanceCombos danceCombos;
+    
+    public int points;
+
+    private int basePointsMultiplier;
+
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.gameObject.tag == "HP")
+        //{
+        //    Toolbox.Instance.playerManagerScript.hP += 1;
+        //}
+        //else if (collision.gameObject.tag == "Time")
+        //{
+        //    Toolbox.Instance.timerScript.t -= 10f;
+        //}
+        if (collision.gameObject.tag == "Points")
+        {
+            points += 1 * basePointsMultiplier;
+        }
+    }
+
+    private void Update()
+    {
+        if (points <= 0) { points = 0; }
+        Toolbox.Instance.playerManagerScript.points = points;
+        basePointsMultiplier = danceCombos.basePointsMultiplier;
+
+
+    }
+}
