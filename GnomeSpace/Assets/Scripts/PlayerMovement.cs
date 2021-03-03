@@ -70,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform firedObjectParentTransform;
     //[SerializeField] Transform newFiredObjectParentTransform;
 
+    [SerializeField] ParticleSystem platformGunPE;
+    [SerializeField] Transform platformGunPEFirePoint;
    public int randomNumber;
 
     public bool isDancing;
@@ -165,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
             instantiatedObject.SetActive(true);
+            platformGunPE.Play();
             playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
@@ -203,9 +206,15 @@ public class PlayerMovement : MonoBehaviour
         //playerAnimator.ResetTrigger("Dance3");
         //playerAnimator.ResetTrigger("Dance4");
 
+
+        platformGunPEFirePoint.gameObject.transform.position = firePoint.transform.position; ;
+        platformGunPE.gameObject.transform.position = platformGunPEFirePoint.gameObject.transform.position;
+
     }
+    
     private void Update()
     {
+
         randomNumber = Random.Range(0, 3);
 
         //Platform Gun code start.

@@ -54,6 +54,12 @@ public class PlayerManager : MonoBehaviour
     public bool landingSoundPlayed;
     public AudioSource jumpSoundPlayed;
     public AudioSource platformSpawnSound;
+    public AudioSource danceSound1;
+    public AudioSource danceSound2;
+    public AudioSource[] danceSounds;
+    [SerializeField] bool danceSound1Played;
+    [SerializeField] bool danceSound2Played;
+
 
     private int basePointsMultiplier;
 
@@ -205,6 +211,23 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Toolbox.Instance.playerMovement.controls.Player.Dance.triggered && Toolbox.Instance.playerMovement.isStanding == true)
+        {
+            //if (danceSound1Played == true)
+            //{
+            //    danceSound2.Play();
+            //    danceSound2Played = true;
+            //    danceSound1Played = false;
+            //}
+            //else if (danceSound1Played == false)
+            //{
+            //    danceSound1.Play();
+            //    danceSound1Played = true;
+            //    danceSound2Played = false;
+            //}
+            danceSounds[Random.Range(0, 4)].Play();
+        }
+
         if (Toolbox.Instance.playerMovement.controls.Player.PlatformGun.triggered && boost >= 1000f)
         {
             platformSpawnSound.Play();
