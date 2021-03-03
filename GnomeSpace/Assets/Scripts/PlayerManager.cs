@@ -50,6 +50,10 @@ public class PlayerManager : MonoBehaviour
     public AudioSource blueCoin;
     public AudioSource[] asteroidCollisionSounds;
     private AudioSource asteroidSound;
+    public AudioSource landing;
+    public bool landingSoundPlayed;
+    public AudioSource jumpSoundPlayed;
+    public AudioSource platformSpawnSound;
 
     private int basePointsMultiplier;
 
@@ -97,10 +101,10 @@ public class PlayerManager : MonoBehaviour
 
         instance = this;
 
-      //  explosion1 = GetComponent<ParticleSystem>();
-        
+        //  explosion1 = GetComponent<ParticleSystem>();
+
     }
-    
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Asteroid")
@@ -108,14 +112,14 @@ public class PlayerManager : MonoBehaviour
             hP -= 1;
             boost -= 2000f;
             totalHealthLost += 1;
-            if (hP <=0) { hP = 0; }
+            if (hP <= 0) { hP = 0; }
             Debug.Log("Collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
             asteroidSound = asteroidCollisionSounds[Random.Range(0, 2)];
             asteroidSound.Play();
             asteroidCollisions += 1;
             explosion1.Play();
-           
+
         }
         if (collision.gameObject.tag == "Points")
         {
@@ -137,27 +141,27 @@ public class PlayerManager : MonoBehaviour
             coinPickUp1.Play();
             isCoinPickUp1 = true;
         }
-        if (collision.gameObject.tag== "Time")
+        if (collision.gameObject.tag == "Time")
         {
             totalCoins += 1;
-           // boost += 1000f;
+            // boost += 1000f;
             totalTimeCoinsCollected += 1;
             if (totalTimeCoinsCollected <= 25) { Toolbox.Instance.timerScript.startTime += 3f; }
-            else if (totalTimeCoinsCollected >25 && totalTimeCoinsCollected <= 50) { Toolbox.Instance.timerScript.startTime += 2f; }
-            else if (totalTimeCoinsCollected >50 && totalTimeCoinsCollected <= 100) { Toolbox.Instance.timerScript.startTime += 1f; }
+            else if (totalTimeCoinsCollected > 25 && totalTimeCoinsCollected <= 50) { Toolbox.Instance.timerScript.startTime += 2f; }
+            else if (totalTimeCoinsCollected > 50 && totalTimeCoinsCollected <= 100) { Toolbox.Instance.timerScript.startTime += 1f; }
             else { return; }
-            
+
             Debug.Log("Collided with " + collision.gameObject.name);
-           Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
             bronzeCoin.Play();
-         //  Instantiate(coinPickUp1);
+            //  Instantiate(coinPickUp1);
             coinPickUp2.Play();
             isCoinPickUp2 = true;
         }
         if (collision.gameObject.tag == "HP")
         {
             totalCoins += 1;
-          //  boost += 1000f;
+            //  boost += 1000f;
             totalHealthGained += 1;
             totalHPCoinsCollected += 1;
             hP += 1;
@@ -165,14 +169,19 @@ public class PlayerManager : MonoBehaviour
             Destroy(collision.gameObject);
             blueCoin.Play();
             isCoinPickUp3 = true;
-         //   Instantiate(coinPickUp1);
+            //   Instantiate(coinPickUp1);
             coinPickUp3.Play();
         }
-        
+        if (collision.gameObject.tag== "Platform")
+        {
+                landing.PlayOneShot(landing.clip);
+                
+        }
+
     }
     public void GameOver()
     {
-        
+
 
         camController.sideCamera.SetActive(true);
         scoreText.text = score.ToString(format: "f0");
@@ -196,11 +205,20 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        if (Toolbox.Instance.playerMovement.controls.Player.PlatformGun.triggered && boost >= 1000f)
+        {
+            platformSpawnSound.Play();
+        }
 
+        if (Toolbox.Instance.playerMovement.isStanding && Toolbox.Instance.playerMovement.controls.Player.Jump.triggered)
+        {
+            jumpSoundPlayed.Play();
+        }
         if (Toolbox.Instance.playerMovement.noseDiving == true)
         {
             hyperSpace.Play();
-        } else if (Toolbox.Instance.playerMovement.noseDiving == false)
+        }
+        else if (Toolbox.Instance.playerMovement.noseDiving == false)
         {
             hyperSpace.Stop();
         }
@@ -226,16 +244,21 @@ public class PlayerManager : MonoBehaviour
         time = Toolbox.Instance.timerScript.t;
         hpText.text = hP.ToString();
         pointsText.text = points.ToString();
-        if (hP <= 0 )
+        if (hP <= 0)
         {
-          youDiedTextObject.SetActive(true);
-          GameOver();
+            youDiedTextObject.SetActive(true);
+            GameOver();
         }
-        if (boost <= 0) { boost = 0;
-        if (boost >= 10000) { boost = 10000; }
+        if (boost <= 0)
+        {
+            boost = 0;
+            if (boost >= 10000) { boost = 10000; }
         }
         if (hP >= maxHP) { hP = maxHP; }
     }
+    private void LateUpdate()
+    {
+        
 
-
+    }
 }
