@@ -57,6 +57,11 @@ public class PlayerManager : MonoBehaviour
     public AudioSource danceSound1;
     public AudioSource danceSound2;
     public AudioSource[] danceSounds;
+    public AudioSource frontFlipSound;
+    public AudioSource backFlipSound;
+    public AudioSource macacoSound;
+    
+
     [SerializeField] bool danceSound1Played;
     [SerializeField] bool danceSound2Played;
 
@@ -211,20 +216,37 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+        //if (frontFlipAnim.isPlaying)
+        //{
+        //    macacoSound.Play();
+        //}
+        //else if (frontFlipAnim.isPlaying)
+        //{
+        //    frontFlipSound.Play();
+        //}
+        //else if (backFlipAnim.isPlaying)
+        //{
+        //    backFlipSound.Play();
+        //}
+
+        if (Toolbox.Instance.playerMovement.isDancing)
+        {
+            if ((Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance2.triggered) && Toolbox.Instance.playerMovement.macacoPerformed)
+            {
+                macacoSound.Play();
+            }
+
+            else if (Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance3.triggered && Toolbox.Instance.playerMovement.frontFlipPerformed)
+            {
+                frontFlipSound.Play();
+            }
+            else if (Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance4.triggered && Toolbox.Instance.playerMovement.backFlipPerformed)
+            {
+                backFlipSound.Play();
+            }
+        }
         if (Toolbox.Instance.playerMovement.controls.Player.Dance.triggered && Toolbox.Instance.playerMovement.isStanding == true)
         {
-            //if (danceSound1Played == true)
-            //{
-            //    danceSound2.Play();
-            //    danceSound2Played = true;
-            //    danceSound1Played = false;
-            //}
-            //else if (danceSound1Played == false)
-            //{
-            //    danceSound1.Play();
-            //    danceSound1Played = true;
-            //    danceSound2Played = false;
-            //}
             danceSounds[Random.Range(0, 4)].Play();
         }
 

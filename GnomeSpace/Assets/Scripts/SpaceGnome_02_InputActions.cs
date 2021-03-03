@@ -732,7 +732,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""2d26150a-26eb-4fad-bb13-3f6e7fba262f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Tap(pressPoint=0.3)""
                 },
                 {
                     ""name"": ""PointsDance2"",
@@ -740,7 +740,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""fad5ec72-9293-481f-8f35-9009fbc92d28"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Tap(pressPoint=0.3)""
                 },
                 {
                     ""name"": ""PointsDance3"",
@@ -748,7 +748,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""c9da07b4-597d-495a-861b-10b7b011a423"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Tap(pressPoint=0.3)""
                 },
                 {
                     ""name"": ""PointsDance4"",
@@ -756,7 +756,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""06a18067-329e-4d40-9e75-341aa539f220"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Tap(pressPoint=0.3)""
                 }
             ],
             ""bindings"": [

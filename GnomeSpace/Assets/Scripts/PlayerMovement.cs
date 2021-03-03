@@ -75,6 +75,13 @@ public class PlayerMovement : MonoBehaviour
    public int randomNumber;
 
     public bool isDancing;
+    public bool macacoPerformed;
+    public bool frontFlipPerformed;
+    public bool backFlipPerformed;
+
+    //public Animation frontFlipAnim;
+    //public Animation backFlipAnim;
+    //public Animation macacoAnim;
 
     //START SINGLETON
 
@@ -167,7 +174,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
             instantiatedObject.SetActive(true);
+
+           
+            platformGunPE.gameObject.transform.position = firePoint.gameObject.transform.position + new Vector3(0,3,0);
             platformGunPE.Play();
+
             playerManager.boost -= 1000f;
             if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
             if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
@@ -207,12 +218,11 @@ public class PlayerMovement : MonoBehaviour
         //playerAnimator.ResetTrigger("Dance4");
 
 
-        platformGunPEFirePoint.gameObject.transform.position = firePoint.transform.position; ;
-        platformGunPE.gameObject.transform.position = platformGunPEFirePoint.gameObject.transform.position;
+       
 
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
 
         randomNumber = Random.Range(0, 3);
@@ -361,29 +371,34 @@ public class PlayerMovement : MonoBehaviour
                    playerManager.hP += 1;
                     playerManager.totalHealthGained += 1;
                     isDancing = false;
+                    macacoPerformed = true;
 
                 }
-                if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
+                else if (danceCombos.danceCombos.DanceCombos.PointsDance2.triggered)
                 {
                     PointsDance2();
                     playerManager.hP += 1;
                     playerManager.totalHealthGained += 1;
                     isDancing = false;
+                    macacoPerformed = true;
                 }
-                if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
+                else if (danceCombos.danceCombos.DanceCombos.PointsDance3.triggered)
                 {
                     PointsDance3();
                     playerManager.hP += 1;
                     playerManager.totalHealthGained += 1;
                     isDancing = false;
+                    frontFlipPerformed = true;
                 }
-                if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
+                else if (danceCombos.danceCombos.DanceCombos.PointsDance4.triggered)
                 {
                     PointsDance4();
                     playerManager.hP += 1;
                     playerManager.totalHealthGained += 1;
                     isDancing = false;
+                    backFlipPerformed = true;
                 }
+                //else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
             }
         }
 

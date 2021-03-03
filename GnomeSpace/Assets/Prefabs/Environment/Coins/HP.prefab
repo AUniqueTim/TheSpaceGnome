@@ -14,13 +14,12 @@ GameObject:
   - component: {fileID: 3235090008613699915}
   - component: {fileID: 265579244500722578}
   - component: {fileID: 2666538966643703614}
-  - component: {fileID: 2885718792825990904}
   m_Layer: 0
   m_Name: HP
   m_TagString: HP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7325956922478581559
 Transform:
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2783846837072463428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 802150}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +72,7 @@ MeshRenderer:
   m_ScaleInLightmap: 1
   m_ReceiveGI: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
+  m_IgnoreNormalsForChartDetection: 1
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
@@ -99,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 12
+  m_Constraints: 4
   m_CollisionDetection: 2
 --- !u!65 &265579244500722578
 BoxCollider:
@@ -210,21 +209,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2885718792825990904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2783846837072463428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc500a1a2d44e140be24615f6b8b572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationEngine: {fileID: 340796412555805715, guid: f09e3dff9e4612d4da43e0d61be6de98, type: 3}
-  anglePerUpdate: 15
-  rotationEngineObject: {fileID: 340796412555805712, guid: f09e3dff9e4612d4da43e0d61be6de98, type: 3}
-  revolutionsPerYear: 24000
-  gravityAnchor: {fileID: 3613418390375328705, guid: e7a43d4eb62cc744ebbe1c2cebae774f, type: 3}
-  objectRotated: {fileID: 2783846837072463428}
