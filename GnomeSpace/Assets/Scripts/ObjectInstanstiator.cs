@@ -90,13 +90,13 @@ public class ObjectInstanstiator : MonoBehaviour
         //gameObject.SetActive(true);
         objectCount += 1;
         Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation, instantiatedObjectParentTransform);
-        instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
+        //instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
         else { objectInstantiated = false; }
        
         instantiatedObject.SetActive(true);
 
-        if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
+       // if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
 
         playerCollision = false;
 

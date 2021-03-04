@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1287006734297431361}
   - component: {fileID: 6088769078088934487}
   - component: {fileID: -9154625752320980151}
-  - component: {fileID: 9047808617792285282}
   m_Layer: 0
   m_Name: Time
   m_TagString: Time
@@ -210,21 +209,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &9047808617792285282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9057795766525689955}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc500a1a2d44e140be24615f6b8b572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationEngine: {fileID: 340796412555805715, guid: f09e3dff9e4612d4da43e0d61be6de98, type: 3}
-  anglePerUpdate: 15
-  rotationEngineObject: {fileID: 340796412555805712, guid: f09e3dff9e4612d4da43e0d61be6de98, type: 3}
-  revolutionsPerYear: 24000
-  gravityAnchor: {fileID: 3613418390375328705, guid: e7a43d4eb62cc744ebbe1c2cebae774f, type: 3}
-  objectRotated: {fileID: 9057795766525689955}
