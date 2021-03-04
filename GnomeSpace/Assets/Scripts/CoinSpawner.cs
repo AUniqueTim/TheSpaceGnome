@@ -84,7 +84,7 @@ public class CoinSpawner : MonoBehaviour
 
         objectInstantiator = gameObject;
     }
-
+    
     void InstantiateObject()
     {
         //gameObject.SetActive(true);
