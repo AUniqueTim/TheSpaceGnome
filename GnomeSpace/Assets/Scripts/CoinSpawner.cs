@@ -83,6 +83,11 @@ public class CoinSpawner : MonoBehaviour
         firePoint.position += randomPos;
 
         objectInstantiator = gameObject;
+
+        //if (objectCount >= 100)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
     
     void InstantiateObject()
@@ -90,20 +95,21 @@ public class CoinSpawner : MonoBehaviour
         //gameObject.SetActive(true);
         objectCount += 1;
         Instantiate(instantiatedObject = objects[Random.Range(0,objects.Length)], firePoint.position, firePoint.rotation, instantiatedObjectParentTransform);
+        //instantiatedObject.transform.localScale = new Vector3(1,1,1);
       //  instantiatedObject.transform.Translate(Vector3.forward * fireSpeed);
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
         else { objectInstantiated = false; }
        
-        instantiatedObject.SetActive(true);
+       // instantiatedObject.SetActive(true);
 
       //  if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
 
         playerCollision = false;
-
         //instantiatedObject.SetActive(true);
-        if (instantiatedObjectParentTransform.childCount >= 150) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
-        else { instantiatedObject.SetActive(true);  }
         
+        if (instantiatedObjectParentTransform.childCount >= 100) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
+        else { instantiatedObject.SetActive(true); }
+
 
     }
     public void OnTriggerEnter(Collider collision) {if (collision.gameObject.tag == "Player")
