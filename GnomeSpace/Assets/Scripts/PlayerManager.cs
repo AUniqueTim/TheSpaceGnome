@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
     public AudioSource frontFlipSound;
     public AudioSource backFlipSound;
     public AudioSource macacoSound;
+    public AudioSource cam2Music;
     
 
     [SerializeField] bool danceSound1Played;
@@ -189,6 +190,10 @@ public class PlayerManager : MonoBehaviour
                 
         }
 
+        if (!gameObject.activeInHierarchy)
+        {
+            cam2Music.Play();
+        }
     }
     public void GameOver()
     {

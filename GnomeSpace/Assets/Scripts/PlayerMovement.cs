@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
 
         randomNumber = Random.Range(0, 3);
@@ -324,37 +324,7 @@ public class PlayerMovement : MonoBehaviour
             isWalking = false; StopWalking();
         }
 
-        if (isJumping)
-        {
-            Jump();
-        }
-        if (hardFall1)
-        {
-            HardFall1();
-            hardFall1 = false;
-            playerManager.isHardFall1 = true;
-        }
-        else { playerManager.isHardFall1 = false; }
-
-        if (hardFall2)
-        {
-            HardFall2();
-            hardFall2 = false;
-            playerManager.isHardFall2 = true;
-        }
-        else { playerManager.isHardFall2 = false; }
-        if (noseDiving)
-        {
-            NoseDiving();
-           //playerManager.hyperSpace.Play();
-          //  noseDiving = false;
-        }
-        if (floatingUp)
-        {
-            FloatingUp();
-            floatingUp = false;
-        }
-
+       
         //DANCE COMBOS #1 (Left Stick + Y)
         if (isStanding)
         {
@@ -401,7 +371,6 @@ public class PlayerMovement : MonoBehaviour
                 //else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
             }
         }
-
         //BASIC DANCE MOVES
         if (isStanding)
         {
@@ -428,8 +397,46 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else { isDancing = false; }
         }
-    }
 
+       
+        if (hardFall1)
+        {
+            HardFall1();
+            hardFall1 = false;
+            playerManager.isHardFall1 = true;
+        }
+        else { playerManager.isHardFall1 = false; }
+
+        if (hardFall2)
+        {
+            HardFall2();
+            hardFall2 = false;
+            playerManager.isHardFall2 = true;
+        }
+        else { playerManager.isHardFall2 = false; }
+        
+    }
+    private void FixedUpdate()
+    {
+
+        if (isJumping)
+        {
+            Jump();
+        }
+        if (noseDiving)
+        {
+            NoseDiving();
+
+        }
+        if (floatingUp)
+        {
+            FloatingUp();
+            floatingUp = false;
+        }
+
+
+
+    }
     //FLOAT UP
     public void FloatingUp()
     {
