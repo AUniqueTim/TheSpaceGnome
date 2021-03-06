@@ -8,6 +8,8 @@ using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
+
+   [SerializeField] GameObject player;
     public DanceCombos danceCombos;
     public FallDamage fallDamageScript;
     public Timer timerScript;
@@ -154,9 +156,9 @@ public class PlayerManager : MonoBehaviour
 
             DOTweenModuleSprite.DOFade(plus1, 1, 0);
             DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
-            // plus1.transform.DOMove(transform.position + new Vector3(0,-50,0), 1);
+            
             DOTweenModuleSprite.DOFade(plus1, 0, 2.5f);
-            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 2.5f);
             yield return
                 new WaitForSeconds(1.5f);
             Debug.Log("Waiting Two Seconds...");
@@ -176,7 +178,7 @@ public class PlayerManager : MonoBehaviour
             DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
 
             DOTweenModuleSprite.DOFade(plus2, 0, 2.5f);
-            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 2.5f);
 
             yield return
                 new WaitForSeconds(1.5f);
@@ -194,7 +196,7 @@ public class PlayerManager : MonoBehaviour
             DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
 
             DOTweenModuleSprite.DOFade(plus3, 0, 2.5f);
-            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 2.5f);
 
             yield return
                 new WaitForSeconds(1.5f);
@@ -212,7 +214,7 @@ public class PlayerManager : MonoBehaviour
             DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
 
             DOTweenModuleSprite.DOFade(plus4, 0, 2.5f);
-            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 2.5f);
 
             yield return
                 new WaitForSeconds(1.5f);
@@ -230,7 +232,7 @@ public class PlayerManager : MonoBehaviour
             DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
 
             DOTweenModuleSprite.DOFade(plus5, 0, 2.5f);
-            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 2.5f);
 
             yield return
                 new WaitForSeconds(1.5f);
@@ -238,6 +240,40 @@ public class PlayerManager : MonoBehaviour
 
             plus5.gameObject.SetActive(false);
             pointsUIText.gameObject.SetActive(false);
+        }
+        else if (gotAHP)
+        {
+            plus1.gameObject.SetActive(true);
+            healthUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus1, 1, 0);
+            DOTweenModuleSprite.DOFade(healthUIText, 1, 0);
+
+            DOTweenModuleSprite.DOFade(plus1, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(healthUIText, 0, 2.5f);
+
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting Two Seconds...");
+
+            plus1.gameObject.SetActive(false);
+            healthUIText.gameObject.SetActive(false);
+            gotAHP = false;
+
+        }
+        else if (gotATime)
+        {
+            timeUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(timeUIText, 1, 0);
+            DOTweenModuleSprite.DOFade(timeUIText, 0, 2.5f);
+            
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting Two Seconds...");
+
+            timeUIText.gameObject.SetActive(false);
+            gotATime = false;
         }
         
     }
@@ -260,13 +296,11 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.tag == "Points")
         {
             totalCoins += 1;
-            //boost += 1000f;
+            
             points += 1 * basePointsMultiplier;
             gotAPoint = true;
-            
+
            StartCoroutine(WaitOneSecond());
-          
-           
             
             Debug.Log("Collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
@@ -278,14 +312,17 @@ public class PlayerManager : MonoBehaviour
             danceCombos.pointsDance2Performed = false;
             danceCombos.pointsDance3Performed = false;
             danceCombos.pointsDance4Performed = false;
-            //Instantiate(coinPickUp1);
+
             coinPickUp1.Play();
             isCoinPickUp1 = true;
         }
         if (collision.gameObject.tag == "Time")
         {
             totalCoins += 1;
-            // boost += 1000f;
+            gotATime = true;
+
+            StartCoroutine(WaitOneSecond());
+
             totalTimeCoinsCollected += 1;
             if (totalTimeCoinsCollected <= 25) { Toolbox.Instance.timerScript.startTime += 3f; }
             else if (totalTimeCoinsCollected > 25 && totalTimeCoinsCollected <= 50) { Toolbox.Instance.timerScript.startTime += 2f; }
@@ -295,22 +332,26 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
             bronzeCoin.Play();
-            //  Instantiate(coinPickUp1);
+
             coinPickUp2.Play();
             isCoinPickUp2 = true;
         }
         if (collision.gameObject.tag == "HP")
         {
             totalCoins += 1;
-            //  boost += 1000f;
+            gotAHP = true;
+
+            StartCoroutine(WaitOneSecond());
+
+
             totalHealthGained += 1;
             totalHPCoinsCollected += 1;
             hP += 1;
             Debug.Log("Collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
             blueCoin.Play();
+
             isCoinPickUp3 = true;
-            //   Instantiate(coinPickUp1);
             coinPickUp3.Play();
         }
         if (collision.gameObject.tag== "Platform")
@@ -351,8 +392,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         //plus1.transform.position = numbersParent.transform.position;
-        numbersParent.transform.position = gameObject.transform.position;
-        numbersParent.transform.rotation = gameObject.transform.rotation;
+        
         if (Toolbox.Instance.playerMovement.isDancing)
         {
             if ((Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance2.triggered) && Toolbox.Instance.playerMovement.macacoPerformed)
@@ -427,7 +467,8 @@ public class PlayerManager : MonoBehaviour
     }
     private void LateUpdate()
     {
+     //   numbersParent.transform.position = player.transform.position;
+        numbersParent.transform.rotation = gameObject.transform.rotation;
 
-        
     }
 }

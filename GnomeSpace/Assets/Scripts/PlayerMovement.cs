@@ -266,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpingAllowed && controls.Player.Jump.triggered)
         {
-            transform.Translate(jump * -gravity * Time.deltaTime, Space.World);
+            transform.Translate(jump * -gravity * Time.deltaTime, Space.Self);
             isJumping = true;
             floatingUp = false;
             noseDiving = false;
