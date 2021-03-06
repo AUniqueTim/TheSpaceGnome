@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float totalTime;
     [SerializeField] int totalCoins;
     public CameraController camController;
+    [SerializeField] Camera cam;
 
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject hUD;
@@ -67,7 +70,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool danceSound2Played;
 
 
-    private int basePointsMultiplier;
+    [SerializeField] int basePointsMultiplier;
 
     [SerializeField] ParticleSystem explosion1;
     [SerializeField] ParticleSystem coinPickUp1;
@@ -77,14 +80,35 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] ParticleSystem isHardFall2PE;
     [SerializeField] ParticleSystem hyperSpace;
 
-
-
     public bool isDustExplosion;
     public bool isCoinPickUp1;
     public bool isCoinPickUp2;
     public bool isCoinPickUp3;
     public bool isHardFall1;
     public bool isHardFall2;
+
+    [SerializeField] bool gotAPoint;
+    [SerializeField] bool gotAHP;
+    [SerializeField] bool gotATime;
+
+    [SerializeField] SpriteRenderer plus1;
+    [SerializeField] SpriteRenderer plus2;
+    [SerializeField] SpriteRenderer plus3;
+    [SerializeField] SpriteRenderer plus4;
+    [SerializeField] SpriteRenderer plus5;
+
+    [SerializeField] SpriteRenderer minus1;
+    [SerializeField] SpriteRenderer minus2;
+    [SerializeField] SpriteRenderer minus3;
+    [SerializeField] SpriteRenderer minus4;
+    [SerializeField] SpriteRenderer minus5;
+    [SerializeField] GameObject numbersParent;
+
+    [SerializeField] SpriteRenderer healthUIText;
+    [SerializeField] SpriteRenderer pointsUIText;
+    [SerializeField] SpriteRenderer timeUIText;
+
+
 
     //START SINGLETON
     public static PlayerManager instance;
@@ -113,10 +137,110 @@ public class PlayerManager : MonoBehaviour
 
         instance = this;
 
-        //  explosion1 = GetComponent<ParticleSystem>();
+        DOTween.Init();
 
+        StartCoroutine(WaitOneSecond());
+        numbersParent.transform.position = gameObject.transform.position;
+        numbersParent.transform.rotation = cam.transform.rotation;
+        gotAPoint = false;
     }
+    IEnumerator WaitOneSecond()
+    {
 
+        if (gotAPoint && basePointsMultiplier < 2)
+        {
+            plus1.gameObject.SetActive(true);
+            pointsUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus1, 1, 0);
+            DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
+            // plus1.transform.DOMove(transform.position + new Vector3(0,-50,0), 1);
+            DOTweenModuleSprite.DOFade(plus1, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting Two Seconds...");
+
+            plus1.gameObject.SetActive(false);
+            pointsUIText.gameObject.SetActive(false);
+            gotAPoint = false;
+
+            
+        }
+        else if (gotAPoint && basePointsMultiplier == 2)
+        {
+            plus2.gameObject.SetActive(true);
+            pointsUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus2, 1, 0);
+            DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
+
+            DOTweenModuleSprite.DOFade(plus2, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting 1.5 Seconds...");
+
+            plus2.gameObject.SetActive(false);
+            pointsUIText.gameObject.SetActive(false);
+        }
+        else if (gotAPoint && basePointsMultiplier == 3)
+        {
+            plus3.gameObject.SetActive(true);
+            pointsUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus3, 1, 0);
+            DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
+
+            DOTweenModuleSprite.DOFade(plus3, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting 1.5 Seconds...");
+
+            plus3.gameObject.SetActive(false);
+            pointsUIText.gameObject.SetActive(false);
+        }
+        else if (gotAPoint && basePointsMultiplier == 4)
+        {
+            plus4.gameObject.SetActive(true);
+            pointsUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus4, 1, 0);
+            DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
+
+            DOTweenModuleSprite.DOFade(plus4, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting 1.5 Seconds...");
+
+            plus4.gameObject.SetActive(false);
+            pointsUIText.gameObject.SetActive(false);
+        }
+        else if (gotAPoint && basePointsMultiplier == 5)
+        {
+            plus5.gameObject.SetActive(true);
+            pointsUIText.gameObject.SetActive(true);
+
+            DOTweenModuleSprite.DOFade(plus5, 1, 0);
+            DOTweenModuleSprite.DOFade(pointsUIText, 1, 0);
+
+            DOTweenModuleSprite.DOFade(plus5, 0, 2.5f);
+            DOTweenModuleSprite.DOFade(pointsUIText, 0, 3.5f);
+
+            yield return
+                new WaitForSeconds(1.5f);
+            Debug.Log("Waiting 1.5 Seconds...");
+
+            plus5.gameObject.SetActive(false);
+            pointsUIText.gameObject.SetActive(false);
+        }
+        
+    }
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Asteroid")
@@ -138,7 +262,12 @@ public class PlayerManager : MonoBehaviour
             totalCoins += 1;
             //boost += 1000f;
             points += 1 * basePointsMultiplier;
-
+            gotAPoint = true;
+            
+           StartCoroutine(WaitOneSecond());
+          
+           
+            
             Debug.Log("Collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
             goldCoin.Play();
@@ -221,19 +350,9 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        //if (frontFlipAnim.isPlaying)
-        //{
-        //    macacoSound.Play();
-        //}
-        //else if (frontFlipAnim.isPlaying)
-        //{
-        //    frontFlipSound.Play();
-        //}
-        //else if (backFlipAnim.isPlaying)
-        //{
-        //    backFlipSound.Play();
-        //}
-
+        //plus1.transform.position = numbersParent.transform.position;
+        numbersParent.transform.position = gameObject.transform.position;
+        numbersParent.transform.rotation = gameObject.transform.rotation;
         if (Toolbox.Instance.playerMovement.isDancing)
         {
             if ((Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance1.triggered || Toolbox.Instance.danceCombos.danceCombos.DanceCombos.PointsDance2.triggered) && Toolbox.Instance.playerMovement.macacoPerformed)
@@ -308,7 +427,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        
 
+        
     }
 }
