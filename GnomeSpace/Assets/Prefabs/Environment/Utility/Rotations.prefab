@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 45
+  rotationAngle: 360
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}
 --- !u!114 &3158754259194614975
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 20
+  rotationAngle: 40
   rotationPoint: {x: 1, y: 1, z: 1}
   rotationAnchor: {fileID: 0}
 --- !u!114 &3158754259194614972
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 30
+  rotationAngle: 45
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}
 --- !u!114 &262520512
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 30
+  rotationAngle: 50
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}
 --- !u!114 &262520510
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 25
+  rotationAngle: 35
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}
 --- !u!114 &262520509
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 50
+  rotationAngle: 40
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}
 --- !u!114 &262520508
@@ -146,6 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatedObject: {fileID: 0}
-  rotationAngle: 60
+  rotationAngle: 45
   rotationPoint: {x: 0, y: 1, z: 0}
   rotationAnchor: {fileID: 0}

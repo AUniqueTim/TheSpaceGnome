@@ -47,3 +47,4 @@ MonoBehaviour:
   pickUpScript: {fileID: 0}
   playerManagerScript: {fileID: 0}
   danceCombos: {fileID: 0}
+  playerMovement: {fileID: 0}

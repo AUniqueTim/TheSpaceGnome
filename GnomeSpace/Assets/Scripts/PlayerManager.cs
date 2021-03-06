@@ -75,6 +75,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] int basePointsMultiplier;
 
     [SerializeField] ParticleSystem explosion1;
+    [SerializeField] ParticleSystem explosion2;
     [SerializeField] ParticleSystem coinPickUp1;
     [SerializeField] ParticleSystem coinPickUp2;
     [SerializeField] ParticleSystem coinPickUp3;
@@ -186,6 +187,7 @@ public class PlayerManager : MonoBehaviour
 
             plus2.gameObject.SetActive(false);
             pointsUIText.gameObject.SetActive(false);
+            gotAPoint = false;
         }
         else if (gotAPoint && basePointsMultiplier == 3)
         {
@@ -204,6 +206,7 @@ public class PlayerManager : MonoBehaviour
 
             plus3.gameObject.SetActive(false);
             pointsUIText.gameObject.SetActive(false);
+            gotAPoint = false;
         }
         else if (gotAPoint && basePointsMultiplier == 4)
         {
@@ -222,6 +225,7 @@ public class PlayerManager : MonoBehaviour
 
             plus4.gameObject.SetActive(false);
             pointsUIText.gameObject.SetActive(false);
+            gotAPoint = false;
         }
         else if (gotAPoint && basePointsMultiplier == 5)
         {
@@ -240,6 +244,7 @@ public class PlayerManager : MonoBehaviour
 
             plus5.gameObject.SetActive(false);
             pointsUIText.gameObject.SetActive(false);
+            gotAPoint = false;
         }
         else if (gotAHP)
         {
@@ -290,7 +295,8 @@ public class PlayerManager : MonoBehaviour
             asteroidSound = asteroidCollisionSounds[Random.Range(0, 2)];
             asteroidSound.Play();
             asteroidCollisions += 1;
-            explosion1.Play();
+            //explosion1.Play();
+            explosion2.Play();
 
         }
         if (collision.gameObject.tag == "Points")
@@ -341,8 +347,9 @@ public class PlayerManager : MonoBehaviour
             totalCoins += 1;
             gotAHP = true;
 
-            StartCoroutine(WaitOneSecond());
+            boost += 1000;
 
+            StartCoroutine(WaitOneSecond());
 
             totalHealthGained += 1;
             totalHPCoinsCollected += 1;
