@@ -180,9 +180,9 @@ public class PlayerMovement : MonoBehaviour
             platformGunPE.Play();
 
             playerManager.boost -= 1000f;
-            //if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
-            if (firedObjectParentTransform.childCount >= maxObjectCount) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
-           // else { objectInstantiated = false; }
+            if (instantiatedObject != null) { if (!instantiatedObject.activeInHierarchy) { instantiatedObject.SetActive(true);  objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
+            else if (firedObjectParentTransform.childCount >= maxObjectCount) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
+            else {  objectInstantiated = false; instantiatedObject.SetActive(true); }
             
 
 
@@ -225,10 +225,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (controls.Player.PlatformGun.triggered)
-        {
-            Fire();
-        }
+        //if (controls.Player.PlatformGun.triggered)
+        //{
+        //    Fire();
+        //}
 
         randomNumber = Random.Range(0, 3);
 
@@ -242,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (instantiatingAllowed)
         {
-            if (controls.Player.PlatformGun.triggered) { }
+          //  if (controls.Player.PlatformGun.triggered) { Fire(); }
 
             if (objectCount <= maxObjectCount) { instantiatingAllowed = true; }
             else if (objectCount > maxObjectCount) { instantiatingAllowed = false; DestroyImmediate(instantiatedObject.gameObject); }
@@ -373,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
                     isDancing = false;
                     backFlipPerformed = true;
                 }
+                else { Dance(); }
                 //else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
             }
         }

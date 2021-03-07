@@ -94,7 +94,7 @@ public class ObjectInstanstiator : MonoBehaviour
         if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
         else { objectInstantiated = false; }
        
-        instantiatedObject.SetActive(true);
+        
 
        // if (instantiatedObject != null){ instantiatedObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * fireSpeed); }
 
@@ -102,7 +102,7 @@ public class ObjectInstanstiator : MonoBehaviour
 
         //instantiatedObject.SetActive(true);
         if (instantiatedObjectParentTransform.childCount >= maxObjectCount) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
-        //else { instantiatedObject.SetActive(true);  }
+        else { instantiatedObject.SetActive(true);  }
         
 
     }

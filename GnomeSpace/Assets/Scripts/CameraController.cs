@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+using Cinemachine;
 [RequireComponent(typeof(PlayerInput))]
 public class CameraController : MonoBehaviour
 {
@@ -31,7 +33,16 @@ public class CameraController : MonoBehaviour
     public float rotationLerp = 0.5f;
     
     public GameObject camera;
-    
+    public Camera cam;
+    [SerializeField] CinemachineVirtualCamera vCam1;
+    [SerializeField] CinemachineVirtualCamera vCam2;
+
+    //public Recentering(bool recenter, float waitTime, float recenteringTime)
+    //{
+
+    //}
+
+
     private void Awake()
     {
        
@@ -46,11 +57,17 @@ public class CameraController : MonoBehaviour
 
         //  playerControls.Player.Rotate.performed += ctx => playerRot = ctx.ReadValue<Vector2>();
         //   playerControls.Player.Rotate.canceled += ctx => playerRot = Vector2.zero;
+
     }
 
 
     private void Update()
     {
+
+        if (cam.gameObject.transform.rotation.x > 45) { cam.gameObject.transform.Rotate(-10,0,0); }
+        //if (m_playerMovement.transform.position != null) { vCam1.transform.LookAt(new Vector3(m_playerMovement.transform.position.x, m_playerMovement.transform.position.y, m_playerMovement.transform.position.z)); }
+        //else { vCam1 = vCam2; }
+       // camera.LookAtTargetPosition(transform.position);
 
         _move = new Vector3(m_playerMovement.playerRotation.x, m_playerMovement.playerRotation.y, m_playerMovement.playerRotation.z);
         _look = new Vector3(m_playerMovement.playerRotation.x, m_playerMovement.playerRotation.y, m_playerMovement.playerRotation.z);
@@ -88,9 +105,9 @@ public class CameraController : MonoBehaviour
         {
             angles.x = 360;
         }
-        else if (angle < 180 && angle > 60)
+        else if (angle < 180 && angle > 55)
         {
-            angles.x = 60;
+            angles.x = 55;
         }
 
 
