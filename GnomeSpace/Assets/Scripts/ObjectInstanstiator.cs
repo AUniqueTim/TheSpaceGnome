@@ -10,7 +10,7 @@ public class ObjectInstanstiator : MonoBehaviour
     public GameObject objectInstantiator;   //This game object assigned in Inspector.
     public GameObject[] objects;            //Array of individual objects to be instantiated.
     public GameObject player;               //Player GO.
-    private GameObject instantiatedObject;  //Each instance of an individual objects instantiated.
+    private GameObject instantiatedObject;  //Each instance of an individual object instantiated.
 
     public Transform firePoint;
 
@@ -101,8 +101,8 @@ public class ObjectInstanstiator : MonoBehaviour
         playerCollision = false;
 
         //instantiatedObject.SetActive(true);
-        if (instantiatedObjectParentTransform.childCount >= 30) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
-        else { instantiatedObject.SetActive(true);  }
+        if (instantiatedObjectParentTransform.childCount >= maxObjectCount) { Destroy(instantiatedObjectParentTransform.GetChild(1).gameObject); }
+        //else { instantiatedObject.SetActive(true);  }
         
 
     }

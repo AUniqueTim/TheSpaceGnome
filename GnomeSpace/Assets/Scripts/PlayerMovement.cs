@@ -172,21 +172,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerManager.boost >= 1000f)
         {
+            objectCount += 1;
+
             Instantiate(instantiatedObject = firedObjects[Random.Range(0, firedObjects.Length)], firePoint.position, firePoint.rotation, firedObjectParentTransform);
             instantiatedObject.SetActive(true);
-
-           
             platformGunPE.gameObject.transform.position = firePoint.gameObject.transform.position + new Vector3(0,3,0);
             platformGunPE.Play();
 
             playerManager.boost -= 1000f;
-            if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
-            if (firedObjectParentTransform.childCount >= 10) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
-            else { objectInstantiated = false; }
-
-            objectCount += 1;
+            //if (instantiatedObject != null) { if (instantiatedObject.activeInHierarchy) { objectInstantiated = true; Debug.Log("Instantaited Object: " + instantiatedObject.name); } }
+            if (firedObjectParentTransform.childCount >= maxObjectCount) { Destroy(firedObjectParentTransform.GetChild(1).gameObject); }
+           // else { objectInstantiated = false; }
             
-           // Wait();   ----------------------------------------------------------------POSSIBLE BREAKAGE POINT!
+
+
+            // Wait();   ----------------------------------------------------------------POSSIBLE BREAKAGE POINT!
         }
     }
     public void FloatUp() { 
@@ -224,6 +224,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+
+        if (controls.Player.PlatformGun.triggered)
+        {
+            Fire();
+        }
 
         randomNumber = Random.Range(0, 3);
 
