@@ -373,8 +373,12 @@ public class PlayerMovement : MonoBehaviour
                     isDancing = false;
                     backFlipPerformed = true;
                 }
-                else { Dance(); }
-                //else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
+                else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
+                else if (randomNumber == 0) { Dance1(); }
+                else if (randomNumber == 1) { Dance2(); }
+                else if (randomNumber == 2) { Dance3(); }
+                else if (randomNumber == 4) { Dance4(); }
+                else { isDancing = false; }
             }
         }
         //BASIC DANCE MOVES

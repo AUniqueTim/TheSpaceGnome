@@ -64,10 +64,16 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
 
-        if (cam.gameObject.transform.rotation.x > 45) { cam.gameObject.transform.Rotate(-10,0,0); }
+       // if (cam.gameObject.transform.rotation.x > 45) { cam.gameObject.transform.Rotate(-10,0,0); }
         //if (m_playerMovement.transform.position != null) { vCam1.transform.LookAt(new Vector3(m_playerMovement.transform.position.x, m_playerMovement.transform.position.y, m_playerMovement.transform.position.z)); }
         //else { vCam1 = vCam2; }
        // camera.LookAtTargetPosition(transform.position);
+
+        //if (!vCam1.gameObject.activeInHierarchy)
+        //{
+        //    vCam1.FollowTargetAttachment = vCam2.FollowTargetAttachment;
+        //    vCam1.LookAtTargetAttachment = vCam2.follow
+        //}
 
         _move = new Vector3(m_playerMovement.playerRotation.x, m_playerMovement.playerRotation.y, m_playerMovement.playerRotation.z);
         _look = new Vector3(m_playerMovement.playerRotation.x, m_playerMovement.playerRotation.y, m_playerMovement.playerRotation.z);
