@@ -107,12 +107,13 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(Wait());
 
-         instantiatedObject = null;
+        instantiatedObject = null;
         firedObjects[0].tag = "Platform";
         firedObjects[1].tag = "Platform";
 
 
         instance = this;
+
         defaultGravity = -9.81f;
         gravity = -9.81f;
         controls = new SpaceGnome_02_InputActions();
@@ -373,12 +374,13 @@ public class PlayerMovement : MonoBehaviour
                     isDancing = false;
                     backFlipPerformed = true;
                 }
-                else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; }
-                else if (randomNumber == 0) { Dance1(); }
-                else if (randomNumber == 1) { Dance2(); }
-                else if (randomNumber == 2) { Dance3(); }
-                else if (randomNumber == 4) { Dance4(); }
-                else { isDancing = false; }
+                else if (!isDancing) { macacoPerformed = false; frontFlipPerformed = false; backFlipPerformed = false; isDancing = false; }
+
+                //if (randomNumber == 0) { Dance1(); }
+                //if (randomNumber == 1) { Dance2(); }
+                //if (randomNumber == 2) { Dance3(); }
+                //if (randomNumber == 4) { Dance4(); }
+                //else { }
             }
         }
         //BASIC DANCE MOVES
