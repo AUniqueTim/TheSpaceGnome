@@ -9,6 +9,7 @@ public class Toolbox : MonoBehaviour
     public PlayerManager playerManagerScript;
     public DanceCombos danceCombos;
     public PlayerMovement playerMovement;
+   
 
     //START SINGLETON
 

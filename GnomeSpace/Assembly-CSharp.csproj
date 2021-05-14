@@ -63,7 +63,7 @@
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Cradle\TwineTextPlayer\Core\TwineTextPlayer.cs" />
     <Compile Include="Assets\Scripts\Planet.cs" />
-    <Compile Include="Assets\ParticleSystemsPlayback.cs" />
+    <Compile Include="Assets\Scripts\ParticleSystemsPlayback.cs" />
     <Compile Include="Assets\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\RotationEngine.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Assets\Scripts\Unused\CamY.cs" />
     <Compile Include="Assets\Scripts\FallDamage.cs" />
     <Compile Include="Assets\Scripts\Toolbox.cs" />
-    <Compile Include="Assets\Moo.cs" />
+    <Compile Include="Assets\Scripts\Moo.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Shared\Scripts\AdjustTimeScale.cs" />
     <Compile Include="Assets\Scripts\Unused\CameraLookAtTarget.cs" />
@@ -102,6 +102,8 @@
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\CameraFollowTarget.cs" />
     <Compile Include="Assets\Scripts\Unused\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\HighScorePanel.cs" />
+    <Compile Include="Assets\Scripts\HighScoreData.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -36,7 +36,7 @@ public class DanceCombos : MonoBehaviour
             basePointsMultiplier += 1;
         }
 
-        pointsDance1Performed = true;
+        pointsDance1Performed = true; pointsDance2Performed = false; pointsDance3Performed = false; pointsDance4Performed = false;
         
 
     }
@@ -50,7 +50,7 @@ public class DanceCombos : MonoBehaviour
             basePointsMultiplier += 1;
         }
 
-        pointsDance2Performed = true;
+        pointsDance2Performed = true; pointsDance1Performed = false; pointsDance3Performed = false; pointsDance4Performed = false;
     }
     public void PointsDance3() 
     {
@@ -60,7 +60,7 @@ public class DanceCombos : MonoBehaviour
         {
             basePointsMultiplier += 1;
         }
-        pointsDance3Performed = true;
+        pointsDance3Performed = true; pointsDance1Performed = false; pointsDance2Performed = false; pointsDance4Performed = false;
     }
     public void PointsDance4()
     {
@@ -70,7 +70,7 @@ public class DanceCombos : MonoBehaviour
         {
             basePointsMultiplier += 1;
         }
-        pointsDance4Performed = true;
+        pointsDance4Performed = true; pointsDance1Performed = false; pointsDance2Performed = false; pointsDance3Performed = false;
     }
 
 

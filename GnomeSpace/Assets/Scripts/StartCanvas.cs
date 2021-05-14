@@ -13,10 +13,15 @@ public class StartCanvas : MonoBehaviour
     public GameObject controlsPanel;
     [SerializeField] bool gameStarted;
 
+    public SpaceGnome_02_InputActions controls; 
+    
     private void Awake()
     {
+        controls = new SpaceGnome_02_InputActions();
+        controls.UI.StartGame.performed += context => StartButton();
+
         Time.timeScale = 0;
-      startCanvas.SetActive(true);
+        startCanvas.SetActive(true);
         HUDCanvas.SetActive(false);
         //DontDestroyOnLoad(startCanvas.gameObject);
         //DontDestroyOnLoad(HUDCanvas.gameObject);
@@ -57,9 +62,10 @@ public class StartCanvas : MonoBehaviour
     {
         controlsPanel.SetActive(false);
     }
-        public void StartButton()
+    
+    public void StartButton()
     {
-
+        Debug.Log("GameStarted");
         if (startCanvas.activeInHierarchy /*&& startCanvas != null && Time.time<5*/)
         {
             startCanvas.SetActive(false);

@@ -304,9 +304,9 @@
                 {
                     "name": "left",
                     "id": "25e15b06-11ba-4759-8b34-665445fe5b6c",
-                    "path": "<Mouse>/position/y",
+                    "path": "<Mouse>/position/x",
                     "interactions": "",
-                    "processors": "Scale",
+                    "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
@@ -317,7 +317,7 @@
                     "id": "27b6ec70-17da-4fde-a252-94c40063b874",
                     "path": "<Mouse>/position/x",
                     "interactions": "",
-                    "processors": "Scale,Invert",
+                    "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
@@ -326,9 +326,9 @@
                 {
                     "name": "up",
                     "id": "583e5138-5571-4cfa-87b1-737ecd84fd38",
-                    "path": "<Mouse>/delta/x",
+                    "path": "<Mouse>/position/y",
                     "interactions": "",
-                    "processors": "Scale",
+                    "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
@@ -337,10 +337,10 @@
                 {
                     "name": "down",
                     "id": "2cca2dda-2b86-4950-be5b-c7f1468abfa4",
-                    "path": "<Mouse>/delta/y",
+                    "path": "<Mouse>/position/y",
                     "interactions": "",
-                    "processors": "Scale",
-                    "groups": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -878,6 +878,33 @@
                     "action": "PointsDance4",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "ac8f3555-a235-4c45-acc8-ec4f55ed80ad",
+            "actions": [
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "cbdbfa23-6626-4c88-9c06-f7c1b0160ca5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fa3bba0f-5a64-47ab-90fd-5ca3fc2fc7c9",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

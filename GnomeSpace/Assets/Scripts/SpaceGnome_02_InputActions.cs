@@ -317,9 +317,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""25e15b06-11ba-4759-8b34-665445fe5b6c"",
-                    ""path"": ""<Mouse>/position/y"",
+                    ""path"": ""<Mouse>/position/x"",
                     ""interactions"": """",
-                    ""processors"": ""Scale"",
+                    ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
@@ -330,7 +330,7 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""id"": ""27b6ec70-17da-4fde-a252-94c40063b874"",
                     ""path"": ""<Mouse>/position/x"",
                     ""interactions"": """",
-                    ""processors"": ""Scale,Invert"",
+                    ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
@@ -339,9 +339,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""583e5138-5571-4cfa-87b1-737ecd84fd38"",
-                    ""path"": ""<Mouse>/delta/x"",
+                    ""path"": ""<Mouse>/position/y"",
                     ""interactions"": """",
-                    ""processors"": ""Scale"",
+                    ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
@@ -350,10 +350,10 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""2cca2dda-2b86-4950-be5b-c7f1468abfa4"",
-                    ""path"": ""<Mouse>/delta/y"",
+                    ""path"": ""<Mouse>/position/y"",
                     ""interactions"": """",
-                    ""processors"": ""Scale"",
-                    ""groups"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -893,6 +893,33 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""ac8f3555-a235-4c45-acc8-ec4f55ed80ad"",
+            ""actions"": [
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbdbfa23-6626-4c88-9c06-f7c1b0160ca5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa3bba0f-5a64-47ab-90fd-5ca3fc2fc7c9"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -983,6 +1010,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         m_DanceCombos_PointsDance2 = m_DanceCombos.FindAction("PointsDance2", throwIfNotFound: true);
         m_DanceCombos_PointsDance3 = m_DanceCombos.FindAction("PointsDance3", throwIfNotFound: true);
         m_DanceCombos_PointsDance4 = m_DanceCombos.FindAction("PointsDance4", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1255,6 +1285,39 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         }
     }
     public DanceCombosActions @DanceCombos => new DanceCombosActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_StartGame;
+    public struct UIActions
+    {
+        private @SpaceGnome_02_InputActions m_Wrapper;
+        public UIActions(@SpaceGnome_02_InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @StartGame => m_Wrapper.m_UI_StartGame;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @StartGame.started -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1327,5 +1390,9 @@ public class @SpaceGnome_02_InputActions : IInputActionCollection, IDisposable
         void OnPointsDance2(InputAction.CallbackContext context);
         void OnPointsDance3(InputAction.CallbackContext context);
         void OnPointsDance4(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }

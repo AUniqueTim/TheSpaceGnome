@@ -8,8 +8,9 @@ using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
-
-   [SerializeField] GameObject player;
+    public HighScoreData highScoreData;
+    public HighScorePanel highScorePanel;
+    [SerializeField] GameObject player;
     public DanceCombos danceCombos;
     public FallDamage fallDamageScript;
     public Timer timerScript;
@@ -26,7 +27,12 @@ public class PlayerManager : MonoBehaviour
     public int totalHealthLost;
     public int totalHealthGained;
     [SerializeField] int asteroidCollisions;
-    [SerializeField] float score;
+    public float score;
+    public float score2;
+    public float score3;
+    public float score4;
+    public float score5;
+    public float currentHighScore;
     [SerializeField] float totalTime;
     [SerializeField] int totalCoins;
     public CameraController camController;
@@ -374,14 +380,49 @@ public class PlayerManager : MonoBehaviour
     }
     public void GameOver()
     {
+        currentHighScore = score;
+        highScorePanel.hS01 = currentHighScore;
+        
+
+        //highScorePanel.LoadHighScoreData();
+
+        highScorePanel.SaveHighScore(highScorePanel);
+        //highScorePanel.SaveHighScore2(highScorePanel);
+        //highScorePanel.SaveHighScore3(highScorePanel);
+        //highScorePanel.SaveHighScore4(highScorePanel);
+        //highScorePanel.SaveHighScore5(highScorePanel);
+
+        if (highScorePanel.highScore != null) { highScorePanel.highScoreID = score.ToString(); highScorePanel.highScore.text = highScorePanel.hS01.ToString(); ; }  //Need to mark (save?) score here as playerName?
+        if (highScorePanel.highScore2 != null) { highScorePanel.highScoreID2 = score2.ToString(); highScorePanel.highScore2.text = highScorePanel.hS02.ToString(); }
+        if (highScorePanel.highScore3 != null) { highScorePanel.highScoreID3 = score3.ToString(); highScorePanel.highScore3.text = highScorePanel.hS03.ToString(); }
+        if (highScorePanel.highScore4 != null) { highScorePanel.highScoreID4 = score4.ToString(); highScorePanel.highScore4.text = highScorePanel.hS04.ToString(); }
+        if (highScorePanel.highScore5 != null) { highScorePanel.highScoreID5 = score5.ToString(); highScorePanel.highScore5.text = highScorePanel.hS05.ToString(); }
+
+
+        if (score < score2 && score < score3 && score < score4 && score >= score5)
+        {
+            score2 = score3; score3 = score4; score4 = score5; score5 = score;
+        }
+        else if (score < score2 && score < score3 && score >= score4)
+        {
+            score2 = score3; score3 = score4; score4 = score;
+        }
+        else if (score < score2 && score >= score3)
+        {
+            score2 = score3; score3 = score;
+        }
+        else if (score >= score2)
+        {
+            score2 = score;
+        }
 
 
         camController.sideCamera.SetActive(true);
-        scoreText.text = score.ToString(format: "f0");
+        
         pointsCoinsText.text = totalPointsCoinsCollected.ToString();
         hPCoinsText.text = totalHPCoinsCollected.ToString();
         timeCoinsText.text = totalTimeCoinsCollected.ToString();
-
+        scoreText.text = score.ToString(format: "f0");
         totalCoinsText.text = totalCoins.ToString();
         totalTime = Time.deltaTime + timerScript.startTime;
         asteroidCollisionText.text = asteroidCollisions.ToString();

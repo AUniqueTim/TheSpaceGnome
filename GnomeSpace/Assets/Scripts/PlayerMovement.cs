@@ -144,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
         controls.Player.Dance.performed += context => Dance();
 
+        
     }
     public IEnumerator Wait()
     {
@@ -225,6 +226,12 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+
+        //if (controls.UI.StartGame.triggered)
+        //{
+        //    StartCanvas startCanvas = new StartCanvas();
+        //    startCanvas.StartButton();
+        //}
 
         //if (controls.Player.PlatformGun.triggered)
         //{

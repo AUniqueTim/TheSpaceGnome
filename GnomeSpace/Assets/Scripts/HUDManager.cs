@@ -13,12 +13,13 @@ public class HUDManager : MonoBehaviour
     public GameObject HUDCanvas;
     public StartCanvas startCanvas;
     public GameObject startCanvasGO;
+    public HighScorePanel highScorePanel;
+    public GameObject highScorePanelGO;
     public BoostBar boostBar;
     public Transform hUDManagerTransform;
 
     public void Awake()
     {
-
         //DontDestroyOnLoad(startCanvas.gameObject);
         //startCanvas = FindObjectOfType<StartCanvas>(gameObject);
         //startCanvasGO = startCanvas.gameObject;
@@ -28,11 +29,13 @@ public class HUDManager : MonoBehaviour
         //    startCanvas.gameObject.SetActive(true);
         //}
         //boostBar = FindObjectOfType<BoostBar>(gameObject);
-       
-        
-        
+
     }
-    
+    public void HighScorePanelToggle()
+    {
+        if (!highScorePanelGO.activeInHierarchy) { highScorePanelGO.SetActive(true); }
+        else if (highScorePanelGO.activeInHierarchy) { highScorePanelGO.SetActive(false); }
+    }
     public void Restart()
     {
         youDiedTextObject.SetActive(false);
@@ -45,9 +48,6 @@ public class HUDManager : MonoBehaviour
 
         SceneManager.LoadScene(0);
         
-        
-        
-
     }
 
 public void Quit()
